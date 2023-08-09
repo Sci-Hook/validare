@@ -1,0 +1,19 @@
+{
+    "name": "syncforeachloop",
+    "version": "1.0.0",
+    "description": "Synchronous version of the foreach loop.",
+    "main": "index.js",
+    "scripts": {
+        "tsc": "tsc index.ts -w",
+        "nodemon": "nodemon index.js"
+    },
+    "author": "lim10",
+    "license": "MIT",
+    "dependencies": {},
+    "keywords": [
+        "foreach",
+        "foreachloop",
+        "scihook",
+        "for"        
+    ]
+}
