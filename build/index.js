@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var expess = require("express");
-var app = expess();
-app.use(expess.json());
-app.use('/', function (req, res) {
-    res.json(res.locals.invalid_values);
-});
-app.listen(80);
+exports.validate_files = exports.ID = exports.validator = exports.loadValidatonRules = exports.create_id = exports.validate_request = exports.Schema = void 0;
+var src_1 = require("./src");
+Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return src_1.Schema; } });
+Object.defineProperty(exports, "validate_request", { enumerable: true, get: function () { return src_1.validate_request; } });
+Object.defineProperty(exports, "create_id", { enumerable: true, get: function () { return src_1.create_id; } });
+Object.defineProperty(exports, "loadValidatonRules", { enumerable: true, get: function () { return src_1.loadValidatonRules; } });
+Object.defineProperty(exports, "validator", { enumerable: true, get: function () { return src_1.validator; } });
+Object.defineProperty(exports, "ID", { enumerable: true, get: function () { return src_1.ID; } });
+Object.defineProperty(exports, "validate_files", { enumerable: true, get: function () { return src_1.validate_files; } });

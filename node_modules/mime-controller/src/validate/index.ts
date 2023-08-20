@@ -1,0 +1,53 @@
+import {supported_file_types} from '../types/supported-file-types';
+import {signatures} from '../signatures';
+import {check_start} from './check-start';
+import 'syncforeachloop';
+import { check_end } from './check-end';
+import { check_magic } from './check-magic'
+
+export function validate(data:Buffer,format:supported_file_types){
+    
+    return new Promise<boolean>(async (resolve, reject) => {
+
+        if (Buffer.isBuffer(data)) {
+            var data_hex = data.toString('hex').toUpperCase();
+        }else{
+            console.error('The value must be of type buffer.');
+            return reject(new Error('The value must be of type buffer.'));
+        }
+
+        var properties = signatures[format];
+
+        if (properties.magic_numbers) {
+
+            if (properties.magic_numbers.start_with) {
+                if (!await check_start(properties.magic_numbers.start_with,data_hex)) {
+                    return resolve(false);            
+                } 
+            }
+        
+            if (properties.magic_numbers.ends_with) {
+                if (!await check_end(properties.magic_numbers.ends_with,data_hex)) {
+                    return resolve(false);            
+                } 
+            }
+    
+            if (properties.magic_numbers.contain) {
+                if (!await check_magic(properties.magic_numbers.contain,data_hex)) {
+                    return resolve(false);            
+                }  
+            }
+
+        }
+
+        if (properties.controller) {
+            if(!properties.controller(data.toString('ascii'))){
+                return resolve(false);
+            };
+        }
+
+        return resolve(true);
+
+    });
+
+}

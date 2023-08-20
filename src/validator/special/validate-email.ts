@@ -13,6 +13,11 @@ export function validate_email(value,options) {
         if (email_regex) {
             if (email_regex.groups) {
                 var service = email_regex.groups.service;
+
+                if (!options) {
+                    return resolve('no_error');
+                }
+
                 if (options.services) {
                     if (options.services.indexOf(service) != -1) {
                         resolve('no_error');

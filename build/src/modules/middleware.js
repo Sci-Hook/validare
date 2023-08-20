@@ -37,13 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate = void 0;
+var response_schema_1 = require("response-schema");
 function validate(values) {
     return function (req, res, next) {
         var value_keys = Object.keys(values);
         var invalid_values = [];
         value_keys.syncForEach(function (name, next_value) {
             return __awaiter(this, void 0, void 0, function () {
-                var schema, value, result;
+                var schema, value, result, error;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -59,8 +60,9 @@ function validate(values) {
                             return [4 /*yield*/, schema.validate(value)];
                         case 1:
                             result = _a.sent();
+                            error = result.get_error(res, name);
                             if (!result.status) {
-                                invalid_values.push({ data_name: name, error: result.error });
+                                invalid_values.push({ data_name: name, error_name: result.error, error: error });
                             }
                             next_value();
                             return [2 /*return*/];
@@ -68,8 +70,16 @@ function validate(values) {
                 });
             });
         }, function () {
-            res.locals.invalid_values = invalid_values;
-            next();
+            if (invalid_values.length == 0) {
+                next();
+            }
+            else {
+                (0, response_schema_1.response)(res, {
+                    code: 400,
+                    data: invalid_values,
+                    msg: 'invalid_values'
+                });
+            }
         });
     };
 }

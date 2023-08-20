@@ -9,6 +9,9 @@ function validate_url(url, options) {
         }
         try {
             var parsed_url = new URL(url);
+            if (!options) {
+                return resolve('no_error');
+            }
             if (options.protocols) {
                 var protocol = parsed_url.protocol.substring(0, parsed_url.protocol.length - 1);
                 if (options.protocols.indexOf(protocol) == -1) {

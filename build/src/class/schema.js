@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Schema = void 0;
 var validator_1 = require("../validator");
+var create_id_1 = require("../create-id");
 var Schema = /** @class */ (function () {
     function Schema(schema) {
         this.schema = schema;
@@ -52,6 +53,21 @@ var Schema = /** @class */ (function () {
                     case 1:
                         status = _a.sent();
                         resolve(status);
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    Schema.prototype.create_id = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+            var id;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, create_id_1.create_id)(this.schema)];
+                    case 1:
+                        id = _a.sent();
+                        resolve(id);
                         return [2 /*return*/];
                 }
             });

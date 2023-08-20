@@ -44,91 +44,147 @@ var validate_phone_1 = require("./special/validate-phone");
 var validate_types_1 = require("./validate-types");
 var validate_values_1 = require("./validate-values");
 var error_1 = require("../class/error");
+var get_requiments_1 = require("../functions/get-requiments");
+var validate_size_1 = require("./buffer/validate-size");
+var validate_mime_extension_1 = require("./buffer/validate-mime-extension");
 var special_controolers = {
     email: validate_email_1.validate_email,
     url: validate_url_1.validate_url,
     ip: validate_ip_1.validate_ip,
     phone: validate_phone_1.validate_phone
 };
+var special_types = [
+    'any',
+    'file',
+    'buffer'
+];
 function validator(schema, value) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                    var status_1, status_2, status_3, length;
+                    var status_1, status_2, status_3, reason, status_4, reason, status_5, length;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0:
+                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
+                            case 1:
+                                schema = _a.sent();
+                                // Required validation
                                 if (schema.required) {
                                     if (value === undefined)
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('undefined'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required))];
                                     if (value === null)
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('null'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required))];
                                 }
-                                if (!schema.values) return [3 /*break*/, 2];
+                                if (!schema.values) return [3 /*break*/, 3];
                                 return [4 /*yield*/, (0, validate_values_1.validate_values)(value, schema.values)];
-                            case 1:
+                            case 2:
                                 status_1 = _a.sent();
                                 if (status_1) {
-                                    return [2 /*return*/, resolve(new error_1.CreateStatus('no_error'))];
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', schema.values))];
                                 }
                                 else {
-                                    return [2 /*return*/, resolve(new error_1.CreateStatus('values'))];
+                                    return [2 /*return*/, resolve(new error_1.Status('values', schema.values))];
                                 }
                                 ;
-                                _a.label = 2;
-                            case 2:
+                                _a.label = 3;
+                            case 3:
+                                // Accpeted values validation
+                                // Empty string validation
                                 if (schema.ignore_empty) {
                                     if (value === '')
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('empty'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('empty', schema.ignore_empty))];
                                 }
-                                if (!schema.type) return [3 /*break*/, 4];
+                                if (!schema.type) return [3 /*break*/, 5];
                                 if (typeof schema.type == 'string') {
-                                    if (typeof value != schema.type && schema.type != 'any')
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('type'))];
+                                    if (typeof value != schema.type && special_types.indexOf(schema.type) == -1) {
+                                        return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
+                                    }
+                                    if (schema.type == 'buffer') {
+                                        if (!Buffer.isBuffer(value))
+                                            return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
+                                    }
                                 }
-                                if (!(typeof schema.type == 'object')) return [3 /*break*/, 4];
+                                if (!(typeof schema.type == 'object')) return [3 /*break*/, 5];
                                 return [4 /*yield*/, (0, validate_types_1.validate_types)(value, schema.type)];
-                            case 3:
+                            case 4:
                                 status_2 = _a.sent();
                                 if (!status_2)
-                                    return [2 /*return*/, resolve(new error_1.CreateStatus('type'))];
-                                _a.label = 4;
-                            case 4:
-                                if (!schema.special_controllers) return [3 /*break*/, 6];
-                                return [4 /*yield*/, special_controolers[schema.special_controllers.type](value, schema.special_controllers.options)];
+                                    return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
+                                _a.label = 5;
                             case 5:
-                                status_3 = _a.sent();
-                                if (status_3 != 'no_error')
-                                    return [2 /*return*/, resolve(new error_1.CreateStatus(status_3))];
-                                _a.label = 6;
+                                if (!(schema.type == 'file' || schema.type == 'buffer' || schema.type == 'string')) return [3 /*break*/, 7];
+                                if (!(schema.max_size || schema.min_size)) return [3 /*break*/, 7];
+                                return [4 /*yield*/, (0, validate_size_1.validate_size)(schema, value)];
                             case 6:
+                                status_3 = _a.sent();
+                                if (status_3 != 'no_error') {
+                                    reason = void 0;
+                                    if (status_3 == 'max_size') {
+                                        reason = schema.max_size;
+                                    }
+                                    ;
+                                    if (status_3 == 'min_size') {
+                                        reason = schema.min_size;
+                                    }
+                                    ;
+                                    return [2 /*return*/, resolve(new error_1.Status(status_3, reason))];
+                                }
+                                _a.label = 7;
+                            case 7:
+                                if (!(schema.type == 'file' || schema.type == 'buffer')) return [3 /*break*/, 10];
+                                if (!(schema.mime || schema.extension)) return [3 /*break*/, 9];
+                                return [4 /*yield*/, (0, validate_mime_extension_1.validate_mime_extension)(schema, value)];
+                            case 8:
+                                status_4 = _a.sent();
+                                if (status_4 != 'no_error') {
+                                    reason = void 0;
+                                    if (status_4 == 'extension') {
+                                        reason = schema.extension;
+                                    }
+                                    if (status_4 == 'mime') {
+                                        reason = schema.mime;
+                                    }
+                                    return [2 /*return*/, resolve(new error_1.Status(status_4, reason))];
+                                }
+                                _a.label = 9;
+                            case 9: return [2 /*return*/, resolve(new error_1.Status('no_error'))];
+                            case 10:
+                                if (!schema.special_controllers) return [3 /*break*/, 12];
+                                return [4 /*yield*/, special_controolers[schema.special_controllers.type](value, schema.special_controllers.options)];
+                            case 11:
+                                status_5 = _a.sent();
+                                if (status_5 != 'no_error')
+                                    return [2 /*return*/, resolve(new error_1.Status(status_5))];
+                                _a.label = 12;
+                            case 12:
                                 if (typeof value == 'number')
                                     length = value;
                                 if (typeof value == 'string')
                                     length = value.length;
                                 if (schema.length) {
                                     if (length != schema.length)
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('length'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('length', schema.length))];
                                 }
                                 if (schema.min_length) {
                                     if (length < schema.min_length)
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('min_length'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('min_length', schema.min_length))];
                                 }
                                 if (schema.max_length) {
                                     if (length > schema.max_length)
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('max_length'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('max_length', schema.max_length))];
                                 }
                                 if (schema.regex) {
                                     if (typeof value == 'string') {
                                         if (!value.match(schema.regex))
-                                            return [2 /*return*/, resolve(new error_1.CreateStatus('regex'))];
+                                            return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
                                     }
                                     else {
-                                        return [2 /*return*/, resolve(new error_1.CreateStatus('regex'))];
+                                        return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
                                     }
                                 }
-                                return [2 /*return*/, resolve(new error_1.CreateStatus('no_error'))];
+                                // length validations
+                                return [2 /*return*/, resolve(new error_1.Status('no_error'))]; // no error
                         }
                     });
                 }); })];

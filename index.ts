@@ -1,15 +1,3 @@
-import {Schema, validate} from './src';
-import * as expess from 'express';
+import {Schema, validate_request,create_id,loadValidatonRules,validator,ID,validate_files} from './src';
 
-var app = expess();
-
-app.use(expess.json());
-
-app.use('/', 
-    (req,res) => {
-        res.json(res.locals.invalid_values);
-    }
-);
-
-
-app.listen(80);
+export{Schema,validate_request,create_id,loadValidatonRules,validator,ID,validate_files}
