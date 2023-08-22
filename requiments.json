@@ -6,19 +6,14 @@
     "id_type":{
         "length":40
     },
-    "image":{
-        "type":"file",
-        "extension":["jpg","png"]
-    },
     "test":{
         "type":"file",
         "extension":["png","jpg"]
     },
     "mest":{
-        "extension":["aac"],
         "type":"file",
         "max_size":{
-            "size":1,
+            "size":20,
             "size_type":"mb"
         }
     }

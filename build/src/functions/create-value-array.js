@@ -49,7 +49,7 @@ function create_value_array(req, res, values, options, type) {
     return new Promise(function (resolve, reject) {
         array_values.syncForEach(function (arr_value, next_value) {
             return __awaiter(this, void 0, void 0, function () {
-                var value, name, schema;
+                var value, name, key, schema;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -61,6 +61,7 @@ function create_value_array(req, res, values, options, type) {
                             return [4 /*yield*/, (0, get_name_1.get_name)(arr_value)];
                         case 2:
                             name = _a.sent();
+                            key = name;
                             return [3 /*break*/, 6];
                         case 3: return [4 /*yield*/, (0, get_value_1.get_value)(req, res, arr_value.name)];
                         case 4:
@@ -68,6 +69,7 @@ function create_value_array(req, res, values, options, type) {
                             return [4 /*yield*/, (0, get_name_1.get_name)(arr_value.name)];
                         case 5:
                             name = _a.sent();
+                            key = arr_value.key;
                             _a.label = 6;
                         case 6: return [3 /*break*/, 11];
                         case 7:
@@ -83,30 +85,42 @@ function create_value_array(req, res, values, options, type) {
                             name = arr_value.name;
                             _a.label = 11;
                         case 11:
+                            if (typeof arr_value == 'string') {
+                                if (arr_value.endsWith('?')) {
+                                    if (value === undefined)
+                                        return [2 /*return*/, next_value()];
+                                    if (value === null)
+                                        return [2 /*return*/, next_value()];
+                                }
+                            }
+                            else {
+                                if (arr_value.name.endsWith('?')) {
+                                    if (value === undefined)
+                                        return [2 /*return*/, next_value()];
+                                    if (value === null)
+                                        return [2 /*return*/, next_value()];
+                                }
+                            }
                             if (typeof arr_value == 'object') {
                                 if (arr_value.allow_undefined) {
-                                    if (value === undefined) {
+                                    if (value === undefined)
                                         return [2 /*return*/, next_value()];
-                                    }
                                 }
                                 if (arr_value.allow_null) {
-                                    if (value === null) {
+                                    if (value === null)
                                         return [2 /*return*/, next_value()];
-                                    }
                                 }
                                 if (arr_value.allow_empty) {
-                                    if (value === '') {
+                                    if (value === '')
                                         return [2 /*return*/, next_value()];
-                                    }
                                 }
                             }
                             if (options) {
                                 if (options === null || options === void 0 ? void 0 : options.allow_undefined) {
                                     if (value === undefined) {
                                         if (typeof arr_value == 'object') {
-                                            if (arr_value.allow_undefined !== false) {
+                                            if (arr_value.allow_undefined !== false)
                                                 return [2 /*return*/, next_value()];
-                                            }
                                         }
                                         else {
                                             return [2 /*return*/, next_value()];
@@ -116,9 +130,8 @@ function create_value_array(req, res, values, options, type) {
                                 if (options === null || options === void 0 ? void 0 : options.allow_null) {
                                     if (value === null) {
                                         if (typeof arr_value == 'object') {
-                                            if (arr_value.allow_null !== false) {
+                                            if (arr_value.allow_null !== false)
                                                 return [2 /*return*/, next_value()];
-                                            }
                                         }
                                         else {
                                             return [2 /*return*/, next_value()];
@@ -128,9 +141,8 @@ function create_value_array(req, res, values, options, type) {
                                 if (options === null || options === void 0 ? void 0 : options.allow_empty) {
                                     if (value === '') {
                                         if (typeof arr_value == 'object') {
-                                            if (arr_value.allow_empty !== false) {
+                                            if (arr_value.allow_empty !== false)
                                                 return [2 /*return*/, next_value()];
-                                            }
                                         }
                                         else {
                                             return [2 /*return*/, next_value()];
@@ -138,13 +150,38 @@ function create_value_array(req, res, values, options, type) {
                                     }
                                 }
                             }
-                            if (typeof arr_value === 'string') {
-                                schema = global.validare.requiments[arr_value];
+                            if (options === null || options === void 0 ? void 0 : options.params_schema_key) {
+                                schema = global.validare.requiments[req.params[options.params_schema_key]];
                             }
                             else {
-                                schema = arr_value.schema.schema;
+                                if (typeof arr_value === 'string') {
+                                    if (global.validare.requiments[name]) {
+                                        schema = global.validare.requiments[name];
+                                    }
+                                    else {
+                                        schema = { required: true };
+                                    }
+                                }
+                                else {
+                                    if (typeof arr_value.schema == 'string') {
+                                        if (global.validare.requiments[arr_value.schema]) {
+                                            schema = global.validare.requiments[arr_value.schema];
+                                        }
+                                        else {
+                                            schema = { required: true };
+                                        }
+                                    }
+                                    else {
+                                        if (arr_value.schema) {
+                                            schema = arr_value.schema.schema;
+                                        }
+                                        else {
+                                            schema = global.validare.requiments[name];
+                                        }
+                                    }
+                                }
                             }
-                            value_array.push({ name: name, value: value, schema: schema });
+                            value_array.push({ name: name, value: value, schema: schema, key: key });
                             next_value();
                             return [2 /*return*/];
                     }

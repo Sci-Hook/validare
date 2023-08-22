@@ -1,6 +1,8 @@
 import {Request,Response} from 'express';
 
 export function get_value(req:Request,res:Response,name:string) {
+
+    if (name.endsWith('?')) name = name.slice(0,-1);
     
     var parsed_name = name.split(':');
 
@@ -25,7 +27,15 @@ export function get_value(req:Request,res:Response,name:string) {
 
         }else{
 
-            var entry_point = Object.assign({},req[parsed_name[0]]);
+            var object;
+            
+            if (req[parsed_name[0]]) {
+                object = req[parsed_name[0]];
+            }else{
+                object = res[parsed_name[0]]
+            }
+
+            var entry_point = Object.assign({},object);
             var location = parsed_name[1];
             var location_splitted = location.split('.');
             var data = entry_point;

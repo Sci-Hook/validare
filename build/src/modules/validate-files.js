@@ -40,13 +40,17 @@ exports.validate_files = void 0;
 var create_value_array_1 = require("../functions/create-value-array");
 var validator_1 = require("../validator");
 var response_schema_1 = require("response-schema");
+var mime_controller_1 = require("mime-controller");
 function validate_files(values, options) {
     var _this = this;
     return function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
         var value_array, invalid_files;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, create_value_array_1.create_value_array)(req, res, values, options, 'file')];
+                case 0:
+                    if (!res.locals.files)
+                        res.locals.files = [];
+                    return [4 /*yield*/, (0, create_value_array_1.create_value_array)(req, res, values, options, 'file')];
                 case 1:
                     value_array = _a.sent();
                     invalid_files = {};
@@ -58,7 +62,7 @@ function validate_files(values, options) {
                         }
                         files.syncForEach(function (file, next_file) {
                             return __awaiter(this, void 0, void 0, function () {
-                                var result;
+                                var result, properties;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0: return [4 /*yield*/, (0, validator_1.validator)(value.schema, file.buffer)];
@@ -74,8 +78,20 @@ function validate_files(values, options) {
                                                     originalname: file.originalname,
                                                     reason: result.reason
                                                 });
+                                                return [2 /*return*/, next_file()];
                                             }
-                                            ;
+                                            return [4 /*yield*/, (0, mime_controller_1.findMime)(file.buffer)];
+                                        case 2:
+                                            properties = _a.sent();
+                                            res.locals.files.push({
+                                                fieldname: value.name,
+                                                buffer: file.buffer,
+                                                size: file.size,
+                                                extension: properties.extension,
+                                                mimetype: properties.mime,
+                                                originalname: file.originalname,
+                                                name: file.originalname.split('.')[0]
+                                            });
                                             next_file();
                                             return [2 /*return*/];
                                     }
@@ -88,7 +104,7 @@ function validate_files(values, options) {
                         }
                         else {
                             res.json((0, response_schema_1.response)(res, {
-                                msg: 'invalid_file',
+                                msg: 'invalid_files',
                                 code: 400,
                                 data: invalid_files
                             }));

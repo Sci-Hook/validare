@@ -41,6 +41,8 @@ function get_name(name) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) {
+                    if (name.endsWith('?'))
+                        name = name.slice(0, -1);
                     var data_name;
                     var name_splitted = name.split(':');
                     if (name_splitted.length == 1) {

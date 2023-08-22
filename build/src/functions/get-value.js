@@ -39,9 +39,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_value = void 0;
 function get_value(req, res, name) {
     var _this = this;
+    if (name.endsWith('?'))
+        name = name.slice(0, -1);
     var parsed_name = name.split(':');
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-        var entry_point, location, location_splitted, data;
+        var object, entry_point, location, location_splitted, data;
         return __generator(this, function (_a) {
             if (parsed_name.length == 1) {
                 if (req.method == 'GET') {
@@ -62,7 +64,13 @@ function get_value(req, res, name) {
                 }
             }
             else {
-                entry_point = Object.assign({}, req[parsed_name[0]]);
+                if (req[parsed_name[0]]) {
+                    object = req[parsed_name[0]];
+                }
+                else {
+                    object = res[parsed_name[0]];
+                }
+                entry_point = Object.assign({}, object);
                 location = parsed_name[1];
                 location_splitted = location.split('.');
                 data = entry_point;

@@ -1,6 +1,8 @@
 export async function get_name(name:string){
     return new Promise<string>((resolve, reject) => {
         
+        if (name.endsWith('?')) name = name.slice(0,-1)
+
         var data_name;
         var name_splitted = name.split(':');
 

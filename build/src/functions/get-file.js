@@ -4,6 +4,9 @@ exports.get_file = void 0;
 function get_file(req, res, file) {
     return new Promise(function (resolve, reject) {
         var _a;
+        if (!req.file && !req.files) {
+            return resolve(undefined);
+        }
         if (req.files) {
             if (((_a = req.files) === null || _a === void 0 ? void 0 : _a.length) === undefined) {
                 if (req.files[file]) {

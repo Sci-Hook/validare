@@ -2,6 +2,10 @@ import {Request,Response} from 'express';
 
 export function get_file(req:Request,res:Response,file:string) {
     return new Promise<any[]|undefined>((resolve, reject) => { 
+
+        if (!req.file && !req.files) {
+            return resolve(undefined);
+        }
         
         if (req.files) {
             if (req.files?.length === undefined) {
