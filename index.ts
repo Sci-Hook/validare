@@ -1,25 +1,23 @@
 import {
+    schema,
     Schema, 
-    validate_request,
-    create_id,
-    loadValidatonRules,
+    loadValidatonSchemas,
     validator,
     ID,
-    validate_files,
-    files,
-    files_array,
-    db
+    validate_email,
+    validate_ip,
+    validate_phone,
+    validate_url
 } from './src';
 
 export{
     Schema,
-    validate_request,
-    create_id,
-    loadValidatonRules,
+    loadValidatonSchemas,
     validator,
     ID,
-    validate_files,
-    files,
-    files_array,
-    db
+    validate_email,
+    validate_ip,
+    validate_phone,
+    validate_url,
+    schema
 }

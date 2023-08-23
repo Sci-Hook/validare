@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadValidatonRules = void 0;
+exports.loadValidatonSchemas = void 0;
 var chalk = require("chalk");
 var fs = require("fs");
 require("syncforeachloop");
 global.validare = { requiments: {} };
-function loadValidatonRules(rule_file) {
+function loadValidatonSchemas(rule_file) {
     return __awaiter(this, void 0, void 0, function () {
         var files;
         return __generator(this, function (_a) {
@@ -72,4 +72,4 @@ function loadValidatonRules(rule_file) {
         });
     });
 }
-exports.loadValidatonRules = loadValidatonRules;
+exports.loadValidatonSchemas = loadValidatonSchemas;

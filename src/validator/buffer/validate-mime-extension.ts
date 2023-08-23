@@ -5,6 +5,7 @@ export function validate_mime_extension(schema:schema,value) {
 
     return new Promise<'no_error'|'extension'|'mime'|'invalid'>(async (resolve, reject) => {
 
+        console.log(schema);
         if (Buffer.isBuffer(value)) {
             var result = await findMime(value);
         }else{

@@ -30,5 +30,6 @@ class Schema implements SchemaInterface {
 }
 
 export{
-    Schema,SchemaInterface
+    Schema,
+    SchemaInterface
 }

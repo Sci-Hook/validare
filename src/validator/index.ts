@@ -101,7 +101,7 @@ export async function validator(schema:schema|string,value:any){
         
         // Special validations
         if (schema.special_controllers) {
-            let status = await special_controolers[schema.special_controllers.type](value,schema.special_controllers.options);
+            let status = await special_controolers[schema.special_controllers.type](value,<any>schema.special_controllers.options);
             if (status != 'no_error') return resolve(new Status(status));
         }
         // Special validations
@@ -151,4 +151,5 @@ export async function validator(schema:schema|string,value:any){
         return resolve(new Status('no_error')); // no error
            
     }); 
+
 }

@@ -1,4 +1,6 @@
-export function validate_url(url,options) {
+import { url } from "../../types/options";
+
+export function validate_url(url,options:url) {
     return new Promise<'protocols'|'ports'|'hostnames'|'invalid'|'no_error'>((resolve, reject) => {
 
         if (typeof url != 'string') {

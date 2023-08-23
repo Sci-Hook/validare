@@ -36,13 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = require("fs");
 var index_1 = require("./index");
-var mongoose_1 = require("mongoose");
 var index_2 = require("./index");
-var express = require("express");
-var a = new index_2.Schema({
-    regex: "/^[\\p{Letter}]+$/u"
-});
+(0, index_1.loadValidatonSchemas)(['requiments.json', 'test.json']);
+var a = new index_2.Schema({ extension: ['mp3'] });
+var buffer = (0, fs_1.readFileSync)('C:\\Users\\lim10\\Documents\\examples\\example.aac');
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b;
@@ -50,7 +49,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate('adsfasdf')];
+                    return [4 /*yield*/, a.validate(buffer)];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
@@ -59,13 +58,3 @@ function main() {
     });
 }
 main();
-(0, mongoose_1.connect)('mongodb://127.0.0.1:27017/test-db');
-var schema = new mongoose_1.Schema({ username: String, armut: { elma: Number, sogan: String }, test: String });
-var user = (0, mongoose_1.model)('Users', schema);
-(0, index_1.loadValidatonRules)(['requiments.json', 'test.json']);
-var app = express();
-app.use(express.json());
-app.use('/:schema', index_1.db.validate_exist(user, [{ name: 'test', key: 'username' }], { save: 'test' }), index_1.db.replace('locals:test', [{ name: 'new_name?', key: 'armut.elma' }]), function (req, res) {
-    res.json(res.locals.test);
-});
-app.listen(8000);

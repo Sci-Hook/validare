@@ -1,6 +1,8 @@
+import { email } from "../../types/options";
+
 const regex = '^[\\w-\\.]+@(?<service>[\\w-]+\\.+[\\w-]{2,4}$)';
 
-export function validate_email(value,options) {
+export function validate_email(value,options:email) {
     return new Promise<'no_error'|'invalid'|'services'>((resolve, reject) => {
         
         if (typeof value != 'string') {

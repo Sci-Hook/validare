@@ -46,6 +46,7 @@ function validate_mime_extension(schema, value) {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
+                    console.log(schema);
                     if (!Buffer.isBuffer(value)) return [3 /*break*/, 2];
                     return [4 /*yield*/, (0, mime_controller_1.findMime)(value)];
                 case 1:

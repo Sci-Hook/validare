@@ -4,7 +4,7 @@ import 'syncforeachloop';
 
 global.validare = {requiments:{}}
 
-export async function loadValidatonRules(rule_file:string|string[]) {
+export async function loadValidatonSchemas(rule_file:string|string[]) {
 
     var files:string[] = [];
 

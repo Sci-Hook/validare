@@ -1,4 +1,5 @@
 import {extensions,mimes} from 'mime-controller';
+import { email, ip, phone, url } from './options';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
@@ -16,25 +17,19 @@ type types =
 type special_controllers = 
 {
     type:'email',
-    options?:{
-        services?:string[]
-    }
+    options?:email
 }|
 {
     type:'ip',
-    options?:{}
+    options?:ip
 }|
 {
     type:'url',
-    options?:{
-        hostnames?:string[],
-        protocols?:string[],
-        ports?:number[]
-    }
+    options?:url
 }|
 {
     type:'phone',
-    options?:{}
+    options?:phone
 }
 
 type schema = {
