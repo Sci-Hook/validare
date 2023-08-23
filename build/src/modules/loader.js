@@ -60,7 +60,7 @@ function loadValidatonRules(rule_file) {
                         global.validare.requiments = Object.assign(global.validare.requiments, parsed);
                     }
                     catch (error) {
-                        console.log(chalk.red('[validare] File is not valid json. File: ${chalk.yellow(file)}'));
+                        console.log(chalk.red("[validare] File is not valid json. File: ".concat(chalk.yellow(file))));
                     }
                 }
                 catch (error) {

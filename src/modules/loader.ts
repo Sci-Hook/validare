@@ -21,7 +21,7 @@ export async function loadValidatonRules(rule_file:string|string[]) {
                 var parsed = JSON.parse(config.toString('ascii'));
                 global.validare.requiments = Object.assign(global.validare.requiments,parsed);
             } catch (error) {
-                console.log(chalk.red('[validare] File is not valid json. File: ${chalk.yellow(file)}'));
+                console.log(chalk.red(`[validare] File is not valid json. File: ${chalk.yellow(file)}`));
             }
         } catch (error) {
             console.log(chalk.red(`[validare] File can not read. File: ${chalk.yellow(file)}`));
