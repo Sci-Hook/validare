@@ -1,6 +1,17 @@
 import {loadValidatonRules,db} from './index';
 import {Schema, model,connect} from 'mongoose';
+import {Schema as validatorschema} from './index';
 import * as express from 'express';
+
+var a = new validatorschema({   
+    regex:"/^[\\p{Letter}]+$/u"
+});
+
+async function main() {
+    console.log(await a.validate('adsfasdf'));    
+}
+
+main();
 
 connect('mongodb://127.0.0.1:27017/test-db')
 
@@ -19,4 +30,4 @@ app.use('/:schema' ,
     }
 );
 
-app.listen(80);
+app.listen(8000);

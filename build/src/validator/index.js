@@ -63,7 +63,7 @@ function validator(schema, value) {
         var _this = this;
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                    var status_1, status_2, status_3, reason, status_4, reason, status_5, length;
+                    var status_1, status_2, status_3, reason, status_4, reason, status_5, length, splitted, flag, pattern, regex;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
@@ -174,16 +174,33 @@ function validator(schema, value) {
                                     if (length > schema.max_length)
                                         return [2 /*return*/, resolve(new error_1.Status('max_length', schema.max_length))];
                                 }
+                                // length validations
                                 if (schema.regex) {
                                     if (typeof value == 'string') {
-                                        if (!value.match(schema.regex))
-                                            return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
+                                        if (typeof schema.regex == 'string') {
+                                            splitted = schema.regex.split('/');
+                                            flag = schema.regex.split('/')[splitted.length - 1];
+                                            pattern = schema.regex.replace(flag, '');
+                                            pattern = pattern.slice(1, -1);
+                                            try {
+                                                regex = new RegExp(pattern, flag);
+                                                if (!value.match(regex))
+                                                    return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
+                                            }
+                                            catch (error) {
+                                                console.log("Invalid regex", schema);
+                                                console.log(error);
+                                            }
+                                        }
+                                        else {
+                                            if (!value.match(schema.regex))
+                                                return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
+                                        }
                                     }
                                     else {
                                         return [2 /*return*/, resolve(new error_1.Status('regex', schema.regex))];
                                     }
                                 }
-                                // length validations
                                 return [2 /*return*/, resolve(new error_1.Status('no_error'))]; // no error
                         }
                     });

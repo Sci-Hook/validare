@@ -123,15 +123,30 @@ export async function validator(schema:schema|string,value:any){
         if (schema.max_length) {
             if (length > schema.max_length) return resolve(new Status('max_length',schema.max_length));
         }
+        // length validations
     
         if (schema.regex) {
             if (typeof value == 'string') {
-                if (!value.match(schema.regex)) return resolve(new Status('regex',schema.regex));
+                if (typeof schema.regex == 'string') {
+                    
+                    var splitted = schema.regex.split('/');
+                    var flag = schema.regex.split('/')[splitted.length -1];
+                    var pattern = schema.regex.replace(flag,'');
+                    pattern = pattern.slice(1,-1);
+                    try {
+                        var regex = new RegExp(pattern,flag);
+                        if (!value.match(regex)) return resolve(new Status('regex',schema.regex));
+                    } catch (error) {
+                        console.log("Invalid regex", schema)
+                        console.log(error);
+                    }
+                }else{
+                    if (!value.match(schema.regex)) return resolve(new Status('regex',schema.regex));
+                }
             }else{
                 return resolve(new Status('regex',schema.regex));
             }
         }
-        // length validations
 
         return resolve(new Status('no_error')); // no error
            

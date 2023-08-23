@@ -43,7 +43,7 @@ type schema = {
     max_length?:number,
     length?:number,
     special_controllers?:special_controllers,
-    regex?:RegExp,
+    regex?:RegExp|string,
     required?:boolean,
     ignore_empty?:boolean,
     values?:any[],
