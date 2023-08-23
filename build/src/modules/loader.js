@@ -56,7 +56,7 @@ function loadValidatonRules(rule_file) {
                 try {
                     var config = fs.readFileSync(process.cwd() + '/' + file);
                     try {
-                        var parsed = JSON.parse(config.toString('ascii'));
+                        var parsed = JSON.parse(config.toString('utf-8'));
                         global.validare.requiments = Object.assign(global.validare.requiments, parsed);
                     }
                     catch (error) {
