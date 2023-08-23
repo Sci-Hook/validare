@@ -3,6 +3,13 @@ import { email, ip, phone, url } from './options';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
+export const special_types = [
+    'any',
+    'file',
+    'buffer',
+    'string-number'
+];
+
 type types = 
 'string'|
 'number'|
@@ -10,9 +17,10 @@ type types =
 'undefined'|
 'bigint'|
 'boolean'|
-'any'|
-'buffer'|
-'file';
+'any' |
+'string-number'|
+'file'|
+'buffer';
 
 type special_controllers = 
 {

@@ -1,4 +1,4 @@
-import { schema } from '../types/schema';
+import { schema, special_types } from '../types/schema';
 import { validate_email } from './special/validate-email';
 import { validate_url } from './special/validate-url';
 import { validate_ip } from './special/validate-ip';
@@ -9,6 +9,7 @@ import { Status } from '../class/error';
 import { get_requiments } from '../functions/get-requiments';
 import { validate_size } from './buffer/validate-size';
 import { validate_mime_extension } from './buffer/validate-mime-extension';
+import { specialTypeValidate } from './special-type-validator';
 
 const special_controolers = {
     email:validate_email,
@@ -17,11 +18,6 @@ const special_controolers = {
     phone:validate_phone
 };
 
-var special_types = [
-    'any',
-    'file',
-    'buffer'
-];
 
 export async function validator(schema:schema|string,value:any){
     return new Promise<Status>(async (resolve, reject) => {
@@ -52,16 +48,18 @@ export async function validator(schema:schema|string,value:any){
         }
         // Empty string validation
 
-        
         // Type validation
         if (schema.type) {
             if (typeof schema.type == 'string') {
+                
                 if (typeof value != schema.type && special_types.indexOf(schema.type) == -1) {
                     return resolve(new Status('type',schema.type))
                 }
-                if (schema.type =='buffer') {
-                    if (!Buffer.isBuffer(value)) return resolve(new Status('type',schema.type))
-                }
+                
+                var status = await specialTypeValidate(<any>schema.type,value);
+                if (!status) return resolve(new Status('type',schema.type))
+                
+
             }
             if (typeof schema.type == 'object') {
                 let status = await validate_types(value,schema.type);
@@ -105,7 +103,6 @@ export async function validator(schema:schema|string,value:any){
             if (status != 'no_error') return resolve(new Status(status));
         }
         // Special validations
-
 
         // length validations
         var length;

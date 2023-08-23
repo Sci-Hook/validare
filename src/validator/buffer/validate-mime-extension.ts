@@ -10,7 +10,6 @@ export function validate_mime_extension(schema:schema,value) {
             var result = await findMime(value);
         }else{
             return resolve('invalid');
-
         }
       
         if (!result.extension) {

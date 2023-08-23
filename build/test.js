@@ -40,7 +40,7 @@ var fs_1 = require("fs");
 var index_1 = require("./index");
 var index_2 = require("./index");
 (0, index_1.loadValidatonSchemas)(['requiments.json', 'test.json']);
-var a = new index_2.Schema({ extension: ['mp3'] });
+var a = new index_2.Schema({ type: ['buffer', 'string'] });
 var buffer = (0, fs_1.readFileSync)('C:\\Users\\lim10\\Documents\\examples\\example.aac');
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -49,7 +49,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate(buffer)];
+                    return [4 /*yield*/, a.validate(12)];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

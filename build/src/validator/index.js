@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validator = void 0;
+var schema_1 = require("../types/schema");
 var validate_email_1 = require("./special/validate-email");
 var validate_url_1 = require("./special/validate-url");
 var validate_ip_1 = require("./special/validate-ip");
@@ -47,23 +48,19 @@ var error_1 = require("../class/error");
 var get_requiments_1 = require("../functions/get-requiments");
 var validate_size_1 = require("./buffer/validate-size");
 var validate_mime_extension_1 = require("./buffer/validate-mime-extension");
+var special_type_validator_1 = require("./special-type-validator");
 var special_controolers = {
     email: validate_email_1.validate_email,
     url: validate_url_1.validate_url,
     ip: validate_ip_1.validate_ip,
     phone: validate_phone_1.validate_phone
 };
-var special_types = [
-    'any',
-    'file',
-    'buffer'
-];
 function validator(schema, value) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                    var status_1, status_2, status_3, reason, status_4, reason, status_5, length, splitted, flag, pattern, regex;
+                    var status_1, status, status_2, status_3, reason, status_4, reason, status_5, length, splitted, flag, pattern, regex;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
@@ -95,28 +92,30 @@ function validator(schema, value) {
                                     if (value === '')
                                         return [2 /*return*/, resolve(new error_1.Status('empty', schema.ignore_empty))];
                                 }
-                                if (!schema.type) return [3 /*break*/, 5];
-                                if (typeof schema.type == 'string') {
-                                    if (typeof value != schema.type && special_types.indexOf(schema.type) == -1) {
-                                        return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
-                                    }
-                                    if (schema.type == 'buffer') {
-                                        if (!Buffer.isBuffer(value))
-                                            return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
-                                    }
+                                if (!schema.type) return [3 /*break*/, 7];
+                                if (!(typeof schema.type == 'string')) return [3 /*break*/, 5];
+                                if (typeof value != schema.type && schema_1.special_types.indexOf(schema.type) == -1) {
+                                    return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
                                 }
-                                if (!(typeof schema.type == 'object')) return [3 /*break*/, 5];
-                                return [4 /*yield*/, (0, validate_types_1.validate_types)(value, schema.type)];
+                                return [4 /*yield*/, (0, special_type_validator_1.specialTypeValidate)(schema.type, value)];
                             case 4:
-                                status_2 = _a.sent();
-                                if (!status_2)
+                                status = _a.sent();
+                                if (!status)
                                     return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
                                 _a.label = 5;
                             case 5:
-                                if (!(schema.type == 'file' || schema.type == 'buffer' || schema.type == 'string')) return [3 /*break*/, 7];
-                                if (!(schema.max_size || schema.min_size)) return [3 /*break*/, 7];
-                                return [4 /*yield*/, (0, validate_size_1.validate_size)(schema, value)];
+                                if (!(typeof schema.type == 'object')) return [3 /*break*/, 7];
+                                return [4 /*yield*/, (0, validate_types_1.validate_types)(value, schema.type)];
                             case 6:
+                                status_2 = _a.sent();
+                                if (!status_2)
+                                    return [2 /*return*/, resolve(new error_1.Status('type', schema.type))];
+                                _a.label = 7;
+                            case 7:
+                                if (!(schema.type == 'file' || schema.type == 'buffer' || schema.type == 'string')) return [3 /*break*/, 9];
+                                if (!(schema.max_size || schema.min_size)) return [3 /*break*/, 9];
+                                return [4 /*yield*/, (0, validate_size_1.validate_size)(schema, value)];
+                            case 8:
                                 status_3 = _a.sent();
                                 if (status_3 != 'no_error') {
                                     reason = void 0;
@@ -130,12 +129,12 @@ function validator(schema, value) {
                                     ;
                                     return [2 /*return*/, resolve(new error_1.Status(status_3, reason))];
                                 }
-                                _a.label = 7;
-                            case 7:
-                                if (!(schema.type == 'file' || schema.type == 'buffer')) return [3 /*break*/, 10];
-                                if (!(schema.mime || schema.extension)) return [3 /*break*/, 9];
+                                _a.label = 9;
+                            case 9:
+                                if (!(schema.type == 'file' || schema.type == 'buffer')) return [3 /*break*/, 12];
+                                if (!(schema.mime || schema.extension)) return [3 /*break*/, 11];
                                 return [4 /*yield*/, (0, validate_mime_extension_1.validate_mime_extension)(schema, value)];
-                            case 8:
+                            case 10:
                                 status_4 = _a.sent();
                                 if (status_4 != 'no_error') {
                                     reason = void 0;
@@ -147,17 +146,17 @@ function validator(schema, value) {
                                     }
                                     return [2 /*return*/, resolve(new error_1.Status(status_4, reason))];
                                 }
-                                _a.label = 9;
-                            case 9: return [2 /*return*/, resolve(new error_1.Status('no_error'))];
-                            case 10:
-                                if (!schema.special_controllers) return [3 /*break*/, 12];
+                                _a.label = 11;
+                            case 11: return [2 /*return*/, resolve(new error_1.Status('no_error'))];
+                            case 12:
+                                if (!schema.special_controllers) return [3 /*break*/, 14];
                                 return [4 /*yield*/, special_controolers[schema.special_controllers.type](value, schema.special_controllers.options)];
-                            case 11:
+                            case 13:
                                 status_5 = _a.sent();
                                 if (status_5 != 'no_error')
                                     return [2 /*return*/, resolve(new error_1.Status(status_5))];
-                                _a.label = 12;
-                            case 12:
+                                _a.label = 14;
+                            case 14:
                                 if (typeof value == 'number')
                                     length = value;
                                 if (typeof value == 'string')
