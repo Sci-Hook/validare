@@ -3,6 +3,13 @@ import { email, ip, phone, url } from './options';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
+
+type alogrithms= 'sha256'|'sha512'|'md5'|
+"blake2b512"|"blake2s256"|"rmd160"|"sha1"|
+"sha224"|"sha256"|"sha3-224"|"sha3-256"|
+"sha3-384"|"sha3-512"|"sha384"|"sha512"|
+"sha512-224"|"sha512-256"|"sm3";
+
 export const special_types = [
     'any',
     'file',
@@ -54,7 +61,11 @@ type schema = {
     extension?:extensions|extensions[],
     mime?:mimes|mimes[],
     max_size?:{size:number,size_type:size_types},
-    min_size?:{size:number,size_type:size_types}
+    min_size?:{size:number,size_type:size_types},
+    hash?:{
+        alogrithm:alogrithms,
+        key:string
+    }
 }
 
 export{

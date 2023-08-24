@@ -2,6 +2,7 @@ import { Status } from './error';
 import {schema} from '../types/schema';
 import {validator} from '../validator';
 import {create_id} from '../create-id';
+import { hasher } from '../create-hash.ts';
 
 interface SchemaInterface {schema: schema;}
 
@@ -18,6 +19,12 @@ class Schema implements SchemaInterface {
             var status = await validator(this.schema,value);
             resolve(status);
         });
+    }
+    create_hash(value:any){
+       return new Promise<string>(async (resolve, reject) => {
+            var hash = await hasher(value,this.schema.hash?.alogrithm,this.schema.hash?.key);
+            resolve(hash);
+       })
     }
 
     create_id(){
