@@ -6,7 +6,7 @@ import {hasher} from './create-hash'
 
 import {Schema} from './class/schema';
 import {create_id as ID} from './create-id';
-import {loadValidatonSchemas} from './modules/loader'
+import {loadSchemas} from './modules/loader'
 import {validator} from './validator'
 
 import {validate_email} from './validator/special/validate-email'
@@ -17,7 +17,7 @@ import {validate_url} from './validator/special/validate-url'
 export{
     schema,
     Schema,
-    loadValidatonSchemas,
+    loadSchemas,
     validator,
     ID,
     validate_email,

@@ -1,12 +1,13 @@
 import {loadValidatonSchemas} from './index';
 import {Schema} from './index';
+import { loadSchemas } from './src';
 
-loadValidatonSchemas(['requiments.json','test.json']);
+loadSchemas(['requiments.json','test.json']);
 
-var a = new Schema({hash:{alogrithm:'sha256',key:'asfsdafdasf'}});
+var a = new Schema('username');
 
 async function main() {
-    console.log(await a.create_hash('asdfdasf'));
+    console.log(await a.validate('afdsfsdfdsfdsfsdfdsfaaa'));
 }
 
 main();

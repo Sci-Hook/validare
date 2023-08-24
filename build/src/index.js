@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.hasher = exports.validate_url = exports.validate_phone = exports.validate_ip = exports.validate_email = exports.ID = exports.validator = exports.loadValidatonSchemas = exports.Schema = void 0;
+exports.hasher = exports.validate_url = exports.validate_phone = exports.validate_ip = exports.validate_email = exports.ID = exports.validator = exports.loadSchemas = exports.Schema = void 0;
 //types
 var create_hash_1 = require("./create-hash");
 Object.defineProperty(exports, "hasher", { enumerable: true, get: function () { return create_hash_1.hasher; } });
@@ -9,7 +9,7 @@ Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { 
 var create_id_1 = require("./create-id");
 Object.defineProperty(exports, "ID", { enumerable: true, get: function () { return create_id_1.create_id; } });
 var loader_1 = require("./modules/loader");
-Object.defineProperty(exports, "loadValidatonSchemas", { enumerable: true, get: function () { return loader_1.loadValidatonSchemas; } });
+Object.defineProperty(exports, "loadSchemas", { enumerable: true, get: function () { return loader_1.loadSchemas; } });
 var validator_1 = require("./validator");
 Object.defineProperty(exports, "validator", { enumerable: true, get: function () { return validator_1.validator; } });
 var validate_email_1 = require("./validator/special/validate-email");

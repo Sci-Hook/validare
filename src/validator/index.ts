@@ -18,7 +18,6 @@ const special_controolers = {
     phone:validate_phone
 };
 
-
 export async function validator(schema:schema|string,value:any){
     return new Promise<Status>(async (resolve, reject) => {
         

@@ -6,13 +6,13 @@ export function get_requiments(schema) {
             if (!global.validare) {
                 resolve({required:true});
             }
-            if (!global.validare.requiments) {
+            if (!global.validare) {
                 resolve({required:true});
             }
-            if (!global.validare.requiments[schema]) {
+            if (!global.validare[schema]) {
                 resolve({required:true});
             }else{
-                resolve(<schema>global.validare.requiments[schema]);
+                resolve(<schema>global.validare[schema]);
             }
         }
         resolve(schema);

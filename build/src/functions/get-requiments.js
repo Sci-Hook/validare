@@ -7,14 +7,14 @@ function get_requiments(schema) {
             if (!global.validare) {
                 resolve({ required: true });
             }
-            if (!global.validare.requiments) {
+            if (!global.validare) {
                 resolve({ required: true });
             }
-            if (!global.validare.requiments[schema]) {
+            if (!global.validare[schema]) {
                 resolve({ required: true });
             }
             else {
-                resolve(global.validare.requiments[schema]);
+                resolve(global.validare[schema]);
             }
         }
         resolve(schema);

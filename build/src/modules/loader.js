@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadValidatonSchemas = void 0;
+exports.loadSchemas = void 0;
 var chalk = require("chalk");
 var fs = require("fs");
 require("syncforeachloop");
-global.validare = { requiments: {} };
-function loadValidatonSchemas(rule_file) {
+global.validare = {};
+function loadSchemas(rule_file) {
     return __awaiter(this, void 0, void 0, function () {
         var files;
         return __generator(this, function (_a) {
@@ -57,7 +57,7 @@ function loadValidatonSchemas(rule_file) {
                     var config = fs.readFileSync(process.cwd() + '/' + file);
                     try {
                         var parsed = JSON.parse(config.toString('utf-8'));
-                        global.validare.requiments = Object.assign(global.validare.requiments, parsed);
+                        global.validare = Object.assign(global.validare, parsed);
                     }
                     catch (error) {
                         console.log(chalk.red("[validare] File is not valid json. File: ".concat(chalk.yellow(file))));
@@ -72,4 +72,4 @@ function loadValidatonSchemas(rule_file) {
         });
     });
 }
-exports.loadValidatonSchemas = loadValidatonSchemas;
+exports.loadSchemas = loadSchemas;

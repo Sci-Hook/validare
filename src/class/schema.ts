@@ -20,6 +20,7 @@ class Schema implements SchemaInterface {
             resolve(status);
         });
     }
+    
     create_hash(value:string){
        return new Promise<string>(async (resolve, reject) => {
             if (this.schema.hash) {
