@@ -1,7 +1,7 @@
 import {
     schema,
     Schema, 
-    loadValidatonSchemas,
+    loadSchemas,
     validator,
     ID,
     validate_email,
@@ -13,7 +13,7 @@ import {
 
 export{
     Schema,
-    loadValidatonSchemas,
+    loadSchemas,
     validator,
     ID,
     validate_email,

@@ -37,8 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
-var src_1 = require("./src");
-(0, src_1.loadSchemas)(['requiments.json', 'test.json']);
+(0, index_1.loadSchemas)(['requiments.json', 'test.json']);
 var a = new index_1.Schema('username');
 function main() {
     return __awaiter(this, void 0, void 0, function () {

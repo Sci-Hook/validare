@@ -1,6 +1,4 @@
-import {loadValidatonSchemas} from './index';
-import {Schema} from './index';
-import { loadSchemas } from './src';
+import {Schema, loadSchemas} from './index';
 
 loadSchemas(['requiments.json','test.json']);
 
