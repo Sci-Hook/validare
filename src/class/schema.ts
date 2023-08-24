@@ -38,6 +38,10 @@ class Schema implements SchemaInterface {
             resolve(id);
         });
     }
+
+    create_jwt(){
+        
+    }
     
 }
 

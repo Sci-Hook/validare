@@ -3,7 +3,6 @@ import { email, ip, phone, url } from './options';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
-
 export type alogrithms= 'sha256'|'sha512'|'md5'|
 "blake2b512"|"blake2s256"|"rmd160"|"sha1"|
 "sha224"|"sha256"|"sha3-224"|"sha3-256"|
@@ -30,22 +29,10 @@ type types =
 'buffer';
 
 type special_controllers = 
-{
-    type:'email',
-    options?:email
-}|
-{
-    type:'ip',
-    options?:ip
-}|
-{
-    type:'url',
-    options?:url
-}|
-{
-    type:'phone',
-    options?:phone
-}
+{type:'email',options?:email}|
+{type:'ip',options?:ip}|
+{type:'url',options?:url}|
+{type:'phone',options?:phone};
 
 type schema = {
     type?:types|types[],

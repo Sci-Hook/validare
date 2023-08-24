@@ -5,7 +5,7 @@ loadSchemas(['requiments.json','test.json']);
 var a = new Schema('username');
 
 async function main() {
-    console.log(await a.validate('afdsfsdfdsfdsfsdfdsfaaa'));
+    console.log(await a.validate('dsfasdf'));
 }
 
 main();

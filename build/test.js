@@ -46,7 +46,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate('afdsfsdfdsfdsfsdfdsfaaa')];
+                    return [4 /*yield*/, a.validate('dsfasdf')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
