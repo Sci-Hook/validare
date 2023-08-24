@@ -1,4 +1,4 @@
-import {createHash, createHmac} from 'crypto';
+import {createHmac} from 'crypto';
 import { alogrithms } from '../types/schema';
 
 export function hasher(value:string,alogrithm:alogrithms,key:string) {

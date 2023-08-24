@@ -20,10 +20,14 @@ class Schema implements SchemaInterface {
             resolve(status);
         });
     }
-    create_hash(value:any){
+    create_hash(value:string){
        return new Promise<string>(async (resolve, reject) => {
-            var hash = await hasher(value,this.schema.hash?.alogrithm,this.schema.hash?.key);
-            resolve(hash);
+            if (this.schema.hash) {
+                var hash = await hasher(value,this.schema.hash?.alogrithm,this.schema.hash?.key);
+                resolve(hash);
+            }else{
+                console.log("Hasher options not specified.")
+            }
        })
     }
 

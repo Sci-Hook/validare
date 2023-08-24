@@ -66,11 +66,17 @@ var Schema = /** @class */ (function () {
             var _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
-                    case 0: return [4 /*yield*/, (0, create_hash_1.hasher)(value, (_a = this.schema.hash) === null || _a === void 0 ? void 0 : _a.alogrithm, (_b = this.schema.hash) === null || _b === void 0 ? void 0 : _b.key)];
+                    case 0:
+                        if (!this.schema.hash) return [3 /*break*/, 2];
+                        return [4 /*yield*/, (0, create_hash_1.hasher)(value, (_a = this.schema.hash) === null || _a === void 0 ? void 0 : _a.alogrithm, (_b = this.schema.hash) === null || _b === void 0 ? void 0 : _b.key)];
                     case 1:
                         hash = _c.sent();
                         resolve(hash);
-                        return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 2:
+                        console.log("Hasher options not specified.");
+                        _c.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         }); });
