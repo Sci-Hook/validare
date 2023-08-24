@@ -2,7 +2,7 @@ import { Status } from './error';
 import {schema} from '../types/schema';
 import {validator} from '../validator';
 import {create_id} from '../create-id';
-import { hasher } from '../create-hash.ts';
+import { hasher } from '../create-hash';
 
 interface SchemaInterface {schema: schema;}
 

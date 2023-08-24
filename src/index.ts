@@ -2,6 +2,8 @@
 import {schema} from './types/schema';
 //types
 
+import {hasher} from './create-hash'
+
 import {Schema} from './class/schema';
 import {create_id as ID} from './create-id';
 import {loadValidatonSchemas} from './modules/loader'
@@ -21,5 +23,6 @@ export{
     validate_email,
     validate_ip,
     validate_phone,
-    validate_url
+    validate_url,
+    hasher
 }

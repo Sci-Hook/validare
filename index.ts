@@ -7,7 +7,8 @@ import {
     validate_email,
     validate_ip,
     validate_phone,
-    validate_url
+    validate_url,
+    hasher
 } from './src';
 
 export{
@@ -19,5 +20,6 @@ export{
     validate_ip,
     validate_phone,
     validate_url,
-    schema
+    schema,
+    hasher
 }

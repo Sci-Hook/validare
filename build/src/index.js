@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_url = exports.validate_phone = exports.validate_ip = exports.validate_email = exports.ID = exports.validator = exports.loadValidatonSchemas = exports.Schema = void 0;
+exports.hasher = exports.validate_url = exports.validate_phone = exports.validate_ip = exports.validate_email = exports.ID = exports.validator = exports.loadValidatonSchemas = exports.Schema = void 0;
 //types
+var create_hash_1 = require("./create-hash");
+Object.defineProperty(exports, "hasher", { enumerable: true, get: function () { return create_hash_1.hasher; } });
 var schema_1 = require("./class/schema");
 Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return schema_1.Schema; } });
 var create_id_1 = require("./create-id");

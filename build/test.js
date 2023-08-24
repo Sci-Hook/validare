@@ -47,7 +47,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.create_hash('aa')];
+                    return [4 /*yield*/, a.create_hash('asdfdasf')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

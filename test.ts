@@ -6,7 +6,7 @@ loadValidatonSchemas(['requiments.json','test.json']);
 var a = new Schema({hash:{alogrithm:'sha256',key:'asfsdafdasf'}});
 
 async function main() {
-    console.log(await a.create_hash('aa'));
+    console.log(await a.create_hash('asdfdasf'));
 }
 
 main();
