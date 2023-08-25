@@ -20,12 +20,10 @@ function create_id(schema) {
     var id_schema = { chars: 'standart', length: 8 };
     if (typeof schema == 'string') {
         if (global.validare) {
-            if (global.validare.requiments) {
-                if (global.validare.requiments[schema]) {
-                    var len = global.validare.requiments[schema].length;
-                    var chars = global.validare.requiments[schema].chars;
-                    id_schema = { length: len, chars: chars };
-                }
+            if (global.validare[schema]) {
+                var len = global.validare[schema].length;
+                var chars = global.validare[schema].chars;
+                id_schema = { length: len, chars: chars };
             }
         }
     }

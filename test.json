@@ -1,5 +1,5 @@
 {
     "password":{
-        "max_length":60
+        "length":70
     }
 }

@@ -24,12 +24,10 @@ export function create_id(schema?:schema|string) {
 
     if (typeof schema == 'string') {
         if(global.validare){
-            if (global.validare.requiments) {
-                if (global.validare.requiments[schema]) {
-                    var len = global.validare.requiments[schema].length;
-                    var chars = global.validare.requiments[schema].chars
-                    id_schema = {length:len,chars:chars}
-                }
+            if (global.validare[schema]) {
+                var len = global.validare[schema].length;
+                var chars = global.validare[schema].chars
+                id_schema = {length:len,chars:chars}
             }
         }
     }else if (typeof schema == 'object'){

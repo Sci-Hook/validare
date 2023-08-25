@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import {Schema, loadSchemas} from './index';
+import {ID, Schema, loadSchemas} from './index';
 
 loadSchemas(['requiments.json','test.json']);
 
@@ -11,7 +11,7 @@ var a = new Schema({
 var file = readFileSync('C:\\Users\\lim10\\Documents\\examples\\example.wav')
 
 async function main() {
-    console.log(await a.validate('armut'));
+    console.log(await ID('password'));
 }
 
 main();
