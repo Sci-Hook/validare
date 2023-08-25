@@ -8,7 +8,8 @@ import { file_schemas,
     number_schemas,
     object_schemas,
     boolean_schemas,
-    undefined_schemas
+    undefined_schemas,
+    values_schemas
 } from './schemas';
 
 type schema = file_schemas&global|
@@ -20,7 +21,8 @@ type schema = file_schemas&global|
             number_schemas&global|
             object_schemas&global|
             boolean_schemas&global|
-            undefined_schemas&global;
+            undefined_schemas&global|
+            values_schemas&global;
 
 export{
     schema

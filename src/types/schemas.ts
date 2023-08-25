@@ -48,6 +48,11 @@ export type phone_schemas = {
     type:'phone'
 }&check_length;
 
+export type values_schemas = {
+    type:'values',
+    values:any[]
+}&check_length;
+
 export type url_schemas = {
     type:'url',
     hostnames?:string[],

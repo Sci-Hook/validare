@@ -36,27 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = require("fs");
-var index_1 = require("./index");
-(0, index_1.loadSchemas)(['requiments.json', 'test.json']);
-var a = new index_1.Schema({
-    type: 'values',
-    values: ['tost', 'most', 'vafır'],
-});
-var file = (0, fs_1.readFileSync)('C:\\Users\\lim10\\Documents\\examples\\example.wav');
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate('armut')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_values = void 0;
+var regex = '^[\\w-\\.]+@(?<service>[\\w-]+\\.+[\\w-]{2,4}$)';
+function validate_values(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (schema.values) {
+                if (schema.values.indexOf(value) == -1) {
+                    return [2 /*return*/, resolve('values')];
+                }
             }
+            resolve('no_error');
+            return [2 /*return*/];
         });
-    });
+    }); });
 }
-main();
+exports.validate_values = validate_values;

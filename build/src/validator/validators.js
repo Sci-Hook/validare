@@ -10,6 +10,7 @@ var ip_1 = require("./validators/ip");
 var phone_1 = require("./validators/phone");
 var url_1 = require("./validators/url");
 var file_1 = require("./validators/file");
+var values_1 = require("./validators/values");
 exports.validators = {
     string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
@@ -22,5 +23,6 @@ exports.validators = {
     phone: [phone_1.validate_phone, length_1.validate_length],
     url: [url_1.validate_url, length_1.validate_length],
     "string-number": [number_1.validate_numbers],
-    "file": [file_1.validate_file]
+    "file": [file_1.validate_file],
+    "values": [values_1.validate_values]
 };

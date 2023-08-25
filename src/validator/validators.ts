@@ -7,6 +7,7 @@ import { validate_ip } from "./validators/ip";
 import { validate_phone } from "./validators/phone";
 import { validate_url } from "./validators/url";
 import { validate_file } from "./validators/file";
+import { validate_values } from "./validators/values";
 
 export const validators = {
     string:[validate_onlytype,validate_string,validate_length],
@@ -20,6 +21,7 @@ export const validators = {
     phone:[validate_phone,validate_length],
     url:[validate_url,validate_length],
     "string-number":[validate_numbers],
-    "file":[validate_file]
+    "file":[validate_file],
+    "values":[validate_values]
 
 }
