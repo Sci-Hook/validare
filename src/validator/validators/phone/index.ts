@@ -1,9 +1,15 @@
-import { phone } from "../../types/options";
+import { email_schemas} from "../../../types/schemas";
 
 const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-export function validate_phone(value:any,options:phone) {
-    return new Promise<'invalid'|'no_error'>((resolve, reject) => {
+export function validate_phone(schema:email_schemas,value) {
+    return new Promise<'no_error'|'invalid'|'services'>(async (resolve, reject) => {
+
+        if (typeof value != 'string') {
+            resolve('invalid');    
+            return;
+        }
+
         if (typeof value != 'string') {
             return resolve('invalid');
         }
@@ -12,5 +18,6 @@ export function validate_phone(value:any,options:phone) {
         }else{
             return resolve('invalid');
         }
+
     });
 }

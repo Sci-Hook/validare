@@ -36,43 +36,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Schema = void 0;
-var validator_1 = require("../validator");
-var create_id_1 = require("../create-id");
-var Schema = /** @class */ (function () {
-    function Schema(schema) {
-        this.schema = schema;
-    }
-    Schema.prototype.validate = function (value) {
-        var _this = this;
-        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var status;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, validator_1.validator)(this.schema, value)];
-                    case 1:
-                        status = _a.sent();
-                        resolve(status);
-                        return [2 /*return*/];
+exports.validate_string = void 0;
+function validate_string(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var splitted, flag, pattern, regex;
+        return __generator(this, function (_a) {
+            // Empty string validation
+            if (schema.ignore_empty) {
+                if (value === '')
+                    return [2 /*return*/, resolve('empty')];
+            }
+            // Empty string validation
+            if (schema.regex) {
+                if (typeof value == 'string') {
+                    if (typeof schema.regex == 'string') {
+                        splitted = schema.regex.split('/');
+                        flag = schema.regex.split('/')[splitted.length - 1];
+                        pattern = schema.regex.replace(flag, '');
+                        pattern = pattern.slice(1, -1);
+                        try {
+                            regex = new RegExp(pattern, flag);
+                            if (!value.match(regex))
+                                return [2 /*return*/, resolve('regex')];
+                        }
+                        catch (error) {
+                            console.log("Invalid regex", schema);
+                            console.log(error);
+                        }
+                    }
+                    else {
+                        if (!value.match(schema.regex))
+                            return [2 /*return*/, resolve('regex')];
+                    }
                 }
-            });
-        }); });
-    };
-    Schema.prototype.create_id = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var id;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, create_id_1.create_id)(this.schema)];
-                    case 1:
-                        id = _a.sent();
-                        resolve(id);
-                        return [2 /*return*/];
+                else {
+                    return [2 /*return*/, resolve('regex')];
                 }
-            });
-        }); });
-    };
-    return Schema;
-}());
-exports.Schema = Schema;
+            }
+            return [2 /*return*/, resolve('no_error')];
+        });
+    }); });
+}
+exports.validate_string = validate_string;

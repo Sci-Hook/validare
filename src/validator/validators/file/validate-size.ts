@@ -1,4 +1,4 @@
-import { schema } from "../../types/schema";
+import { file_schemas } from "../../../types/schemas";
 
 var values = {
     bit:{ 
@@ -17,7 +17,7 @@ var values = {
     }
 }
 
-export function validate_size(schema:schema,value) {
+export function validate_size(schema:file_schemas,value) {
 
     return new Promise<'no_error'|'max_size'|'min_size'>((resolve, reject) => {
 

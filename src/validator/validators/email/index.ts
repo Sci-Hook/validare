@@ -1,10 +1,10 @@
-import { email } from "../../types/options";
+import { email_schemas} from "../../../types/schemas";
 
 const regex = '^[\\w-\\.]+@(?<service>[\\w-]+\\.+[\\w-]{2,4}$)';
 
-export function validate_email(value,options:email) {
-    return new Promise<'no_error'|'invalid'|'services'>((resolve, reject) => {
-        
+export function validate_email(schema:email_schemas,value) {
+    return new Promise<'no_error'|'invalid'|'services'>(async (resolve, reject) => {
+
         if (typeof value != 'string') {
             resolve('invalid');    
             return;
@@ -16,12 +16,8 @@ export function validate_email(value,options:email) {
             if (email_regex.groups) {
                 var service = email_regex.groups.service;
 
-                if (!options) {
-                    return resolve('no_error');
-                }
-
-                if (options.services) {
-                    if (options.services.indexOf(service) != -1) {
+                if (schema.services) {
+                    if (schema.services.indexOf(service) != -1) {
                         resolve('no_error');
                     }else{
                         resolve('services');

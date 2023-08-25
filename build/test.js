@@ -36,9 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = require("fs");
 var index_1 = require("./index");
 (0, index_1.loadSchemas)(['requiments.json', 'test.json']);
-var a = new index_1.Schema('username');
+var a = new index_1.Schema({
+    type: 'email',
+    services: ['gmail.com'],
+});
+var file = (0, fs_1.readFileSync)('C:\\Users\\lim10\\Documents\\examples\\example.wav');
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b;
@@ -46,7 +51,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate('dsfasdf')];
+                    return [4 /*yield*/, a.validate('lim10tech@gmail.com')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

@@ -3,12 +3,7 @@ import {
     Schema, 
     loadSchemas,
     validator,
-    ID,
-    validate_email,
-    validate_ip,
-    validate_phone,
-    validate_url,
-    hasher
+    ID
 } from './src';
 
 export{
@@ -16,10 +11,5 @@ export{
     loadSchemas,
     validator,
     ID,
-    validate_email,
-    validate_ip,
-    validate_phone,
-    validate_url,
-    schema,
-    hasher
+    schema
 }

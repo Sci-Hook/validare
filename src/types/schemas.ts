@@ -1,0 +1,58 @@
+import {extensions,mimes} from 'mime-controller';
+
+type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
+
+export type global = {required?:boolean}
+
+export type check_length = {min_length?:number,max_length?:number,length?:number}
+
+export type file_schemas = {
+    type:'file',
+    extension?:extensions|extensions[],
+    mime?:mimes|mimes[],
+    max_size?:{size:number,size_type:size_types},
+    min_size?:{size:number,size_type:size_types}    
+}
+
+export type string_schemas = {
+    type:'string',
+    regex?:RegExp|string,
+    ignore_empty?:boolean,
+    chars?:string
+}&check_length;
+
+export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length;
+
+export type object_schemas = {
+    type:'object',
+}&check_length;
+
+export type undefined_schemas = {
+    type:'undefined',
+};
+
+export type boolean_schemas = {
+    type:'boolean',
+};
+
+export type email_schemas = {
+    type:'email',
+    services?:string[],
+}&check_length;
+
+export type ip_schemas = {
+    type:'ip'
+}&check_length;
+
+export type phone_schemas = {
+    type:'phone'
+}&check_length;
+
+export type url_schemas = {
+    type:'url',
+    hostnames?:string[],
+    protocols?:string[],
+    ports?:number[],
+    min_length?:number,
+    max_length?:number
+}&check_length;

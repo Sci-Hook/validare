@@ -1,11 +1,10 @@
 import {findMime} from 'mime-controller';
-import { schema } from "../../types/schema";
+import { file_schemas } from '../../../types/schemas';
 
-export function validate_mime_extension(schema:schema,value) {
+export function validate_mime_extension(schema:file_schemas,value) {
 
     return new Promise<'no_error'|'extension'|'mime'|'invalid'>(async (resolve, reject) => {
 
-        console.log(schema);
         if (Buffer.isBuffer(value)) {
             var result = await findMime(value);
         }else{

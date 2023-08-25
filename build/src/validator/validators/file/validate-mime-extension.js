@@ -36,43 +36,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Schema = void 0;
-var validator_1 = require("../validator");
-var create_id_1 = require("../create-id");
-var Schema = /** @class */ (function () {
-    function Schema(schema) {
-        this.schema = schema;
-    }
-    Schema.prototype.validate = function (value) {
-        var _this = this;
-        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var status;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, validator_1.validator)(this.schema, value)];
-                    case 1:
-                        status = _a.sent();
-                        resolve(status);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    Schema.prototype.create_id = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var id;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, create_id_1.create_id)(this.schema)];
-                    case 1:
-                        id = _a.sent();
-                        resolve(id);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    return Schema;
-}());
-exports.Schema = Schema;
+exports.validate_mime_extension = void 0;
+var mime_controller_1 = require("mime-controller");
+function validate_mime_extension(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var result;
+        var _a, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    if (!Buffer.isBuffer(value)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, (0, mime_controller_1.findMime)(value)];
+                case 1:
+                    result = _c.sent();
+                    return [3 /*break*/, 3];
+                case 2: return [2 /*return*/, resolve('invalid')];
+                case 3:
+                    if (!result.extension) {
+                        return [2 /*return*/, resolve('extension')];
+                    }
+                    if (!result.mime) {
+                        return [2 /*return*/, resolve('mime')];
+                    }
+                    if (typeof schema.extension == 'string') {
+                        if (result.extension != schema.extension) {
+                            return [2 /*return*/, resolve('extension')];
+                        }
+                    }
+                    else {
+                        if (((_a = schema.extension) === null || _a === void 0 ? void 0 : _a.indexOf(result.extension)) == -1) {
+                            return [2 /*return*/, resolve('extension')];
+                        }
+                    }
+                    if (typeof schema.mime == 'string') {
+                        if (result.mime != schema.mime) {
+                            return [2 /*return*/, resolve('mime')];
+                        }
+                    }
+                    else {
+                        if (((_b = schema.mime) === null || _b === void 0 ? void 0 : _b.indexOf(result.mime)) == -1) {
+                            return [2 /*return*/, resolve('mime')];
+                        }
+                    }
+                    resolve('no_error');
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+}
+exports.validate_mime_extension = validate_mime_extension;

@@ -1,9 +1,15 @@
-import { ip } from "../../types/options";
+import {ip_schemas} from "../../../types/schemas";
 
 const regex = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
-export function validate_ip(value:any,options:ip) {
-    return new Promise<'invalid'|'no_error'>((resolve, reject) => {
+export function validate_ip(schema:ip_schemas,value) {
+    return new Promise<'no_error'|'invalid'|'services'>(async (resolve, reject) => {
+
+        if (typeof value != 'string') {
+            resolve('invalid');    
+            return;
+        }
+
         if (typeof value != 'string') {
             return resolve('invalid');
         }
@@ -12,5 +18,6 @@ export function validate_ip(value:any,options:ip) {
         }else{
             return resolve('invalid');
         }
+
     });
 }
