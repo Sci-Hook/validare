@@ -21,7 +21,7 @@ export function create_id(schema?:schema|string) {
 
     var id_schema:{length?:number,chars?:string} = {chars:'standart',length:8}
 
-
+    
     if (typeof schema == 'string') {
         if(global.validare){
             if (global.validare[schema]) {
@@ -31,7 +31,9 @@ export function create_id(schema?:schema|string) {
             }
         }
     }else if (typeof schema == 'object'){
-        // id_schema = {length:schema.length,chars:schema.chars}
+        if (schema.type == 'string') {
+            id_schema = {length:schema.length,chars:schema.chars}
+        }
     }
    
     var created_characters:string = '';

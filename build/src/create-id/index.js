@@ -28,7 +28,9 @@ function create_id(schema) {
         }
     }
     else if (typeof schema == 'object') {
-        // id_schema = {length:schema.length,chars:schema.chars}
+        if (schema.type == 'string') {
+            id_schema = { length: schema.length, chars: schema.chars };
+        }
     }
     var created_characters = '';
     return new Promise(function (resolve, reject) {

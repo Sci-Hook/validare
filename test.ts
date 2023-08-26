@@ -11,7 +11,7 @@ var a = new Schema({
 var file = readFileSync('C:\\Users\\lim10\\Documents\\examples\\example.wav')
 
 async function main() {
-    console.log(await ID('password'));
+    console.log(await ID({length:60,type:'string'}));
 }
 
 main();
