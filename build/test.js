@@ -39,8 +39,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
 (0, index_1.loadSchemas)(['requiments.json', 'test.json']);
 var a = new index_1.Schema({
-    type: 'string',
-    chars: 'binary'
+    type: 'string-number',
+    base: 16,
+    max_length: 9999999999999999,
+    min_length: 1000000000000000
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -49,7 +51,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.create_id()];
+                    return [4 /*yield*/, a.random()];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

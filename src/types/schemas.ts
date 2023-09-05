@@ -21,7 +21,7 @@ export type string_schemas = {
     chars?:string
 }&check_length;
 
-export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length;
+export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length&{base?:number};
 
 export type object_schemas = {
     type:'object',

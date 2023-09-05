@@ -42,7 +42,7 @@ function validate_numbers(schema, value) {
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             if (schema.type == "string-number") {
-                value = Number(value);
+                value = parseInt(value, schema.base);
                 if (Number.isNaN(value)) {
                     return [2 /*return*/, resolve('type')];
                 }

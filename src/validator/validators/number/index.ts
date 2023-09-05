@@ -4,7 +4,7 @@ export function validate_numbers(schema:number_schemas,value) {
     return new Promise<'length'|'min_length'|'max_length'|'type'|'no_error'>(async (resolve, reject) => {
         
         if (schema.type == "string-number") {
-            value = Number(value);
+            value = parseInt(value,schema.base);
             if (Number.isNaN(value)) {
                 return resolve('type');
             }

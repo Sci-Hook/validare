@@ -2,6 +2,7 @@ import { Status } from './error';
 import {schema} from '../types/schema';
 import {validator} from '../validator';
 import {create_id} from '../create-id';
+import { randomize } from '../random-number';
 
 interface SchemaInterface {schema: schema;}
 
@@ -27,6 +28,31 @@ class Schema implements SchemaInterface {
         });
     }
     
+    random(){
+        return new Promise<string>(async (resolve, reject) => {
+
+            if (this.schema.type == 'number' || this.schema.type == 'bigint' || this.schema.type == 'string-number') {
+
+                var randomized_number = await randomize(
+                    {
+                        max:this.schema.max_length,
+                        min:this.schema.min_length,
+                        len:this.schema.length
+                    }
+                );
+                
+                var base = 10;
+
+                if (this.schema.base) {
+                    base = this.schema.base;
+                }
+
+                resolve(randomized_number.toString(base));
+
+            }
+        })
+    }
+
 }
 
 export{

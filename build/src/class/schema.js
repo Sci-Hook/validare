@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Schema = void 0;
 var validator_1 = require("../validator");
 var create_id_1 = require("../create-id");
+var random_number_1 = require("../random-number");
 var Schema = /** @class */ (function () {
     function Schema(schema) {
         this.schema = schema;
@@ -69,6 +70,32 @@ var Schema = /** @class */ (function () {
                         id = _a.sent();
                         resolve(id);
                         return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    Schema.prototype.random = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+            var randomized_number, base;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.schema.type == 'number' || this.schema.type == 'bigint' || this.schema.type == 'string-number')) return [3 /*break*/, 2];
+                        return [4 /*yield*/, (0, random_number_1.randomize)({
+                                max: this.schema.max_length,
+                                min: this.schema.min_length,
+                                len: this.schema.length
+                            })];
+                    case 1:
+                        randomized_number = _a.sent();
+                        base = 10;
+                        if (this.schema.base) {
+                            base = this.schema.base;
+                        }
+                        resolve(randomized_number.toString(base));
+                        _a.label = 2;
+                    case 2: return [2 /*return*/];
                 }
             });
         }); });
