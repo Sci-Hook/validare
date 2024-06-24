@@ -1,13 +1,13 @@
 {
     "name": "validare",
-    "version": " 1.7.6",
+    "version": " 1.7.7",
     "description": "",
     "main": "./build/index.js",
     "scripts": {
         "tsc": "tsc ./test.ts --outDir ./build -w",
         "nodemon": "nodemon ./build/test.js"
     },
-    "author": "Emirhan Gerçeker",
+    "author": "emirhan@scihook.org",
     "license": "MIT",
     "dependencies": {
         "@types/jsonwebtoken": "^9.0.2",
