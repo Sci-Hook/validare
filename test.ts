@@ -3,14 +3,14 @@ import {Schema, loadSchemas} from './index';
 loadSchemas(['requiments.json','test.json']);
 
 var a = new Schema({
-    type:'string-number',
-    base:16,
-    max_length:9999999999999999,
-    min_length:1000000000000000
+    type:'number',
+    max_length:'date 3:month:minus',
+    min_length:'now-date:20'
+
 });
 
 async function main() {
-    console.log(await a.random());
+    console.log(await a.validate(1));
 }
 
 main();

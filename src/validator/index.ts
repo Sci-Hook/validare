@@ -28,7 +28,6 @@ export async function validator(schema:schema|string,value:any){
             resolve(new Status('no_error'))
         })
 
-  
     }); 
 
 }

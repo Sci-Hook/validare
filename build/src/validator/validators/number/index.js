@@ -37,10 +37,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate_numbers = void 0;
+var get_time_1 = require("../../../functions/get-time");
+function get_date(data) {
+    return new Promise(function (resolve, reject) {
+        var date_data = data.split(' ')[1];
+        var splitted = date_data.split(':');
+        var time = Number(splitted[0]);
+        var unit = splitted[1];
+        var type = splitted[2];
+        var date = (0, get_time_1.get_time)(time, unit);
+        if (type == 'add') {
+            resolve(Date.now() + date);
+        }
+        else if (type == 'minus') {
+            resolve(Date.now() - date);
+        }
+    });
+}
 function validate_numbers(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            if (schema.max_length) {
+                if (typeof schema.max_length == 'string') {
+                    if (schema.max_length.startsWith('date')) {
+                        console.log(get_date());
+                    }
+                }
+            }
             if (schema.type == "string-number") {
                 value = parseInt(value, schema.base);
                 if (Number.isNaN(value)) {

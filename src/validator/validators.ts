@@ -23,5 +23,4 @@ export const validators = {
     "string-number":[validate_numbers],
     "file":[validate_file],
     "values":[validate_values]
-
 }

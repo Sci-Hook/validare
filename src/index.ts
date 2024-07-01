@@ -1,6 +1,8 @@
 import {loadFiles} from 'scihook-schema-loader';
 
-function loadSchemas(files:string|string[]) {loadFiles('validare',files)}
+function loadSchemas(files:string|string[]) {
+    loadFiles('validare',files)
+}
 
 //tpyes
 import {schema} from './types/schema';

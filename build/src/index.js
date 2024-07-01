@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ID = exports.validator = exports.loadSchemas = exports.Schema = void 0;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
-function loadSchemas(files) { (0, scihook_schema_loader_1.loadFiles)('validare', files); }
+function loadSchemas(files) {
+    (0, scihook_schema_loader_1.loadFiles)('validare', files);
+}
 exports.loadSchemas = loadSchemas;
 //types
 var schema_1 = require("./class/schema");

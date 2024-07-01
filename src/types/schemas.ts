@@ -4,7 +4,7 @@ type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
 export type global = {required?:boolean}
 
-export type check_length = {min_length?:number,max_length?:number,length?:number}
+export type check_length = {min_length?:number|string,max_length?:number|string,length?:number|string}
 
 export type file_schemas = {
     type:'file',
