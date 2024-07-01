@@ -57,33 +57,57 @@ function get_date(data) {
 function validate_numbers(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var max_length, min_length, length;
         return __generator(this, function (_a) {
-            if (schema.max_length) {
-                if (typeof schema.max_length == 'string') {
-                    if (schema.max_length.startsWith('date')) {
-                        console.log(get_date());
+            switch (_a.label) {
+                case 0:
+                    max_length = schema.max_length;
+                    min_length = schema.min_length;
+                    length = schema.length;
+                    if (!schema.max_length) return [3 /*break*/, 2];
+                    if (!(typeof schema.max_length == 'string')) return [3 /*break*/, 2];
+                    if (!schema.max_length.startsWith('date')) return [3 /*break*/, 2];
+                    return [4 /*yield*/, get_date(schema.max_length)];
+                case 1:
+                    max_length = _a.sent();
+                    _a.label = 2;
+                case 2:
+                    if (!schema.min_length) return [3 /*break*/, 4];
+                    if (!(typeof schema.min_length == 'string')) return [3 /*break*/, 4];
+                    if (!schema.min_length.startsWith('date')) return [3 /*break*/, 4];
+                    return [4 /*yield*/, get_date(schema.min_length)];
+                case 3:
+                    min_length = _a.sent();
+                    _a.label = 4;
+                case 4:
+                    if (!schema.length) return [3 /*break*/, 6];
+                    if (!(typeof schema.length == 'string')) return [3 /*break*/, 6];
+                    if (!schema.length.startsWith('date')) return [3 /*break*/, 6];
+                    return [4 /*yield*/, get_date(schema.length)];
+                case 5:
+                    length = _a.sent();
+                    _a.label = 6;
+                case 6:
+                    if (schema.type == "string-number") {
+                        value = parseInt(value, schema.base);
+                        if (Number.isNaN(value)) {
+                            return [2 /*return*/, resolve('type')];
+                        }
                     }
-                }
+                    if (length) {
+                        if (value !== length)
+                            return [2 /*return*/, resolve('length')];
+                    }
+                    if (max_length) {
+                        if (value > max_length)
+                            return [2 /*return*/, resolve("max_length")];
+                    }
+                    if (min_length) {
+                        if (value < min_length)
+                            return [2 /*return*/, resolve('min_length')];
+                    }
+                    return [2 /*return*/, resolve('no_error')];
             }
-            if (schema.type == "string-number") {
-                value = parseInt(value, schema.base);
-                if (Number.isNaN(value)) {
-                    return [2 /*return*/, resolve('type')];
-                }
-            }
-            if (schema.length) {
-                if (value !== schema.length)
-                    return [2 /*return*/, resolve('length')];
-            }
-            if (schema.max_length) {
-                if (value > schema.max_length)
-                    return [2 /*return*/, resolve("max_length")];
-            }
-            if (schema.min_length) {
-                if (value < schema.min_length)
-                    return [2 /*return*/, resolve('min_length')];
-            }
-            return [2 /*return*/, resolve('no_error')];
         });
     }); });
 }

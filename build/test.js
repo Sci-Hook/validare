@@ -40,8 +40,8 @@ var index_1 = require("./index");
 (0, index_1.loadSchemas)(['requiments.json', 'test.json']);
 var a = new index_1.Schema({
     type: 'number',
-    max_length: 'date 3:month:minus',
-    min_length: 'now-date:20'
+    max_length: 'date 5:year:add',
+    min_length: "date 5:year:minus",
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -50,7 +50,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate(1)];
+                    return [4 /*yield*/, a.validate(1514754000000)];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
