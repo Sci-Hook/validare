@@ -41,13 +41,13 @@ class Schema implements SchemaInterface {
                     }
                 );
                 
-                var base = 10;
-
-                if (this.schema.base) {
-                    base = this.schema.base;
+                if (randomized_number) {
+                    var base = 10;
+                    if (this.schema.base) {
+                        base = this.schema.base;
+                    }
+                    resolve(randomized_number.toString(base));
                 }
-
-                resolve(randomized_number.toString(base));
 
             }
         })
