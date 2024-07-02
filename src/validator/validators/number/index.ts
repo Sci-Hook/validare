@@ -23,12 +23,10 @@ function get_date(data:string) {
 export function validate_numbers(schema:number_schemas,value) {
     return new Promise<'length'|'min_length'|'max_length'|'type'|'no_error'>(async (resolve, reject) => {
 
-
         var max_length = schema.max_length;
         var min_length = schema.min_length;
         var length = schema.length;
         
-
         if (schema.max_length) {
             if (typeof schema.max_length == 'string') {
                 if (schema.max_length.startsWith('date')) {
@@ -63,9 +61,11 @@ export function validate_numbers(schema:number_schemas,value) {
         if (length) {
             if (value !== length) return resolve('length')
         }
+
         if (max_length) {
             if (value > max_length) return resolve("max_length")
         }
+    
         if (min_length) {
             if (value < min_length) return resolve('min_length')
         }

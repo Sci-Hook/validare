@@ -33,13 +33,11 @@ class Schema implements SchemaInterface {
 
             if (this.schema.type == 'number' || this.schema.type == 'bigint' || this.schema.type == 'string-number') {
 
-                var randomized_number = await randomize(
-                    {
-                        max:this.schema.max_length,
-                        min:this.schema.min_length,
-                        len:this.schema.length
-                    }
-                );
+                var randomized_number = await randomize({
+                    max:this.schema.max_length,
+                    min:this.schema.min_length,
+                    len:this.schema.length
+                });
                 
                 if (randomized_number) {
                     var base = 10;
