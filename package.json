@@ -1,7 +1,7 @@
 {
     "name": "validare",
-    "version": " 1.8.2",
-    "description": "",
+    "version": " 1.8.3",
+    "description": "Validation tool for web projects",
     "main": "./build/index.js",
     "scripts": {
         "tsc": "tsc ./test.ts --outDir ./build -w",
