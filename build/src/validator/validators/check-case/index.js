@@ -36,15 +36,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_onlytype = validate_onlytype;
-function validate_onlytype(schema, value) {
+exports.validate_case = validate_case;
+function validate_case(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            if (typeof value != schema.type) {
-                return [2 /*return*/, resolve('type')];
+            if (!schema.casetype)
+                return [2 /*return*/, resolve('no_error')];
+            if (schema.casetype == 'unset')
+                return [2 /*return*/, resolve('no_error')];
+            if (schema.casetype == 'lowercase') {
+                if (value == value.toLowerCase()) {
+                    return [2 /*return*/, resolve('no_error')];
+                }
             }
-            return [2 /*return*/, resolve('no_error')];
+            if (schema.casetype == 'uppercase') {
+                if (value == value.toUpperCase()) {
+                    return [2 /*return*/, resolve('no_error')];
+                }
+            }
+            if (schema.casetype == 'combined') {
+                if (value != value.toUpperCase() && value != value.toLowerCase()) {
+                    return [2 /*return*/, resolve('no_error')];
+                }
+            }
+            resolve(schema.casetype);
+            return [2 /*return*/];
         });
     }); });
 }

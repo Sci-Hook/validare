@@ -10,8 +10,8 @@ export async function validator(schema:schema|string,value:any){
 
         // Required validation
         if (schema.required) {
-            if (value === undefined) return resolve(new Status('undefined',schema.required))
-            if (value === null) return resolve(new Status('null',schema.required))
+            if (value === undefined) return resolve(new Status('undefined',schema.required,value))
+            if (value === null) return resolve(new Status('null',schema.required,value))
         }
         // Required validation
 
@@ -22,10 +22,10 @@ export async function validator(schema:schema|string,value:any){
             if (status == 'no_error') {
                 next();                
             }else{
-                resolve(new Status(status,schema[status]));
+                resolve(new Status(status,schema[status],value));
             }
         },() => {
-            resolve(new Status('no_error'))
+            resolve(new Status('no_error',null,value))
         })
 
     }); 

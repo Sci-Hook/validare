@@ -89,11 +89,13 @@ var Schema = /** @class */ (function () {
                             })];
                     case 1:
                         randomized_number = _a.sent();
-                        base = 10;
-                        if (this.schema.base) {
-                            base = this.schema.base;
+                        if (randomized_number) {
+                            base = 10;
+                            if (this.schema.base) {
+                                base = this.schema.base;
+                            }
+                            resolve(randomized_number.toString(base));
                         }
-                        resolve(randomized_number.toString(base));
                         _a.label = 2;
                     case 2: return [2 /*return*/];
                 }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_time = void 0;
+exports.get_time = get_time;
 var factor = {
     milisecond: 1,
     second: 1000,
@@ -14,4 +14,3 @@ var factor = {
 function get_time(scale, unit) {
     return (scale * factor[unit]);
 }
-exports.get_time = get_time;

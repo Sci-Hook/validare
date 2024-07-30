@@ -25,8 +25,10 @@ export class Status {
     status:boolean;
     error:errors;
     reason:any;
+    value:any;
 
-    constructor(error:errors,reason?){
+    constructor(error:errors,reason?,value?:any){
+        this.value = value;
         this.error = error;
         if (error == 'no_error') {
             this.status = true;
@@ -34,20 +36,7 @@ export class Status {
             this.status = false;
         }
         this.reason = reason;
-    }
-    
-    get_error(res,name){
-        if(res.locals.i18n){
-            if (res.locals.i18n.validation) {
-                if (res.locals.i18n.validation[name]) {
-                    if (res.locals.i18n.validation[name][this.error]) {
-                        var error:string = res.locals.i18n.validation[name][this.error];
-                        error = error.replace('{this}',this.reason);
-                        return error;
-                    }
-                }
-            }
-        }
+
     }
     
 }

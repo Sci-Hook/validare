@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_requiments = void 0;
+exports.get_requiments = get_requiments;
 function get_requiments(schema) {
     return new Promise(function (resolve, reject) {
         if (typeof schema == 'string') {
@@ -20,4 +20,3 @@ function get_requiments(schema) {
         resolve(schema);
     });
 }
-exports.get_requiments = get_requiments;

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_file = void 0;
+exports.validate_file = validate_file;
 var validate_mime_extension_1 = require("./validate-mime-extension");
 var validate_size_1 = require("./validate-size");
 function validate_file(schema, value) {
@@ -70,4 +70,3 @@ function validate_file(schema, value) {
         });
     }); });
 }
-exports.validate_file = validate_file;

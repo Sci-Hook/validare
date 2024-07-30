@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validator = void 0;
+exports.validator = validator;
 var error_1 = require("../class/error");
 var get_requiments_1 = require("../functions/get-requiments");
 var validators_1 = require("./validators");
@@ -54,9 +54,9 @@ function validator(schema, value) {
                                 // Required validation
                                 if (schema.required) {
                                     if (value === undefined)
-                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required))];
+                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required, value))];
                                     if (value === null)
-                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required))];
+                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
                                 }
                                 return [4 /*yield*/, validators_1.validators[schema.type]];
                             case 2:
@@ -73,14 +73,14 @@ function validator(schema, value) {
                                                         next();
                                                     }
                                                     else {
-                                                        resolve(new error_1.Status(status, schema[status]));
+                                                        resolve(new error_1.Status(status, schema[status], value));
                                                     }
                                                     return [2 /*return*/];
                                             }
                                         });
                                     });
                                 }, function () {
-                                    resolve(new error_1.Status('no_error'));
+                                    resolve(new error_1.Status('no_error', null, value));
                                 });
                                 return [2 /*return*/];
                         }
@@ -89,4 +89,3 @@ function validator(schema, value) {
         });
     });
 }
-exports.validator = validator;

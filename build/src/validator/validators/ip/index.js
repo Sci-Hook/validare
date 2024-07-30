@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_ip = void 0;
+exports.validate_ip = validate_ip;
 var regex = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 function validate_ip(schema, value) {
     var _this = this;
@@ -59,4 +59,3 @@ function validate_ip(schema, value) {
         });
     }); });
 }
-exports.validate_ip = validate_ip;
