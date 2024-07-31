@@ -4,11 +4,11 @@ loadSchemas(['requiments.json','test.json']);
 
 var a = new Schema({
     type:'string',
-    casetype:'combined'
+    ignored:['armut','yumurta','kebab']
 });
 
 async function main() {
-    console.log(await a.validate('ABsC'));
+    console.log(await a.validate('kebab'));
 }
 
 main();

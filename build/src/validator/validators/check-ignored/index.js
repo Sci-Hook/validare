@@ -36,25 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-(0, index_1.loadSchemas)(['requiments.json', 'test.json']);
-var a = new index_1.Schema({
-    type: 'string',
-    ignored: ['armut', 'yumurta', 'kebab']
-});
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, a.validate('kebab')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_igonered = validate_igonered;
+function validate_igonered(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            if (((_a = schema.ignored) === null || _a === void 0 ? void 0 : _a.indexOf(value)) != -1) {
+                return [2 /*return*/, resolve('ignored')];
             }
+            return [2 /*return*/, resolve('no_error')];
         });
-    });
+    }); });
 }
-main();

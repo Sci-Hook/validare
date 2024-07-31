@@ -9,9 +9,10 @@ import { validate_url } from "./validators/url";
 import { validate_file } from "./validators/file";
 import { validate_values } from "./validators/values";
 import { validate_case } from "./validators/check-case";
+import { validate_igonered } from "./validators/check-ignored";
 
 export const validators = {
-    string:[validate_onlytype,validate_string,validate_length,validate_case],
+    string:[validate_onlytype,validate_string,validate_length,validate_case,validate_igonered],
     number:[validate_onlytype,validate_numbers],
     bigint:[validate_onlytype,validate_numbers],
     object:[validate_onlytype,validate_length],

@@ -12,8 +12,9 @@ var url_1 = require("./validators/url");
 var file_1 = require("./validators/file");
 var values_1 = require("./validators/values");
 var check_case_1 = require("./validators/check-case");
+var check_ignored_1 = require("./validators/check-ignored");
 exports.validators = {
-    string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case],
+    string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
     bigint: [only_type_1.validate_onlytype, number_1.validate_numbers],
     object: [only_type_1.validate_onlytype, length_1.validate_length],

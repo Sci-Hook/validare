@@ -19,7 +19,8 @@ export type string_schemas = {
     regex?:RegExp|string,
     ignore_empty?:boolean,
     chars?:string,
-    casetype?:'uppercase'|'lowercase'|'unset'|'combined'
+    casetype?:'uppercase'|'lowercase'|'unset'|'combined',
+    ignored?:string[]
 }&check_length;
 
 export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length&{base?:number};
