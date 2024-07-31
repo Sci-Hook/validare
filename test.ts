@@ -4,7 +4,8 @@ loadSchemas(['requiments.json','test.json']);
 
 var a = new Schema({
     type:'string',
-    ignored:['armut','yumurta','kebab']
+    ignored:['armut','yumurta','kebab'],
+    casetype:'combined'
 });
 
 async function main() {

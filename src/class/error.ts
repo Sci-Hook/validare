@@ -18,7 +18,11 @@ type errors =
     'max_size'|
     'min_size'|
     'extension'|
-    'mime';
+    'mime'|
+    'ignored'|
+    'lowercase'|
+    'uppercase'|
+    'combined';
 
 export class Status {
     
