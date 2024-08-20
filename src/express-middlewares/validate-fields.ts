@@ -15,6 +15,7 @@ export function validateFields(fields:(field|string)[],callback:Function){
             
             var filed_location:string;
             var schema:string;
+            var allow_undefined:boolean = false;
 
             if (typeof field == 'string') {
                 let splitted = field.split('.')
@@ -23,9 +24,13 @@ export function validateFields(fields:(field|string)[],callback:Function){
             }else{
                 filed_location = field.dataname;
                 schema = field.schema; 
+                allow_undefined = field.allow_undefined ? field.allow_undefined : false;
             }
 
             var value = await get_value(filed_location,req,res);
+
+            if (value === undefined && allow_undefined) return next();
+
             var result = await validator(schema,value);
             
             if (!result.status) {

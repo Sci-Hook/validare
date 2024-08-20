@@ -1,1 +1,1 @@
-export type field = {dataname:string,schema:string}
+export type field = {dataname:string,schema:string,allow_undefined?:boolean}
