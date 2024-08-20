@@ -56,10 +56,11 @@ function validateSwitch(dataname, switches, callback) {
                     fields = switches[data] ? switches[data] : (switches['$default'] ? switches['$default'] : []);
                     invalid_values = [];
                     fields.syncForEach(function (field, next) { return __awaiter(_this, void 0, void 0, function () {
-                        var filed_location, schema, splitted, value, result, splitted, dataname;
+                        var filed_location, schema, allow_undefined, splitted, value, result, splitted, dataname;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
+                                    allow_undefined = false;
                                     if (typeof field == 'string') {
                                         splitted = field.split('.');
                                         filed_location = field;
@@ -68,10 +69,13 @@ function validateSwitch(dataname, switches, callback) {
                                     else {
                                         filed_location = field.dataname;
                                         schema = field.schema;
+                                        allow_undefined = field.allow_undefined !== undefined ? field.allow_undefined : false;
                                     }
                                     return [4 /*yield*/, (0, get_value_1.get_value)(filed_location, req, res)];
                                 case 1:
                                     value = _a.sent();
+                                    if (value === undefined && allow_undefined)
+                                        return [2 /*return*/, next()];
                                     return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
                                 case 2:
                                     result = _a.sent();

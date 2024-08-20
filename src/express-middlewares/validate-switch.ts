@@ -19,6 +19,7 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
             
             var filed_location:string;
             var schema:string;
+            var allow_undefined:boolean = false;
 
             if (typeof field == 'string') {
                 let splitted = field.split('.')
@@ -26,11 +27,18 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
                 schema = splitted[splitted.length-1];
             }else{
                 filed_location = field.dataname;
-                schema = field.schema; 
+                schema = field.schema;
+                allow_undefined = field.allow_undefined !== undefined ? field.allow_undefined : false;
             }
 
             var value = await get_value(filed_location,req,res);
+            
+            if (value === undefined && allow_undefined) return next();
+
+
             var result = await validator(schema,value);
+
+            
             
             if (!result.status) {
                 

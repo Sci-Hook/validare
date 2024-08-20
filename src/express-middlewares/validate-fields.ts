@@ -24,7 +24,7 @@ export function validateFields(fields:(field|string)[],callback:Function){
             }else{
                 filed_location = field.dataname;
                 schema = field.schema; 
-                allow_undefined = field.allow_undefined ? field.allow_undefined : false;
+                allow_undefined = field.allow_undefined  !== undefined ? field.allow_undefined : false;
             }
 
             var value = await get_value(filed_location,req,res);

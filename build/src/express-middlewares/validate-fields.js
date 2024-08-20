@@ -58,7 +58,7 @@ function validateFields(fields, callback) {
                         else {
                             filed_location = field.dataname;
                             schema = field.schema;
-                            allow_undefined = field.allow_undefined ? field.allow_undefined : false;
+                            allow_undefined = field.allow_undefined !== undefined ? field.allow_undefined : false;
                         }
                         return [4 /*yield*/, (0, get_value_1.get_value)(filed_location, req, res)];
                     case 1:
