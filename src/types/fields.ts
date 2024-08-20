@@ -1,0 +1,1 @@
+export type field = {dataname:string,schema:string}

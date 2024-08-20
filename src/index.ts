@@ -11,11 +11,13 @@ import {schema} from './types/schema';
 import {Schema} from './class/schema';
 import {create_id as ID} from './create-id';
 import {validator} from './validator'
+import {validateFields} from './express-middlewares/validate-fields'
 
 export{
     schema,
     Schema,
     loadSchemas,
     validator,
-    ID
+    ID,
+    validateFields
 }

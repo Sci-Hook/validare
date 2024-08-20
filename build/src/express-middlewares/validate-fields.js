@@ -36,32 +36,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_value = get_value;
+exports.validateFields = validateFields;
 require("syncforeachloop");
-function get_value(name, req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/, new Promise(function (resolve, reject) {
-                    var datanames = name.split('.');
-                    var data;
-                    if (datanames[0] == 'req') {
-                        data = req;
-                        datanames.splice(0, 1);
-                    }
-                    else if (datanames[0] == 'res') {
-                        data = res;
-                        datanames.splice(0, 1);
-                    }
-                    else {
-                        data = req;
-                    }
-                    datanames.syncForEach(function (name, next) {
-                        data = data[name];
+var get_value_1 = require("../functions/get-value");
+var validator_1 = require("../validator");
+function validateFields(fields, callback) {
+    var _this = this;
+    return function (req, res, next) {
+        var invalid_values = [];
+        fields.syncForEach(function (field, next) { return __awaiter(_this, void 0, void 0, function () {
+            var filed_location, schema, splitted, value, result, splitted, dataname;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (typeof field == 'string') {
+                            splitted = field.split('.');
+                            filed_location = field;
+                            schema = splitted[splitted.length - 1];
+                        }
+                        else {
+                            filed_location = field.dataname;
+                            schema = field.schema;
+                        }
+                        return [4 /*yield*/, (0, get_value_1.get_value)(filed_location, req, res)];
+                    case 1:
+                        value = _a.sent();
+                        return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
+                    case 2:
+                        result = _a.sent();
+                        if (!result.status) {
+                            splitted = filed_location.split('.');
+                            dataname = splitted[splitted.length - 1];
+                            invalid_values.push({
+                                data: value,
+                                dataname: dataname,
+                                error: result.error,
+                                reason: result.reason
+                            });
+                        }
                         next();
-                    }, function () {
-                        resolve(data);
-                    });
-                })];
+                        return [2 /*return*/];
+                }
+            });
+        }); }, function () {
+            if (invalid_values.length != 0)
+                return callback(invalid_values);
+            next();
         });
-    });
+    };
 }

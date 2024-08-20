@@ -1,15 +1,23 @@
+import * as express from 'express';
 import {Schema, loadSchemas} from './index';
+import { validateFields } from './src/express-middlewares/validate-fields';
 
 loadSchemas(['requiments.json','test.json']);
 
-var a = new Schema({
-    type:'string',
-    ignored:['armut','yumurta','kebab'],
-    casetype:'combined'
-});
+var app = express();
 
-async function main() {
-    console.log(await a.validate('kebab'));
-}
+app.use(express.json());
 
-main();
+app.post('/' , validateFields([{dataname:'body.a',schema:'password'}],function (test) {
+    console.log(test);
+}), (req,res,next) => {
+    
+} )
+
+app.listen(8080);
+
+
+
+
+
+
