@@ -80,7 +80,7 @@ function validateFields(fields, callback) {
             });
         }); }, function () {
             if (invalid_values.length != 0)
-                return callback(invalid_values);
+                return callback(invalid_values, req, res);
             next();
         });
     };

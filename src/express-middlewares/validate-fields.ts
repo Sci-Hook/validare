@@ -45,7 +45,7 @@ export function validateFields(fields:(field|string)[],callback:Function){
             next();
             
         },() => {
-            if (invalid_values.length != 0) return callback(invalid_values);
+            if (invalid_values.length != 0) return callback(invalid_values,req,res);
             next();
         });
         
