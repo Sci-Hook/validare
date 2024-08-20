@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// loadSchemas(['requiments.json','test.json']);
-// var app = express();
-// app.use(express.json());
-// app.post('/' , validateFields([{dataname:'body.a',schema:'password'}],function (test) {
-//     console.log(test);
-// }), (req,res,next) => {
-// } )
-// app.listen(8080);
+var express = require("express");
+var index_1 = require("./index");
+(0, index_1.loadSchemas)(['requiments.json', 'test.json']);
+var app = express();
+app.use(express.json());
+app.post('/', (0, index_1.validateSwitch)('body.test', {
+    'armut': ['password'],
+    'kebap': ['username'],
+    'default': ['username', 'password']
+}, function (test, req, res) { return res.json(test); }), function () { });
+app.listen(8000);

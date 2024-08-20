@@ -12,6 +12,7 @@ import {Schema} from './class/schema';
 import {create_id as ID} from './create-id';
 import {validator} from './validator'
 import {validateFields} from './express-middlewares/validate-fields'
+import {validateSwitch} from './express-middlewares/validate-switch'
 
 export{
     schema,
@@ -19,5 +20,6 @@ export{
     loadSchemas,
     validator,
     ID,
-    validateFields
+    validateFields,
+    validateSwitch
 }

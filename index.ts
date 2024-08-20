@@ -4,7 +4,8 @@ import {
     loadSchemas,
     validator,
     ID,
-    validateFields
+    validateFields, 
+    validateSwitch
 } from './src';
 
 export{
@@ -13,5 +14,6 @@ export{
     validator,
     ID,
     schema,
-    validateFields
+    validateFields,
+    validateSwitch
 }
