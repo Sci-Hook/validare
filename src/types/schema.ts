@@ -1,4 +1,5 @@
-import { file_schemas,
+import { 
+    file_schemas,
     string_schemas,
     global,
     email_schemas,
@@ -9,20 +10,24 @@ import { file_schemas,
     object_schemas,
     boolean_schemas,
     undefined_schemas,
-    values_schemas
+    values_schemas,
+    array
 } from './schemas';
 
-type schema = file_schemas&global|
-            string_schemas&global|
-            email_schemas&global|
-            ip_schemas&global|
-            phone_schemas&global|
-            url_schemas&global|
-            number_schemas&global|
-            object_schemas&global|
-            boolean_schemas&global|
-            undefined_schemas&global|
-            values_schemas&global;
+type schema = 
+    file_schemas&global|
+    string_schemas&global|
+    email_schemas&global|
+    ip_schemas&global|
+    phone_schemas&global|
+    url_schemas&global|
+    number_schemas&global|
+    object_schemas&global|
+    boolean_schemas&global|
+    undefined_schemas&global|
+    values_schemas&global|
+    array&global
+;
 
 export{
     schema

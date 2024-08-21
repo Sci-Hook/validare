@@ -13,6 +13,7 @@ var file_1 = require("./validators/file");
 var values_1 = require("./validators/values");
 var check_case_1 = require("./validators/check-case");
 var check_ignored_1 = require("./validators/check-ignored");
+var array_1 = require("./validators/array");
 exports.validators = {
     string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
@@ -26,5 +27,6 @@ exports.validators = {
     url: [url_1.validate_url, length_1.validate_length],
     "string-number": [number_1.validate_numbers],
     "file": [file_1.validate_file],
-    "values": [values_1.validate_values]
+    "values": [values_1.validate_values],
+    'array': [array_1.validate_array]
 };

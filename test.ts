@@ -1,22 +1,15 @@
 import * as express from 'express';
 import {Schema, loadSchemas, validateSwitch} from './index';
-import { validateFields } from './src/express-middlewares/validate-fields';
 
-loadSchemas(['requiments.json','test.json']);
+async function main() {
+    
+    var schema = new Schema({
+        type:'array',
+        possible_types:['boolean'],
+    })
 
-var app = express();
+    console.log(await schema.validate([true,false]))
 
-app.use(express.json());
+}
 
-app.post('/' , 
-    validateSwitch('body.test', 
-        {
-            'armut':['password'],
-            'kebap':['username'],
-            'default':['username','password']
-        },
-    (test,req,res) => res.json(test)),
-    () => {}
-);
-
-app.listen(8000);
+main()

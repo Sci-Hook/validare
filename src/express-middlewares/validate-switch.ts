@@ -35,11 +35,8 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
             
             if (value === undefined && allow_undefined) return next();
 
-
             var result = await validator(schema,value);
 
-            
-            
             if (!result.status) {
                 
                 let splitted = filed_location.split('.')

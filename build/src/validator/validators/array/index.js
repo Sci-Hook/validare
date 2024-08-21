@@ -36,24 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var schema, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    schema = new index_1.Schema({
-                        type: 'array',
-                        possible_types: ['boolean'],
-                    });
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, schema.validate([true, false])];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_array = validate_array;
+function validate_array(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (typeof value != 'object')
+                return [2 /*return*/, resolve('type')];
+            if (!Array.isArray(value))
+                return [2 /*return*/, resolve('type')];
+            if (schema.max_element) {
+                if (value.length > schema.max_element) {
+                    return [2 /*return*/, resolve('max_element')];
+                }
             }
+            if (schema.min_element) {
+                if (value.length < schema.min_element) {
+                    return [2 /*return*/, resolve('min_element')];
+                }
+            }
+            value.syncForEach(function (value, next) {
+                if (schema.possible_types.indexOf((typeof value)) == -1) {
+                    return resolve('possible_types');
+                }
+                next();
+            }, function () {
+                return resolve('no_error');
+            });
+            return [2 /*return*/];
         });
-    });
+    }); });
 }
-main();
