@@ -55,15 +55,18 @@ function validate_array(schema, value) {
                     return [2 /*return*/, resolve('min_element')];
                 }
             }
-            value.syncForEach(function (value, next) {
-                if (schema.possible_types.indexOf((typeof value)) == -1) {
-                    return resolve('possible_types');
-                }
-                next();
-            }, function () {
-                return resolve('no_error');
-            });
-            return [2 /*return*/];
+            if (schema.possible_types) {
+                return [2 /*return*/, value.syncForEach(function (value, next) {
+                        if (schema.possible_types)
+                            if (schema.possible_types.indexOf((typeof value)) == -1) {
+                                return resolve('possible_types');
+                            }
+                        next();
+                    }, function () {
+                        return resolve('no_error');
+                    })];
+            }
+            return [2 /*return*/, resolve('no_error')];
         });
     }); });
 }

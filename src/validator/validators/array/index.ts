@@ -18,14 +18,19 @@ export function validate_array(schema:array,value:any) {
             }  
         }
 
-        value.syncForEach(function (value:any,next) {
-            if (schema.possible_types.indexOf(<any>(typeof value)) == -1) {
-                return resolve('possible_types')
-            }
-            next();
-        }, ()=> {
-            return resolve('no_error')
-        })
+        if (schema.possible_types) {
+            return value.syncForEach(function (value:any,next) {
+                if (schema.possible_types) if (schema.possible_types.indexOf(<any>(typeof value)) == -1) {
+                    return resolve('possible_types')
+                }
+                next();
+            }, ()=> {
+                return resolve('no_error')
+            })
+        }
+        
+        return resolve('no_error')
+
         
     });
 }

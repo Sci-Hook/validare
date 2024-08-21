@@ -8,7 +8,7 @@ export type check_length = {min_length?:number|string,max_length?:number|string,
 
 export type array = {
     type:'array',
-    possible_types:('string'|'number'|'object'|'boolean')[],
+    possible_types?:('string'|'number'|'object'|'boolean')[],
     max_element?:number,
     min_element?:number,
 }
