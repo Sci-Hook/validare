@@ -1,3 +1,4 @@
+import { validator } from "../..";
 import { array } from "../../../types/schemas";
 
 export function validate_array(schema:array,value:any) {
@@ -19,11 +20,16 @@ export function validate_array(schema:array,value:any) {
         }
 
         if (schema.possible_types) {
-            return value.syncForEach(function (value:any,next) {
-                if (schema.possible_types) if (schema.possible_types.indexOf(<any>(typeof value)) == -1) {
-                    return resolve('possible_types')
-                }
-                next();
+            return value.syncForEach(function (value:any,next_value) {
+
+                schema.possible_types?.syncForEach(async function (possible_type,next_type) {
+                    var result = await validator(possible_type,value);
+                    if (result.status) return next_value();
+                    next_type()
+                },() => {
+                    resolve('possible_types')
+                });
+
             }, ()=> {
                 return resolve('no_error')
             })

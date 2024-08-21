@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate_array = validate_array;
+var __1 = require("../..");
 function validate_array(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
@@ -56,12 +57,26 @@ function validate_array(schema, value) {
                 }
             }
             if (schema.possible_types) {
-                return [2 /*return*/, value.syncForEach(function (value, next) {
-                        if (schema.possible_types)
-                            if (schema.possible_types.indexOf((typeof value)) == -1) {
-                                return resolve('possible_types');
-                            }
-                        next();
+                return [2 /*return*/, value.syncForEach(function (value, next_value) {
+                        var _a;
+                        (_a = schema.possible_types) === null || _a === void 0 ? void 0 : _a.syncForEach(function (possible_type, next_type) {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var result;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, (0, __1.validator)(possible_type, value)];
+                                        case 1:
+                                            result = _a.sent();
+                                            if (result.status)
+                                                return [2 /*return*/, next_value()];
+                                            next_type();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            });
+                        }, function () {
+                            resolve('possible_types');
+                        });
                     }, function () {
                         return resolve('no_error');
                     })];

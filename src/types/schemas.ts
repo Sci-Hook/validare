@@ -6,13 +6,6 @@ export type global = {required?:boolean}
 
 export type check_length = {min_length?:number|string,max_length?:number|string,length?:number|string}
 
-export type array = {
-    type:'array',
-    possible_types?:('string'|'number'|'object'|'boolean')[],
-    max_element?:number,
-    min_element?:number,
-}
-
 export type file_schemas = {
     type:'file',
     extension?:extensions|extensions[],
@@ -70,3 +63,15 @@ export type url_schemas = {
     min_length?:number,
     max_length?:number
 }&check_length;
+
+export type array = {
+    type:'array',
+    possible_types?:(
+        string_schemas|
+        number_schemas|
+        boolean_schemas
+        
+    )[],
+    max_element?:number,
+    min_element?:number,
+}
