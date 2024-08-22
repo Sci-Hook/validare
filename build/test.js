@@ -46,12 +46,11 @@ function main() {
                     schema = new index_1.Schema({
                         type: 'array',
                         possible_types: [
-                            { type: 'string', 'max_length': 15 },
-                            { type: 'number', 'max_length': 15 }
+                            { type: 'array', possible_types: [{ type: 'string' }] }
                         ],
                     });
                     _b = (_a = console).log;
-                    return [4 /*yield*/, schema.validate(['asdasd', 'asdasd', 'asdasd', 20])];
+                    return [4 /*yield*/, schema.validate([['2'], ['4'], ['a', 2, 2, 34]])];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

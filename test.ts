@@ -6,12 +6,11 @@ async function main() {
     var schema = new Schema({
         type:'array',
         possible_types:[
-            {type:'string','max_length':15},
-            {type:'number','max_length':15}
+            {type:'array',possible_types:[{type:'string'}]}
         ],
     })
 
-    console.log(await schema.validate(['asdasd','asdasd','asdasd',20]))
+    console.log(await schema.validate([['2'],['4'],['a',2,2,34]]))
 
 }
 

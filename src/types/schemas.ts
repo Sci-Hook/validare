@@ -1,4 +1,5 @@
 import {extensions,mimes} from 'mime-controller';
+import { schema } from './schema';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
@@ -66,12 +67,7 @@ export type url_schemas = {
 
 export type array = {
     type:'array',
-    possible_types?:(
-        string_schemas|
-        number_schemas|
-        boolean_schemas
-        
-    )[],
+    possible_types?:(schema)[],
     max_element?:number,
     min_element?:number,
 }
