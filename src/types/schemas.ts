@@ -76,4 +76,6 @@ export type array = {
     possible_types?:(schema)[],
     max_element?:number,
     min_element?:number,
+    max_element_eq?:number,
+    min_element_eq?:number,
 }
