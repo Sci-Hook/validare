@@ -14,6 +14,7 @@ var values_1 = require("./validators/values");
 var check_case_1 = require("./validators/check-case");
 var check_ignored_1 = require("./validators/check-ignored");
 var array_1 = require("./validators/array");
+var base64_1 = require("./validators/base64");
 exports.validators = {
     string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
@@ -28,5 +29,6 @@ exports.validators = {
     "string-number": [number_1.validate_numbers],
     "file": [file_1.validate_file],
     "values": [values_1.validate_values],
-    'array': [array_1.validate_array]
+    'array': [array_1.validate_array],
+    'base64': [base64_1.validate_base64]
 };

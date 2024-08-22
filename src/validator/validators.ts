@@ -11,6 +11,7 @@ import { validate_values } from "./validators/values";
 import { validate_case } from "./validators/check-case";
 import { validate_igonered } from "./validators/check-ignored";
 import { validate_array } from "./validators/array";
+import { validate_base64 } from "./validators/base64";
 
 export const validators = {
     string:[validate_onlytype,validate_string,validate_length,validate_case,validate_igonered],
@@ -26,5 +27,7 @@ export const validators = {
     "string-number":[validate_numbers],
     "file":[validate_file],
     "values":[validate_values],
-    'array':[validate_array]
+    'array':[validate_array],
+    'base64':[validate_base64]
+
 }

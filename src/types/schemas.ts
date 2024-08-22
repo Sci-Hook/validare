@@ -65,6 +65,12 @@ export type url_schemas = {
     max_length?:number
 }&check_length;
 
+export type base64 = {
+    type:'base64',
+    min_size?:number,
+    max_size?:number
+}
+
 export type array = {
     type:'array',
     possible_types?:(schema)[],

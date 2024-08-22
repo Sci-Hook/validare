@@ -11,7 +11,8 @@ import {
     boolean_schemas,
     undefined_schemas,
     values_schemas,
-    array
+    array,
+    base64
 } from './schemas';
 
 type schema = 
@@ -26,7 +27,8 @@ type schema =
     boolean_schemas&global|
     undefined_schemas&global|
     values_schemas&global|
-    array&global
+    array&global|
+    base64&global
 ;
 
 export{

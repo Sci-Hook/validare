@@ -36,21 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var schema, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    schema = new index_1.Schema({ type: 'base64' });
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, schema.validate('ZkdzRA==')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_base64 = validate_base64;
+var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+function validate_base64(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (!base64regex.test(value)) {
+                return [2 /*return*/, resolve('type')];
             }
+            if (schema.max_size) {
+                if (value.length > schema.max_size) {
+                    return [2 /*return*/, resolve('max_size')];
+                }
+            }
+            if (schema.min_size) {
+                if (value.length < schema.min_size) {
+                    return [2 /*return*/, resolve('min_size')];
+                }
+            }
+            resolve('no_error');
+            return [2 /*return*/];
         });
-    });
+    }); });
 }
-main();
