@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create_id = create_id;
+exports.create_id = void 0;
 var presets_1 = require("./presets");
 var presets_characters_keys = Object.keys(presets_1.presets_characters);
 function makeid(length, characters) {
@@ -59,3 +59,4 @@ function create_id(schema) {
         }
     });
 }
+exports.create_id = create_id;

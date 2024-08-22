@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateSwitch = validateSwitch;
+exports.validateSwitch = void 0;
 require("syncforeachloop");
 var get_value_1 = require("../functions/get-value");
 var validator_1 = require("../validator");
@@ -103,3 +103,4 @@ function validateSwitch(dataname, switches, callback) {
         });
     }); };
 }
+exports.validateSwitch = validateSwitch;

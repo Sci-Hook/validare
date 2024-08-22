@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_numbers = validate_numbers;
+exports.validate_numbers = void 0;
 var get_time_1 = require("../../../functions/get-time");
 function get_date(data) {
     return new Promise(function (resolve, reject) {
@@ -111,3 +111,4 @@ function validate_numbers(schema, value) {
         });
     }); });
 }
+exports.validate_numbers = validate_numbers;

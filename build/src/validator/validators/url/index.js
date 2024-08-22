@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_url = validate_url;
+exports.validate_url = void 0;
 function validate_url(schema, value) {
     return new Promise(function (resolve, reject) {
         if (typeof value != 'string') {
@@ -37,3 +37,4 @@ function validate_url(schema, value) {
         }
     });
 }
+exports.validate_url = validate_url;

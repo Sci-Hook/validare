@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_onlytype = validate_onlytype;
+exports.validate_onlytype = void 0;
 function validate_onlytype(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
@@ -48,3 +48,4 @@ function validate_onlytype(schema, value) {
         });
     }); });
 }
+exports.validate_onlytype = validate_onlytype;

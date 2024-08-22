@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_size = validate_size;
+exports.validate_size = void 0;
 var values = {
     bit: {
         bit: Math.pow(2, 0) / 8,
@@ -43,3 +43,4 @@ function validate_size(schema, value) {
         return resolve('no_error');
     });
 }
+exports.validate_size = validate_size;

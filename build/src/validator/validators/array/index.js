@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_array = validate_array;
+exports.validate_array = void 0;
 var __1 = require("../..");
 function validate_array(schema, value) {
     var _this = this;
@@ -85,3 +85,4 @@ function validate_array(schema, value) {
         });
     }); });
 }
+exports.validate_array = validate_array;

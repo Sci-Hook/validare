@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_email = validate_email;
+exports.validate_email = void 0;
 var regex = '^[\\w-\\.]+@(?<service>[\\w-]+\\.+[\\w-]{2,4}$)';
 function validate_email(schema, value) {
     var _this = this;
@@ -71,3 +71,4 @@ function validate_email(schema, value) {
         });
     }); });
 }
+exports.validate_email = validate_email;

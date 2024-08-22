@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateFields = validateFields;
+exports.validateFields = void 0;
 require("syncforeachloop");
 var get_value_1 = require("../functions/get-value");
 var validator_1 = require("../validator");
@@ -89,3 +89,4 @@ function validateFields(fields, callback) {
         });
     };
 }
+exports.validateFields = validateFields;
