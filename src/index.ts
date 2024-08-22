@@ -13,6 +13,7 @@ import {create_id as ID} from './create-id';
 import {validator} from './validator'
 import {validateFields} from './express-middlewares/validate-fields'
 import {validateSwitch} from './express-middlewares/validate-switch'
+import {validateFile} from './express-middlewares/validate-file'
 
 export{
     schema,
@@ -21,5 +22,6 @@ export{
     validator,
     ID,
     validateFields,
-    validateSwitch
+    validateSwitch,
+    validateFile
 }

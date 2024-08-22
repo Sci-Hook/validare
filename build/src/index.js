@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
+exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
 exports.loadSchemas = loadSchemas;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 function loadSchemas(files) {
@@ -17,3 +17,5 @@ var validate_fields_1 = require("./express-middlewares/validate-fields");
 Object.defineProperty(exports, "validateFields", { enumerable: true, get: function () { return validate_fields_1.validateFields; } });
 var validate_switch_1 = require("./express-middlewares/validate-switch");
 Object.defineProperty(exports, "validateSwitch", { enumerable: true, get: function () { return validate_switch_1.validateSwitch; } });
+var validate_file_1 = require("./express-middlewares/validate-file");
+Object.defineProperty(exports, "validateFile", { enumerable: true, get: function () { return validate_file_1.validateFile; } });

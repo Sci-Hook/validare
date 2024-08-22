@@ -1,6 +1,6 @@
 export type invalid_value = {
     error:string,
-    data:string,
+    data?:any,
     dataname:string,
     reason:any
 } 

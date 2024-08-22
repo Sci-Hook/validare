@@ -1,12 +1,18 @@
 import * as express from 'express';
-import {Schema, loadSchemas, validateSwitch, validator} from './index';
+import * as multer from 'multer';
+import {Schema, loadSchemas, validateSwitch, validator,validateFile} from './index';
 
-async function main() {
-    
-    var schema = new Schema({type:'base64'})
+loadSchemas(['test.json'])
 
-    console.log(await schema.validate('ZkdzRA=='))
+var app = express();
+var upload = multer();
 
-}
+app.post('/' , 
+    upload.single('image'),  
+    validateFile('image',(a,b,c) => {c.json(a)}),  
+    (req,res,next) => {
+        res.json('ok');
+    }
+);
 
-main()
+app.listen(8000);

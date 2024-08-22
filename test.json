@@ -1,12 +1,6 @@
 {
-    "password":{
-        "type":"string",
-        "min_length":3,
-        "max_length":120
-    },
-    "username":{
-        "type":"string",
-        "min_length":5,
-        "max_length":18
+    "image":{
+        "type":"file",
+        "mime":["image/png","image/jpeg"]
     }
 }
