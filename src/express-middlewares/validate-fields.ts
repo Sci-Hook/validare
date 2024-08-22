@@ -4,8 +4,9 @@ import 'syncforeachloop';
 import { get_value } from '../functions/get-value';
 import { validator } from '../validator';
 import { invalid_value } from '../types/invalid_value';
+import { invalid_values_response } from '../types/invalid-values-response';
 
-export function validateFields(fields:(field|string)[],callback:Function){
+export function validateFields(fields:(field|string)[],callback:invalid_values_response){
 
     return (req:Request,res:Response,next:NextFunction) => {
 
