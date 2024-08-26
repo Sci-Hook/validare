@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_igonered = void 0;
+exports.validate_igonered = validate_igonered;
 function validate_igonered(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
@@ -50,4 +50,3 @@ function validate_igonered(schema, value) {
         });
     }); });
 }
-exports.validate_igonered = validate_igonered;

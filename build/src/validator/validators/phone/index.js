@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_phone = void 0;
+exports.validate_phone = validate_phone;
 var regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 function validate_phone(schema, value) {
     var _this = this;
@@ -59,4 +59,3 @@ function validate_phone(schema, value) {
         });
     }); });
 }
-exports.validate_phone = validate_phone;

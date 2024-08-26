@@ -19,6 +19,18 @@ export function validate_array(schema:array,value:any) {
             }  
         }
 
+        if (schema.max_element_eq) {
+            if (value.length > schema.max_element_eq) {
+                return resolve('max_element')
+            }  
+        }
+
+        if (schema.min_element_eq) {
+            if (value.length < schema.min_element_eq) {
+                return resolve('min_element')
+            }  
+        }
+
         if (schema.possible_types) {
             return value.syncForEach(function (value:any,next_value) {
 

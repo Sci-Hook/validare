@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.randomize = void 0;
+exports.randomize = randomize;
 function randomize(options) {
     if (typeof options.min != 'number') {
         return console.error('To use random number, the min_length property must take a number type value.');
@@ -25,4 +25,3 @@ function randomize(options) {
     var number = Math.floor(Math.random() * (max - min) + min);
     return number;
 }
-exports.randomize = randomize;

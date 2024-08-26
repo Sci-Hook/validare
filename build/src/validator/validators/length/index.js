@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_length = void 0;
+exports.validate_length = validate_length;
 function validate_length(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
@@ -65,4 +65,3 @@ function validate_length(schema, value) {
         });
     }); });
 }
-exports.validate_length = validate_length;

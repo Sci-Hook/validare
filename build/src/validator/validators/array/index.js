@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_array = void 0;
+exports.validate_array = validate_array;
 var __1 = require("../..");
 function validate_array(schema, value) {
     var _this = this;
@@ -53,6 +53,16 @@ function validate_array(schema, value) {
             }
             if (schema.min_element) {
                 if (value.length < schema.min_element) {
+                    return [2 /*return*/, resolve('min_element')];
+                }
+            }
+            if (schema.max_element_eq) {
+                if (value.length > schema.max_element_eq) {
+                    return [2 /*return*/, resolve('max_element')];
+                }
+            }
+            if (schema.min_element_eq) {
+                if (value.length < schema.min_element_eq) {
                     return [2 /*return*/, resolve('min_element')];
                 }
             }
@@ -85,4 +95,3 @@ function validate_array(schema, value) {
         });
     }); });
 }
-exports.validate_array = validate_array;

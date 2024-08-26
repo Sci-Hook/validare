@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_mime_extension = void 0;
+exports.validate_mime_extension = validate_mime_extension;
 var mime_controller_1 = require("mime-controller");
 function validate_mime_extension(schema, value) {
     var _this = this;
@@ -85,4 +85,3 @@ function validate_mime_extension(schema, value) {
         });
     }); });
 }
-exports.validate_mime_extension = validate_mime_extension;

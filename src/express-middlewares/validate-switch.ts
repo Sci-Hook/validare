@@ -22,6 +22,12 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
             var allow_undefined:boolean = false;
 
             if (typeof field == 'string') {
+
+                if (field.endsWith('?')) {
+                    allow_undefined = true;
+                    field = field.slice(0,field.length - 1);
+                }
+
                 let splitted = field.split('.')
                 filed_location = field;
                 schema = splitted[splitted.length-1];

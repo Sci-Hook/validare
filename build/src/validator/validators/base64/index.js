@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_base64 = void 0;
+exports.validate_base64 = validate_base64;
 var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 function validate_base64(schema, value) {
     var _this = this;
@@ -60,4 +60,3 @@ function validate_base64(schema, value) {
         });
     }); });
 }
-exports.validate_base64 = validate_base64;

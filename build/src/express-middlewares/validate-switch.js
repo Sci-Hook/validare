@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateSwitch = void 0;
+exports.validateSwitch = validateSwitch;
 require("syncforeachloop");
 var get_value_1 = require("../functions/get-value");
 var validator_1 = require("../validator");
@@ -62,6 +62,10 @@ function validateSwitch(dataname, switches, callback) {
                                 case 0:
                                     allow_undefined = false;
                                     if (typeof field == 'string') {
+                                        if (field.endsWith('?')) {
+                                            allow_undefined = true;
+                                            field = field.slice(0, field.length - 1);
+                                        }
                                         splitted = field.split('.');
                                         filed_location = field;
                                         schema = splitted[splitted.length - 1];
@@ -103,4 +107,3 @@ function validateSwitch(dataname, switches, callback) {
         });
     }); };
 }
-exports.validateSwitch = validateSwitch;

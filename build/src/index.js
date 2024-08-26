@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.loadSchemas = exports.Schema = void 0;
+exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
+exports.loadSchemas = loadSchemas;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 function loadSchemas(files) {
     (0, scihook_schema_loader_1.loadFiles)('validare', files);
 }
-exports.loadSchemas = loadSchemas;
 //types
 var schema_1 = require("./class/schema");
 Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return schema_1.Schema; } });

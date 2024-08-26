@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateFile = void 0;
+exports.validateFile = validateFile;
 require("syncforeachloop");
 var validator_1 = require("../validator");
 function validateFile(field, callback) {
@@ -72,4 +72,3 @@ function validateFile(field, callback) {
         });
     }); };
 }
-exports.validateFile = validateFile;

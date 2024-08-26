@@ -1,6 +1,10 @@
 {
-    "image":{
-        "type":"file",
-        "mime":["image/png","image/jpeg"]
+    "username":{
+        "type":"string",
+        "max_length":10
+    },
+    "password":{
+        "type":"string",
+        "max_length":12
     }
 }

@@ -1,13 +1,14 @@
 import * as express from 'express';
-import {Schema, loadSchemas, validateSwitch, validator,validateFile} from './index';
+import {Schema, loadSchemas, validateSwitch, validator, validateFields} from './index';
 
-var test = new Schema({
-    type:'array',
-    
-})
+loadSchemas('test.json')
 
-async function main() {
-    console.log()
-}
+var app = express();
 
-main();
+app.use(express.json());
+
+app.post('/' , validateFields(['body.username?','body.password'],function (err,req,res) {
+    res.json(err)
+}))
+
+app.listen(5000);
