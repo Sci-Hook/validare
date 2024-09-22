@@ -1,6 +1,6 @@
 {
     "name": "validare",
-    "version": " 1.16.4",
+    "version": " 1.16.5",
     "description": "Validation tool for web projects",
     "main": "./build/index.js",
     "scripts": {
