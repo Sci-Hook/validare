@@ -6,8 +6,7 @@ import {
     ID,
     validateFields, 
     validateSwitch,
-    validateFile,
-    remoteLoadFiles
+    validateFile
 } from './src';
 
 export{
@@ -18,6 +17,5 @@ export{
     schema,
     validateFields,
     validateSwitch,
-    validateFile,
-    remoteLoadFiles
+    validateFile
 }
