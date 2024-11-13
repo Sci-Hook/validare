@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.remote_load_files = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
+exports.remoteLoadFiles = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
 exports.loadSchemas = loadSchemas;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 require("syncforeachloop");
@@ -62,4 +62,4 @@ Object.defineProperty(exports, "validateSwitch", { enumerable: true, get: functi
 var validate_file_1 = require("./express-middlewares/validate-file");
 Object.defineProperty(exports, "validateFile", { enumerable: true, get: function () { return validate_file_1.validateFile; } });
 var remote_load_1 = require("./functions/remote-load");
-Object.defineProperty(exports, "remote_load_files", { enumerable: true, get: function () { return remote_load_1.remote_load_files; } });
+Object.defineProperty(exports, "remoteLoadFiles", { enumerable: true, get: function () { return remote_load_1.remoteLoadFiles; } });

@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.remote_load_files = remote_load_files;
+exports.remoteLoadFiles = remoteLoadFiles;
 require("syncforeachloop");
-function remote_load_files(dist) {
+function remoteLoadFiles(dist) {
     return __awaiter(this, void 0, void 0, function () {
         var response, files;
         return __generator(this, function (_a) {
