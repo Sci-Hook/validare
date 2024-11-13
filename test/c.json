@@ -1,0 +1,6 @@
+{
+    "email":{
+        "type":"email",
+        "min_length":10
+    }
+}

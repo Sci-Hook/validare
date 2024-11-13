@@ -36,17 +36,43 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_igonered = validate_igonered;
-function validate_igonered(schema, value) {
-    var _this = this;
-    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            if (!schema.ignored)
-                return [2 /*return*/, resolve('no_error')];
-            if (((_a = schema.ignored) === null || _a === void 0 ? void 0 : _a.indexOf(value)) != -1)
-                return [2 /*return*/, resolve('ignored')];
-            return [2 /*return*/, resolve('no_error')];
+exports.remote_load_files = remote_load_files;
+require("syncforeachloop");
+function remote_load_files(dist) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, files;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!global.validare) {
+                        global.validare = {};
+                    }
+                    return [4 /*yield*/, fetch("".concat(dist, "/map.json"))];
+                case 1:
+                    response = _a.sent();
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    files = _a.sent();
+                    files.syncForEach(function (file, next) {
+                        return __awaiter(this, void 0, void 0, function () {
+                            var response, schemas;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, fetch("".concat(dist, "/").concat(file))];
+                                    case 1:
+                                        response = _a.sent();
+                                        return [4 /*yield*/, response.json()];
+                                    case 2:
+                                        schemas = _a.sent();
+                                        global.validare = Object.assign(global.validare, schemas);
+                                        next();
+                                        return [2 /*return*/];
+                                }
+                            });
+                        });
+                    });
+                    return [2 /*return*/];
+            }
         });
-    }); });
+    });
 }

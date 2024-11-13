@@ -1,9 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var remote_load_1 = require("./src/functions/remote-load");
 // loadSchemas('test.json')
-// var app = express();
-// app.use(express.json());
-// app.post('/' , validateFields(['body.username?','body.password'],function (err,req,res) {
-//     res.json(err)
-// }))
-// app.listen(5000);
+(0, remote_load_1.remote_load_files)('/test');

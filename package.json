@@ -1,6 +1,6 @@
 {
     "name": "validare",
-    "version": " 1.16.5",
+    "version": " 1.16.6",
     "description": "Validation tool for web projects",
     "main": "./build/index.js",
     "scripts": {
@@ -29,5 +29,9 @@
         "valid",
         "value-controller",
         "scihook"
-    ]
+    ],
+    "devDependencies": {
+        "webpack": "^5.96.1",
+        "webpack-cli": "^5.1.4"
+    }
 }

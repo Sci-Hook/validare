@@ -1,7 +1,8 @@
 import {loadFiles} from 'scihook-schema-loader';
+import 'syncforeachloop';
 
-function loadSchemas(files:string|string[]) {
-    loadFiles('validare',files)
+async function loadSchemas(files:string|string[]) {
+    loadFiles('validare',files);
 }
 
 //tpyes
@@ -14,6 +15,7 @@ import {validator} from './validator'
 import {validateFields} from './express-middlewares/validate-fields'
 import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
+import {remote_load_files} from './functions/remote-load';
 
 export{
     schema,

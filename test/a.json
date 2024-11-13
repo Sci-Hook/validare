@@ -1,0 +1,5 @@
+{
+    "username":{
+        "min_length":10
+    }
+}
