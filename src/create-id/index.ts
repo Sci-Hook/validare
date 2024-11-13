@@ -1,3 +1,4 @@
+import { get_remote_laded_schemas } from '../functions/remote-load';
 import {schema} from '../types/schema';
 import {presets_characters} from './presets';
 
@@ -17,16 +18,25 @@ function makeid(length, characters) {
     return result;
 }
 
-export function create_id(schema?:schema|string) {
+export async function create_id(schema?:schema|string) {
 
 
     var id_schema:{length?:number,chars?:string} = {chars:'standart',length:8}
+    var loaded_validation_schemas;
 
+    if (typeof window != 'undefined') {
+        
+        loaded_validation_schemas = await get_remote_laded_schemas();
+    }else{
+        loaded_validation_schemas = global.validare;
+
+    }
+    
     if (typeof schema == 'string') {
-        if(global.validare){
-            if (global.validare[schema]) {
-                var len = global.validare[schema].length;
-                var chars = global.validare[schema].chars
+        if(loaded_validation_schemas){
+            if (loaded_validation_schemas[schema]) {
+                var len = loaded_validation_schemas[schema].length;
+                var chars = loaded_validation_schemas[schema].chars
                 id_schema = {length:len,chars:chars}
             }
         }

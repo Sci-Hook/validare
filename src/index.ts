@@ -15,7 +15,6 @@ import {validator} from './validator'
 import {validateFields} from './express-middlewares/validate-fields'
 import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
-import {remoteLoadFiles} from './functions/remote-load';
 
 export{
     schema,
@@ -25,6 +24,5 @@ export{
     ID,
     validateFields,
     validateSwitch,
-    validateFile,
-    remoteLoadFiles
+    validateFile
 }

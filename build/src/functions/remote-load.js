@@ -37,42 +37,67 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.remoteLoadFiles = remoteLoadFiles;
+exports.get_remote_laded_schemas = get_remote_laded_schemas;
 require("syncforeachloop");
-function remoteLoadFiles(dist) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response, files;
+var validare_schemas = {};
+var load_finished = false;
+function remoteLoadFiles() {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var map_meta, dist, schemas;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!global.validare) {
-                        global.validare = {};
+                    map_meta = document.querySelector('[name="validare-schemas"]');
+                    dist = map_meta === null || map_meta === void 0 ? void 0 : map_meta.getAttribute('dist');
+                    schemas = JSON.parse("[".concat(map_meta === null || map_meta === void 0 ? void 0 : map_meta.getAttribute('schemas'), "]"));
+                    if (!schemas) {
+                        return [2 /*return*/, console.error('No any schema attached')];
                     }
-                    return [4 /*yield*/, fetch("".concat(dist, "/map.json"))];
-                case 1:
-                    response = _a.sent();
-                    return [4 /*yield*/, response.json()];
-                case 2:
-                    files = _a.sent();
-                    files.syncForEach(function (file, next) {
-                        return __awaiter(this, void 0, void 0, function () {
-                            var response, schemas;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0: return [4 /*yield*/, fetch("".concat(dist, "/").concat(file))];
-                                    case 1:
-                                        response = _a.sent();
-                                        return [4 /*yield*/, response.json()];
-                                    case 2:
-                                        schemas = _a.sent();
-                                        global.validare = Object.assign(global.validare, schemas);
-                                        next();
-                                        return [2 /*return*/];
-                                }
+                    return [4 /*yield*/, schemas.syncForEach(function (file, next) {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var response, schemas;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, fetch("".concat(dist, "/").concat(file))];
+                                        case 1:
+                                            response = _a.sent();
+                                            if (response.status != 200) {
+                                                console.error("".concat(file, " is not accessable"));
+                                                return [2 /*return*/, next()];
+                                            }
+                                            return [4 /*yield*/, response.json()];
+                                        case 2:
+                                            schemas = _a.sent();
+                                            validare_schemas = Object.assign(validare_schemas, schemas);
+                                            next();
+                                            return [2 /*return*/];
+                                    }
+                                });
                             });
-                        });
-                    });
+                        })];
+                case 1:
+                    _a.sent();
+                    resolve();
                     return [2 /*return*/];
             }
         });
-    });
+    }); });
+}
+function get_remote_laded_schemas() {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (load_finished) {
+                        return [2 /*return*/, resolve(validare_schemas)];
+                    }
+                    return [4 /*yield*/, remoteLoadFiles()];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/, resolve(validare_schemas)];
+            }
+        });
+    }); });
 }
