@@ -25,5 +25,6 @@ export{
     ID,
     validateFields,
     validateSwitch,
-    validateFile
+    validateFile,
+    remote_load_files
 }

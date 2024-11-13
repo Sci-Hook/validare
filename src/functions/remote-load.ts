@@ -1,6 +1,6 @@
 import 'syncforeachloop';
 
-export async function remote_load_files(dist:string) {
+export async function remoteLoadFiles(dist:string) {
     
     if (!global.validare) {
         global.validare = {};
