@@ -2,7 +2,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './build/test.js',
+    entry: './build/index.js',
     output: {
         filename: 'validare-web.js',
         path: path.resolve(__dirname, 'dist'),
