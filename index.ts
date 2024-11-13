@@ -7,7 +7,7 @@ import {
     validateFields, 
     validateSwitch,
     validateFile,
-    remote_load_files
+    remoteLoadFiles
 } from './src';
 
 export{
@@ -19,5 +19,5 @@ export{
     validateFields,
     validateSwitch,
     validateFile,
-    remote_load_files
+    remoteLoadFiles
 }
