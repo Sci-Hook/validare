@@ -57,8 +57,9 @@ function validate_string(schema, value) {
                         pattern = pattern.slice(1, -1);
                         try {
                             regex = new RegExp(pattern, flag);
-                            if (!value.match(regex))
+                            if (!regex.test(value)) {
                                 return [2 /*return*/, resolve('regex')];
+                            }
                         }
                         catch (error) {
                             console.log("Invalid regex", schema);
@@ -66,7 +67,7 @@ function validate_string(schema, value) {
                         }
                     }
                     else {
-                        if (!value.match(schema.regex))
+                        if (!schema.regex.test(value))
                             return [2 /*return*/, resolve('regex')];
                     }
                 }

@@ -18,15 +18,19 @@ export function validate_string(schema:string_schemas,value) {
                     var flag = schema.regex.split('/')[splitted.length -1];
                     var pattern = schema.regex.replace(flag,'');
                     pattern = pattern.slice(1,-1);
+
                     try {
                         var regex = new RegExp(pattern,flag);
-                        if (!value.match(regex)) return resolve('regex');
+                        if (!regex.test(value)) {
+                            return resolve('regex')  
+                        }
                     } catch (error) {
                         console.log("Invalid regex", schema)
                         console.log(error);
                     }
+                    
                 }else{
-                    if (!value.match(schema.regex)) return resolve('regex');
+                    if (!schema.regex.test(value)) return resolve('regex');
                 }
             }else{
                 return resolve('regex');

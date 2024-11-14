@@ -13,7 +13,8 @@ import {
     values_schemas,
     array,
     base64,
-    doi
+    doi,
+    unicode_name
 } from './schemas';
 
 type schema = 
@@ -30,7 +31,8 @@ type schema =
     values_schemas&global|
     array&global|
     base64&global|
-    doi&global
+    doi&global|
+    unicode_name
 ;
 
 export{

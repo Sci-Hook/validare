@@ -24,6 +24,12 @@ export type string_schemas = {
     ignored?:string[]
 }&check_length;
 
+export type unicode_name = {
+    type:'unicode-name',
+    casetype?:'uppercase'|'lowercase'|'unset'|'combined',
+    allowed_chars?:string
+}&check_length;
+
 export type doi = {
     type:'doi'
 }&check_length;

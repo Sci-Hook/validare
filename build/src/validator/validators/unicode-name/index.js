@@ -36,24 +36,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-var test = new index_1.Schema({
-    type: 'unicode-name',
-    allowed_chars: ' .'
-});
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, test.validate('Emirhan A. Gerçeker')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_unicode_name = validate_unicode_name;
+var regex = /\p{L}/u;
+function validate_unicode_name(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        var chars;
+        return __generator(this, function (_a) {
+            if (typeof value != 'string') {
+                return [2 /*return*/, resolve('type')];
             }
+            chars = value.split('');
+            chars.syncForEach(function (char, next) {
+                if (regex.test(char)) {
+                    return next();
+                }
+                if (schema.allowed_chars)
+                    if (schema.allowed_chars.indexOf(char) != -1) {
+                        return next();
+                    }
+                return resolve('invalid');
+            }, function () {
+                resolve('no_error');
+            });
+            return [2 /*return*/];
         });
-    });
+    }); });
 }
-main();
