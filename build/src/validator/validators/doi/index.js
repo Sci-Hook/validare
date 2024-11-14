@@ -36,23 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-var test = new index_1.Schema({
-    type: 'doi'
-});
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, test.validate('10.3389/fendo.2018.00513')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_doi = validate_doi;
+var regex = /\b(10[.][0-9]{4,}(?:[.][0-9]+)*\/(?:(?!["&\'<>])\S)+)\b/;
+function validate_doi(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            if (typeof value != 'string') {
+                resolve('invalid');
+                return [2 /*return*/];
             }
+            if (!regex.test(value)) {
+                resolve('invalid');
+                return [2 /*return*/];
+            }
+            return [2 /*return*/, resolve('no_error')];
         });
-    });
+    }); });
 }
-main();

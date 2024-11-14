@@ -24,6 +24,10 @@ export type string_schemas = {
     ignored?:string[]
 }&check_length;
 
+export type doi = {
+    type:'doi'
+}&check_length;
+
 export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length&{base?:number};
 
 export type object_schemas = {
