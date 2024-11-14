@@ -1,7 +1,7 @@
 import { url_schemas} from "../../../types/schemas";
 
 export function validate_url(schema:url_schemas,value:string) {
-    return new Promise<'protocols'|'ports'|'hostnames'|'invalid'|'no_error'>((resolve, reject) => {
+    return new Promise<'protocols'|'ports'|'hostnames'|'ignored_hostnames'|'invalid'|'no_error'>((resolve, reject) => {
 
         if (typeof value != 'string') {
             resolve('invalid');    
@@ -31,6 +31,14 @@ export function validate_url(schema:url_schemas,value:string) {
                 var hostname = parsed_url.hostname;
                 if (schema.hostnames.indexOf(hostname) == -1) {
                     resolve('hostnames');
+                    return
+                }
+            }
+            
+            if (schema.ignored_hostnames) {
+                var hostname = parsed_url.hostname;
+                if (schema.ignored_hostnames.indexOf(hostname) != -1) {
+                    resolve('ignored_hostnames');
                     return
                 }
             }

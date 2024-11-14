@@ -63,6 +63,7 @@ export type values_schemas = {
 export type url_schemas = {
     type:'url',
     hostnames?:string[],
+    ignored_hostnames?:string[],
     protocols?:string[],
     ports?:number[],
     min_length?:number,

@@ -1,13 +1,13 @@
 import * as express from 'express';
 import {Schema, loadSchemas, validateSwitch, validator, validateFields} from './index';
-import { remoteLoadFiles } from './src/functions/remote-load';
 
 var test = new Schema({
-    type:'doi'
+    type:'url',
+    ignored_hostnames:['bilimetri.com']
 });
 
 async function main() {
-    console.log(await test.validate('10.3389/fendo.2018.00513'))
+    console.log(await test.validate('http://bilimetri.com'))
 }
 
 main();

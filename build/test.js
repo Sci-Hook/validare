@@ -38,7 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
 var test = new index_1.Schema({
-    type: 'doi'
+    type: 'url',
+    ignored_hostnames: ['bilimetri.com']
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -47,7 +48,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, test.validate('10.3389/fendo.2018.00513')];
+                    return [4 /*yield*/, test.validate('http://bilimetri.com')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

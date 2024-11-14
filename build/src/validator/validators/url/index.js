@@ -30,6 +30,13 @@ function validate_url(schema, value) {
                     return;
                 }
             }
+            if (schema.ignored_hostnames) {
+                var hostname = parsed_url.hostname;
+                if (schema.ignored_hostnames.indexOf(hostname) != -1) {
+                    resolve('ignored_hostnames');
+                    return;
+                }
+            }
             resolve('no_error');
         }
         catch (error) {
