@@ -62,18 +62,20 @@ function validate_element(target) {
         });
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
-    var validate_inputs = document.querySelectorAll('[data-validate]');
-    validate_inputs.forEach(function (validate_input) {
-        var _this = this;
-        validate_element(validate_input);
-        validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', function (event) { return __awaiter(_this, void 0, void 0, function () {
-            var target;
-            return __generator(this, function (_a) {
-                target = event.target;
-                validate_element(target);
-                return [2 /*return*/];
-            });
-        }); });
+if (typeof document != 'undefined') {
+    document.addEventListener("DOMContentLoaded", function () {
+        var validate_inputs = document.querySelectorAll('[data-validate]');
+        validate_inputs.forEach(function (validate_input) {
+            var _this = this;
+            validate_element(validate_input);
+            validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', function (event) { return __awaiter(_this, void 0, void 0, function () {
+                var target;
+                return __generator(this, function (_a) {
+                    target = event.target;
+                    validate_element(target);
+                    return [2 /*return*/];
+                });
+            }); });
+        });
     });
-});
+}

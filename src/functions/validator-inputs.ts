@@ -17,15 +17,15 @@ async function validate_element(target) {
     target.setAttribute('data-validation-full-result',JSON.stringify(result)); 
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    var validate_inputs = document.querySelectorAll('[data-validate]');
-    validate_inputs.forEach( function (validate_input) {
-        validate_element(validate_input);
-        validate_input?.addEventListener('keyup',async event => {
-            var target = (<any>event.target);
-            validate_element(target);
+if (typeof document != 'undefined') {
+    document.addEventListener("DOMContentLoaded", () => {
+        var validate_inputs = document.querySelectorAll('[data-validate]');
+        validate_inputs.forEach( function (validate_input) {
+            validate_element(validate_input);
+            validate_input?.addEventListener('keyup',async event => {
+                var target = (<any>event.target);
+                validate_element(target);
+            });
         });
-    });
-});
-
+    });    
+}
