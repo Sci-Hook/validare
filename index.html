@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <meta name="validare-schemas" dist="/a" schemas='
-        "article.json"
+    <meta name="validare-schemas" dist="/test" schemas='
+        "a.json",
+        "b.json",
+        "c.json"
     '
     >
 </head>
 <body>
+    
+    <input data-validate name="username" type="text">
+    <input data-validate="password" name="password" type="text">
+
     <script src="/dist/validare-web.js"></script>
     <script>
-
         async function main() {
-            var result = await validare.validator('username','a');
+            var result = await validare.validator('username','¨dsfdasfdasfdasf');
             console.log(result);
         }
-
         main();
     </script>
 </body>

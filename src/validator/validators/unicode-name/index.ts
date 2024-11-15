@@ -1,5 +1,6 @@
 import {unicode_name } from "../../../types/schemas";
 
+//@ts-ignore
 const regex = /\p{L}/u;
 
 export function validate_unicode_name(schema:unicode_name,value) {

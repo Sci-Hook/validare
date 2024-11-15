@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate_unicode_name = validate_unicode_name;
+//@ts-ignore
 var regex = /\p{L}/u;
 function validate_unicode_name(schema, value) {
     var _this = this;

@@ -9,9 +9,9 @@ export async function validator(schema:schema|string,value:any){
         schema = await get_requiments(schema);
 
         // Required validation
-        if (schema.required) {
-            if (value === undefined) return resolve(new Status('undefined',schema.required,value))
-            if (value === null) return resolve(new Status('null',schema.required,value))
+        if ((<any>schema).required) {
+            if (value === undefined) return resolve(new Status('undefined',(<any>schema).required,value))
+            if (value === null) return resolve(new Status('null',(<any>schema).required,value))
         }
         // Required validation
 

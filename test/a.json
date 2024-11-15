@@ -1,6 +1,5 @@
 {
     "username":{
-        "type":"string",
-        "min_length":10
+        "type":"unicode-name"
     }
 }
