@@ -37,32 +37,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var validator_1 = require("../validator");
+function validate_element(target) {
+    return __awaiter(this, void 0, void 0, function () {
+        var value, schema, result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!target)
+                        return [2 /*return*/];
+                    value = target.value;
+                    if (target.getAttribute('data-validate') != '') {
+                        schema = target.getAttribute('data-validate');
+                    }
+                    else {
+                        schema = target.getAttribute('name');
+                    }
+                    return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
+                case 1:
+                    result = _a.sent();
+                    target.setAttribute('data-validation-status', result.status ? 'true' : 'false');
+                    target.setAttribute('data-validation-full-result', JSON.stringify(result));
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 document.addEventListener("DOMContentLoaded", function () {
     var validate_inputs = document.querySelectorAll('[data-validate]');
     validate_inputs.forEach(function (validate_input) {
         var _this = this;
+        validate_element(validate_input);
         validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', function (event) { return __awaiter(_this, void 0, void 0, function () {
-            var target, value, schema, result;
+            var target;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        target = event.target;
-                        if (!target)
-                            return [2 /*return*/];
-                        value = target.value;
-                        if (target.getAttribute('data-validate') != '') {
-                            schema = target.getAttribute('data-validate');
-                        }
-                        else {
-                            schema = target.getAttribute('name');
-                        }
-                        return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
-                    case 1:
-                        result = _a.sent();
-                        target.setAttribute('data-validation-status', result.status ? 'true' : 'false');
-                        target.setAttribute('data-validation-full-result', JSON.stringify(result));
-                        return [2 /*return*/];
-                }
+                target = event.target;
+                validate_element(target);
+                return [2 /*return*/];
             });
         }); });
     });
