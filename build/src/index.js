@@ -61,3 +61,4 @@ var validate_switch_1 = require("./express-middlewares/validate-switch");
 Object.defineProperty(exports, "validateSwitch", { enumerable: true, get: function () { return validate_switch_1.validateSwitch; } });
 var validate_file_1 = require("./express-middlewares/validate-file");
 Object.defineProperty(exports, "validateFile", { enumerable: true, get: function () { return validate_file_1.validateFile; } });
+require("./functions/validator-inputs");
