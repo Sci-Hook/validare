@@ -52,6 +52,7 @@ function validate_element(target) {
                     else {
                         schema = target.getAttribute('name');
                     }
+                    console.log(schema, value);
                     return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
                 case 1:
                     result = _a.sent();
@@ -62,20 +63,17 @@ function validate_element(target) {
         });
     });
 }
+function validate_element_event_function(event) {
+    var target = event.target;
+    validate_element(target);
+}
 if (typeof document != 'undefined') {
     document.addEventListener("DOMContentLoaded", function () {
         var validate_inputs = document.querySelectorAll('[data-validate]');
         validate_inputs.forEach(function (validate_input) {
-            var _this = this;
             validate_element(validate_input);
-            validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', function (event) { return __awaiter(_this, void 0, void 0, function () {
-                var target;
-                return __generator(this, function (_a) {
-                    target = event.target;
-                    validate_element(target);
-                    return [2 /*return*/];
-                });
-            }); });
+            validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('change', validate_element_event_function);
+            validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', validate_element_event_function);
         });
     });
 }

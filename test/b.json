@@ -1,5 +1,6 @@
 {
     "password":{
+        "type":"string",
         "max_length":10
     }
 }
