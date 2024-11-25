@@ -39,7 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate_element = validate_element;
 var validator_1 = require("../validator");
 function validate_element(selector_or_element) {
-    return __awaiter(this, void 0, void 0, function () {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         var target, value, schema, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -50,6 +51,8 @@ function validate_element(selector_or_element) {
                     else {
                         target = selector_or_element;
                     }
+                    if (target == null)
+                        return [2 /*return*/, resolve()];
                     value = target.value;
                     if (target.getAttribute('data-validate') != '') {
                         schema = target.getAttribute('data-validate');
@@ -57,15 +60,18 @@ function validate_element(selector_or_element) {
                     else {
                         schema = target.getAttribute('name');
                     }
+                    if (!schema)
+                        return [2 /*return*/, resolve()];
                     return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
                 case 1:
                     result = _a.sent();
                     target.setAttribute('data-validation-status', result.status ? 'true' : 'false');
                     target.setAttribute('data-validation-full-result', JSON.stringify(result));
+                    resolve();
                     return [2 /*return*/];
             }
         });
-    });
+    }); });
 }
 function validate_element_event_function(event) {
     var target = event.target;

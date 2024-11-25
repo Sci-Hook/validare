@@ -1,28 +1,40 @@
 import { validator } from "../validator";
 
-export async function validate_element(selector_or_element) {
+export function validate_element(selector_or_element) {
+
+    return new Promise<void>(async (resolve, reject) => {
+
+        var target;
+
+        if (typeof selector_or_element == 'string'){
+            target =  document.querySelector(selector_or_element);
+        }else{
+            target = selector_or_element;
+        }
+
+        if (target == null) return resolve();
+
+        var value = target.value;
     
-    var target;
-
-    if (typeof selector_or_element == 'string'){
-        target =  document.querySelector(selector_or_element);
-    }else{
-        target = selector_or_element;
-    }
-
-    var value = target.value;
-    var schema;
-
-    if (target.getAttribute('data-validate') != '') {
-        schema = target.getAttribute('data-validate');
-    }else{
-        schema =target.getAttribute('name')
-    }
+        var schema;
     
-    var result = await validator(schema,value);
+        if (target.getAttribute('data-validate') != '') {
+            schema = target.getAttribute('data-validate');
+        }else{
+            schema =target.getAttribute('name')
+        }
 
-    target.setAttribute('data-validation-status',result.status ? 'true' : 'false');
-    target.setAttribute('data-validation-full-result',JSON.stringify(result)); 
+        if (!schema) return resolve();
+        
+        var result = await validator(schema,value);
+    
+        target.setAttribute('data-validation-status',result.status ? 'true' : 'false');
+        target.setAttribute('data-validation-full-result',JSON.stringify(result)); 
+
+        resolve();
+
+    });
+    
 }
 
 function validate_element_event_function(event) {

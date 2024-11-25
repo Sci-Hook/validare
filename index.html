@@ -18,17 +18,10 @@
 
     <script src="/dist/validare-web.js"></script>
     <script>
-        const myEvent = new CustomEvent("validate");
-        $(function () {
+        $(async function () {
             $('[name="password"]').val("dsfasfasdfasdfasdfasdfdfadsfdasfadsf");
-            validare.validate_element('[name="password"]');
+            await validare.validate_element('[name="password"]');
         });
-        
-        // async function main() {
-        //     var result = await validare.validator('username','¨dsfdasfdasfdasf');
-        //     console.log(result);
-        // }
-        // main();
     </script>
 </body>
 </html>
