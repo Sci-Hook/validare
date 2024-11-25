@@ -1,7 +1,15 @@
 import { validator } from "../validator";
 
-async function validate_element(target) {
-    if (!target) return
+export async function validate_element(selector_or_element) {
+    
+    var target;
+
+    if (typeof target == 'string'){
+        target =  document.querySelector(selector_or_element);
+    }else{
+        target = selector_or_element;
+    }
+
     var value = target.value;
     var schema;
 
@@ -10,8 +18,6 @@ async function validate_element(target) {
     }else{
         schema =target.getAttribute('name')
     }
-
-    console.log(schema,value)
     
     var result = await validator(schema,value);
 

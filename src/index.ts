@@ -15,6 +15,7 @@ import {validator} from './validator'
 import {validateFields} from './express-middlewares/validate-fields'
 import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
+import {validate_element} from './functions/validator-inputs'
 import './functions/validator-inputs';
 
 export{
@@ -25,5 +26,6 @@ export{
     ID,
     validateFields,
     validateSwitch,
-    validateFile
+    validateFile,
+    validate_element
 }

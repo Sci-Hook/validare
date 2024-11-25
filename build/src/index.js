@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
+exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
 exports.loadSchemas = loadSchemas;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 require("syncforeachloop");
@@ -61,4 +61,6 @@ var validate_switch_1 = require("./express-middlewares/validate-switch");
 Object.defineProperty(exports, "validateSwitch", { enumerable: true, get: function () { return validate_switch_1.validateSwitch; } });
 var validate_file_1 = require("./express-middlewares/validate-file");
 Object.defineProperty(exports, "validateFile", { enumerable: true, get: function () { return validate_file_1.validateFile; } });
+var validator_inputs_1 = require("./functions/validator-inputs");
+Object.defineProperty(exports, "validate_element", { enumerable: true, get: function () { return validator_inputs_1.validate_element; } });
 require("./functions/validator-inputs");

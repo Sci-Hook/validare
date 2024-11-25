@@ -36,15 +36,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validate_element = validate_element;
 var validator_1 = require("../validator");
-function validate_element(target) {
+function validate_element(selector_or_element) {
     return __awaiter(this, void 0, void 0, function () {
-        var value, schema, result;
+        var target, value, schema, result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!target)
-                        return [2 /*return*/];
+                    if (typeof target == 'string') {
+                        target = document.querySelector(selector_or_element);
+                    }
+                    else {
+                        target = selector_or_element;
+                    }
                     value = target.value;
                     if (target.getAttribute('data-validate') != '') {
                         schema = target.getAttribute('data-validate');
@@ -52,7 +57,6 @@ function validate_element(target) {
                     else {
                         schema = target.getAttribute('name');
                     }
-                    console.log(schema, value);
                     return [4 /*yield*/, (0, validator_1.validator)(schema, value)];
                 case 1:
                     result = _a.sent();
