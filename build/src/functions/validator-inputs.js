@@ -44,7 +44,7 @@ function validate_element(selector_or_element) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (typeof target == 'string') {
+                    if (typeof selector_or_element == 'string') {
                         target = document.querySelector(selector_or_element);
                     }
                     else {

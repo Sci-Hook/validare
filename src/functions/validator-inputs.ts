@@ -4,7 +4,7 @@ export async function validate_element(selector_or_element) {
     
     var target;
 
-    if (typeof target == 'string'){
+    if (typeof selector_or_element == 'string'){
         target =  document.querySelector(selector_or_element);
     }else{
         target = selector_or_element;
