@@ -14,6 +14,7 @@ import { validate_array } from "./validators/array";
 import { validate_base64 } from "./validators/base64";
 import { validate_doi } from "./validators/doi";
 import { validate_unicode_name } from "./validators/unicode-name";
+import { validate_latex } from "./validators/validate-latex";
 
 export const validators = {
     string:[validate_onlytype,validate_string,validate_length,validate_case,validate_igonered],
@@ -32,5 +33,6 @@ export const validators = {
     'array':[validate_array],
     'base64':[validate_base64],
     'doi':[validate_doi],
-    "unicode-name":[validate_length,validate_case,validate_unicode_name]
+    "unicode-name":[validate_length,validate_case,validate_unicode_name],
+    "latex":[validate_length,validate_latex]
 }

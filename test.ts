@@ -1,13 +1,11 @@
-import * as express from 'express';
-import {Schema, loadSchemas, validateSwitch, validator, validateFields} from './index';
+import {Schema} from './index';
 
-// var test = new Schema({
-//     type:'unicode-name',
-//     allowed_chars:' .'
-// });
+var test = new Schema({
+    type:'latex'
+});
 
-// async function main() {    
-//     console.log(await test.validate('Emirhan A. Gerçeker'))
-// }
+async function main() {    
+    console.log(await test.validate('\\pi'))
+}
 
-// main();
+main();

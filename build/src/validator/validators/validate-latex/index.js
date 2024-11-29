@@ -36,23 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-var test = new index_1.Schema({
-    type: 'latex'
-});
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, test.validate('\\pi')];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
+exports.validate_latex = validate_latex;
+var katex = require("katex");
+var regex = '^[\\w-\\.]+@(?<service>[\\w-]+\\.+[\\w-]{2,4}$)';
+function validate_latex(schema, value) {
+    var _this = this;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                katex.renderToString(value, { throwOnError: true });
+                resolve('no_error');
             }
+            catch (error) {
+                resolve('invalid');
+            }
+            return [2 /*return*/];
         });
-    });
+    }); });
 }
-main();

@@ -90,3 +90,10 @@ export type array = {
     max_element_eq?:number,
     min_element_eq?:number,
 }
+
+export type latex = {
+    type:'latex',
+    max_length?:number,
+    min_length?:number,
+    length?:number
+}

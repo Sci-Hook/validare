@@ -14,7 +14,8 @@ import {
     array,
     base64,
     doi,
-    unicode_name
+    unicode_name,
+    latex
 } from './schemas';
 
 type schema = 
@@ -32,7 +33,8 @@ type schema =
     array&global|
     base64&global|
     doi&global|
-    unicode_name
+    unicode_name&global|
+    latex&global
 ;
 
 export{

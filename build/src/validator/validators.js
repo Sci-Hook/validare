@@ -17,6 +17,7 @@ var array_1 = require("./validators/array");
 var base64_1 = require("./validators/base64");
 var doi_1 = require("./validators/doi");
 var unicode_name_1 = require("./validators/unicode-name");
+var validate_latex_1 = require("./validators/validate-latex");
 exports.validators = {
     string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
@@ -34,5 +35,6 @@ exports.validators = {
     'array': [array_1.validate_array],
     'base64': [base64_1.validate_base64],
     'doi': [doi_1.validate_doi],
-    "unicode-name": [length_1.validate_length, check_case_1.validate_case, unicode_name_1.validate_unicode_name]
+    "unicode-name": [length_1.validate_length, check_case_1.validate_case, unicode_name_1.validate_unicode_name],
+    "latex": [length_1.validate_length, validate_latex_1.validate_latex]
 };
