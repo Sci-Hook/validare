@@ -38,8 +38,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
 var test = new index_1.Schema({
-    type: 'doi',
-    dont_validate_empty: true
+    type: 'unicode-name',
+    ignore_empty: true
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -48,7 +48,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, test.validate('sdfafdafdasf')];
+                    return [4 /*yield*/, test.validate('')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

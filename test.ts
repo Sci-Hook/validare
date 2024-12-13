@@ -1,12 +1,12 @@
 import {Schema} from './index';
 
 var test = new Schema({
-    type:'doi',
-    dont_validate_empty:true
+    type:'unicode-name',
+    ignore_empty:true
 });
 
 async function main() {    
-    console.log(await test.validate('sdfafdafdasf'));
+    console.log(await test.validate(''));
 }
 
 main();
