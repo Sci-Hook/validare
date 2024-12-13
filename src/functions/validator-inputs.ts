@@ -27,7 +27,7 @@ export function validate_element(selector_or_element) {
         if (!schema) return resolve();
         
         var result = await validator(schema,value);
-    
+        
         target.setAttribute('data-validation-status',result.status ? 'true' : 'false');
         target.setAttribute('data-validation-full-result',JSON.stringify(result)); 
 

@@ -48,12 +48,11 @@ function validator(schema, value) {
                     var functions;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0:
-                                if (schema.dont_validate_empty && value == '')
-                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
-                                return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
+                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
                             case 1:
                                 schema = _a.sent();
+                                if (schema.dont_validate_empty && value == '')
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
                                 // Required validation
                                 if (schema.required) {
                                     if (value === undefined)

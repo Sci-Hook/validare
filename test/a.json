@@ -1,5 +1,6 @@
 {
-    "username":{
-        "type":"unicode-name"
+    "doi":{
+        "type":"doi",
+        "dont_validate_empty":true
     }
 }
