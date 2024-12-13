@@ -3,7 +3,7 @@ import { schema } from './schema';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
-export type global = {required?:boolean}
+export type global = {required?:boolean,dont_validate_empty?:boolean}
 
 export type check_length = {min_length?:number|string,max_length?:number|string,length?:number|string}
 
@@ -12,7 +12,7 @@ export type file_schemas = {
     extension?:extensions|extensions[],
     mime?:mimes|mimes[],
     max_size?:{size:number,size_type:size_types},
-    min_size?:{size:number,size_type:size_types}    
+    min_size?:{size:number,size_type:size_types}
 }
 
 export type string_schemas = {

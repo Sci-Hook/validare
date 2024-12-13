@@ -6,12 +6,16 @@ import { validators } from './validators';
 export async function validator(schema:schema|string,value:any){
     return new Promise<Status>(async (resolve, reject) => {
         
+        if ((<any>schema).dont_validate_empty) {
+            return resolve(new Status('no_error',null,value));
+        }
+
         schema = await get_requiments(schema);
 
         // Required validation
         if ((<any>schema).required) {
-            if (value === undefined) return resolve(new Status('undefined',(<any>schema).required,value))
-            if (value === null) return resolve(new Status('null',(<any>schema).required,value))
+            if (value === undefined) return resolve(new Status('undefined',(<any>schema).required,value));
+            if (value === null) return resolve(new Status('null',(<any>schema).required,value));
         }
         // Required validation
 
