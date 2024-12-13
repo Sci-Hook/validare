@@ -18,23 +18,24 @@ var base64_1 = require("./validators/base64");
 var doi_1 = require("./validators/doi");
 var unicode_name_1 = require("./validators/unicode-name");
 var validate_latex_1 = require("./validators/validate-latex");
+var ignore_empty_1 = require("./validators/ignore_empty");
 exports.validators = {
-    string: [only_type_1.validate_onlytype, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
+    string: [only_type_1.validate_onlytype, ignore_empty_1.ignore_empty, string_1.validate_string, length_1.validate_length, check_case_1.validate_case, check_ignored_1.validate_igonered],
     number: [only_type_1.validate_onlytype, number_1.validate_numbers],
     bigint: [only_type_1.validate_onlytype, number_1.validate_numbers],
     object: [only_type_1.validate_onlytype, length_1.validate_length],
     boolean: [only_type_1.validate_onlytype],
     undefined: [only_type_1.validate_onlytype],
-    email: [email_1.validate_email, length_1.validate_length],
-    ip: [ip_1.validate_ip, length_1.validate_length],
-    phone: [phone_1.validate_phone, length_1.validate_length],
-    url: [url_1.validate_url, length_1.validate_length],
+    email: [email_1.validate_email, ignore_empty_1.ignore_empty, length_1.validate_length],
+    ip: [ip_1.validate_ip, ignore_empty_1.ignore_empty, length_1.validate_length],
+    phone: [phone_1.validate_phone, ignore_empty_1.ignore_empty, length_1.validate_length],
+    url: [url_1.validate_url, ignore_empty_1.ignore_empty, length_1.validate_length],
     "string-number": [number_1.validate_numbers],
     "file": [file_1.validate_file],
     "values": [values_1.validate_values],
     'array': [array_1.validate_array],
     'base64': [base64_1.validate_base64],
-    'doi': [doi_1.validate_doi],
-    "unicode-name": [length_1.validate_length, check_case_1.validate_case, unicode_name_1.validate_unicode_name],
+    'doi': [doi_1.validate_doi, ignore_empty_1.ignore_empty],
+    "unicode-name": [length_1.validate_length, ignore_empty_1.ignore_empty, check_case_1.validate_case, unicode_name_1.validate_unicode_name],
     "latex": [length_1.validate_length, validate_latex_1.validate_latex]
 };

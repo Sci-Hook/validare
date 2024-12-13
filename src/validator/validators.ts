@@ -15,24 +15,25 @@ import { validate_base64 } from "./validators/base64";
 import { validate_doi } from "./validators/doi";
 import { validate_unicode_name } from "./validators/unicode-name";
 import { validate_latex } from "./validators/validate-latex";
+import { ignore_empty } from "./validators/ignore_empty";
 
 export const validators = {
-    string:[validate_onlytype,validate_string,validate_length,validate_case,validate_igonered],
+    string:[validate_onlytype,ignore_empty,validate_string,validate_length,validate_case,validate_igonered],
     number:[validate_onlytype,validate_numbers],
     bigint:[validate_onlytype,validate_numbers],
     object:[validate_onlytype,validate_length],
     boolean:[validate_onlytype],
     undefined:[validate_onlytype],
-    email:[validate_email,validate_length],
-    ip:[validate_ip,validate_length],
-    phone:[validate_phone,validate_length],
-    url:[validate_url,validate_length],
+    email:[validate_email,ignore_empty,validate_length],
+    ip:[validate_ip,ignore_empty,validate_length],
+    phone:[validate_phone,ignore_empty,validate_length],
+    url:[validate_url,ignore_empty,validate_length],
     "string-number":[validate_numbers],
     "file":[validate_file],
     "values":[validate_values],
     'array':[validate_array],
     'base64':[validate_base64],
-    'doi':[validate_doi],
-    "unicode-name":[validate_length,validate_case,validate_unicode_name],
+    'doi':[validate_doi,ignore_empty],
+    "unicode-name":[validate_length,ignore_empty,validate_case,validate_unicode_name],
     "latex":[validate_length,validate_latex]
 }

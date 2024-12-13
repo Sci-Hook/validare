@@ -27,11 +27,13 @@ export type string_schemas = {
 export type unicode_name = {
     type:'unicode-name',
     casetype?:'uppercase'|'lowercase'|'unset'|'combined',
-    allowed_chars?:string
+    allowed_chars?:string,
+    ignore_empty?:boolean,
 }&check_length;
 
 export type doi = {
-    type:'doi'
+    type:'doi',
+    ignore_empty?:boolean
 }&check_length;
 
 export type number_schemas = {type:'number'|'bigint'|'string-number'}&check_length&{base?:number};
@@ -51,14 +53,17 @@ export type boolean_schemas = {
 export type email_schemas = {
     type:'email',
     services?:string[],
+    ignore_empty?:boolean
 }&check_length;
 
 export type ip_schemas = {
-    type:'ip'
+    type:'ip',
+    ignore_empty?:boolean
 }&check_length;
 
 export type phone_schemas = {
-    type:'phone'
+    type:'phone',
+    ignore_empty?:boolean
 }&check_length;
 
 export type values_schemas = {
@@ -73,7 +78,8 @@ export type url_schemas = {
     protocols?:string[],
     ports?:number[],
     min_length?:number,
-    max_length?:number
+    max_length?:number,
+    ignore_empty?:boolean
 }&check_length;
 
 export type base64 = {

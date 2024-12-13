@@ -10,7 +10,7 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
     return async (req:Request,res:Response,next:NextFunction) => {
 
         var data = await get_value(dataname,req,res);
-        if (data === undefined || data === null) {return }
+        if (data === undefined || data === null) {return}
         var fields = switches[data] ? switches[data] : (switches['$default'] ? switches['$default'] : []);
         
         var invalid_values:invalid_value[] = [];
