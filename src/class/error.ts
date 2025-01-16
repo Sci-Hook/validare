@@ -22,7 +22,8 @@ type errors =
     'ignored'|
     'lowercase'|
     'uppercase'|
-    'combined';
+    'combined'|
+    'not-matched-with-any-type';
 
 export class Status {
     

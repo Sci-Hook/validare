@@ -103,3 +103,8 @@ export type latex = {
     min_length?:number,
     length?:number
 }
+
+export type multi_type = {
+    type:'mutli-type',
+    types:schema[]
+}

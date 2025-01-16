@@ -36,11 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validate_with_schema = validate_with_schema;
 exports.validator = validator;
 var error_1 = require("../class/error");
 var get_requiments_1 = require("../functions/get-requiments");
 var validators_1 = require("./validators");
-function validator(schema, value) {
+function validate_with_schema(schema, value) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
@@ -48,20 +49,8 @@ function validator(schema, value) {
                     var functions;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
+                            case 0: return [4 /*yield*/, validators_1.validators[schema.type]];
                             case 1:
-                                schema = _a.sent();
-                                if (schema.dont_validate_empty && value == '')
-                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
-                                // Required validation
-                                if (schema.required) {
-                                    if (value === undefined)
-                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required, value))];
-                                    if (value === null)
-                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
-                                }
-                                return [4 /*yield*/, validators_1.validators[schema.type]];
-                            case 2:
                                 functions = _a.sent();
                                 functions.syncForEach(function (validator, next) {
                                     return __awaiter(this, void 0, void 0, function () {
@@ -85,6 +74,59 @@ function validator(schema, value) {
                                     resolve(new error_1.Status('no_error', null, value));
                                 });
                                 return [2 /*return*/];
+                        }
+                    });
+                }); })];
+        });
+    });
+}
+function validator(schema, value) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _this = this;
+        return __generator(this, function (_a) {
+            return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                    var result;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
+                            case 1:
+                                schema = _a.sent();
+                                if (schema.dont_validate_empty && value == '')
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                // Required validation
+                                if (schema.required) {
+                                    if (value === undefined)
+                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required, value))];
+                                    if (value === null)
+                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
+                                }
+                                if (!(schema.type == 'mutli-type')) return [3 /*break*/, 2];
+                                schema.types.syncForEach(function (type_options, next_type) {
+                                    return __awaiter(this, void 0, void 0, function () {
+                                        var result;
+                                        return __generator(this, function (_a) {
+                                            switch (_a.label) {
+                                                case 0: return [4 /*yield*/, validate_with_schema(type_options, value)];
+                                                case 1:
+                                                    result = _a.sent();
+                                                    if (result.status == true) {
+                                                        return [2 /*return*/, resolve(result)];
+                                                    }
+                                                    next_type();
+                                                    return [2 /*return*/];
+                                            }
+                                        });
+                                    });
+                                }, function () {
+                                    resolve({ error: 'not-matched-with-any-type', reason: schema, status: false, value: value });
+                                });
+                                return [3 /*break*/, 4];
+                            case 2: return [4 /*yield*/, validate_with_schema(schema, value)];
+                            case 3:
+                                result = _a.sent();
+                                resolve(result);
+                                _a.label = 4;
+                            case 4: return [2 /*return*/];
                         }
                     });
                 }); })];
