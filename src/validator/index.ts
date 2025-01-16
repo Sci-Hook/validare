@@ -36,7 +36,7 @@ export async function validator(schema:schema|string,value:any){
         }
         // Required validation
 
-        if (schema.type == 'mutli-type') {
+        if (schema.type == 'multi-type') {
             schema.types.syncForEach(async function (type_options:schema,next_type) {
                 var result = await validate_with_schema(type_options,value);
                 if (result.status == true) {

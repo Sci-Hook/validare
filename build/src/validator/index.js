@@ -100,7 +100,7 @@ function validator(schema, value) {
                                     if (value === null)
                                         return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
                                 }
-                                if (!(schema.type == 'mutli-type')) return [3 /*break*/, 2];
+                                if (!(schema.type == 'multi-type')) return [3 /*break*/, 2];
                                 schema.types.syncForEach(function (type_options, next_type) {
                                     return __awaiter(this, void 0, void 0, function () {
                                         var result;

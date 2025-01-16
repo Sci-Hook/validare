@@ -105,6 +105,6 @@ export type latex = {
 }
 
 export type multi_type = {
-    type:'mutli-type',
+    type:'multi-type',
     types:schema[]
 }

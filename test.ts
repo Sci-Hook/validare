@@ -1,21 +1,9 @@
-import {Schema} from './index';
+import {Schema, validator,loadSchemas} from './index';
 
-var test = new Schema({
-    type:'mutli-type',
-    types:[
-        {
-            type:'string',
-            length:10
-        },
-        {
-            type:'number',
-            max_length:30
-        }
-    ]
-});
+loadSchemas(['test.json'])
 
 async function main() {    
-    console.log(await test.validate(890));
+    console.log(await validator('website','http://test.roım'));
 }
 
 main();
