@@ -34,8 +34,6 @@ export async function validator(_schema:schema|string,value:any,options?:{dont_v
                 }) 
             }
         }
-
-        console.log(schema);
         
         if ((<any>schema).dont_validate_empty && value == '') return resolve(new Status('no_error',null,value));
 
