@@ -102,7 +102,6 @@ function validator(_schema, value, options) {
                                 _a.sent();
                                 _a.label = 3;
                             case 3:
-                                console.log(schema);
                                 if (schema.dont_validate_empty && value == '')
                                     return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
                                 // Required validation
