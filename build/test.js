@@ -37,17 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
-(0, index_1.loadSchemas)(['test.json']);
+(0, index_1.loadSchemas)(['requiments.json']);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var _a, _b, _c, _d;
+        return __generator(this, function (_e) {
+            switch (_e.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, (0, index_1.validator)('website', 'http://test.roım')];
+                    return [4 /*yield*/, (0, index_1.validator)('username', 'a', { dont_validate: ['min_length'] })];
                 case 1:
-                    _b.apply(_a, [_c.sent()]);
+                    _b.apply(_a, [_e.sent()]);
+                    _d = (_c = console).log;
+                    return [4 /*yield*/, (0, index_1.validator)('username', 'a')];
+                case 2:
+                    _d.apply(_c, [_e.sent()]);
                     return [2 /*return*/];
             }
         });

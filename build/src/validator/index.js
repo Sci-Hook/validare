@@ -80,17 +80,29 @@ function validate_with_schema(schema, value) {
         });
     });
 }
-function validator(schema, value) {
+function validator(_schema, value, options) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                    var result;
+                    var schema, result;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(schema)];
+                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(_schema)];
                             case 1:
-                                schema = _a.sent();
+                                _schema = _a.sent();
+                                schema = JSON.parse(JSON.stringify(_schema));
+                                if (!options) return [3 /*break*/, 3];
+                                if (!options.dont_validate) return [3 /*break*/, 3];
+                                return [4 /*yield*/, (options === null || options === void 0 ? void 0 : options.dont_validate.syncForEach(function (key, next) {
+                                        delete schema[key];
+                                        next();
+                                    }))];
+                            case 2:
+                                _a.sent();
+                                _a.label = 3;
+                            case 3:
+                                console.log(schema);
                                 if (schema.dont_validate_empty && value == '')
                                     return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
                                 // Required validation
@@ -100,7 +112,7 @@ function validator(schema, value) {
                                     if (value === null)
                                         return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
                                 }
-                                if (!(schema.type == 'multi-type')) return [3 /*break*/, 2];
+                                if (!(schema.type == 'multi-type')) return [3 /*break*/, 4];
                                 schema.types.syncForEach(function (type_options, next_type) {
                                     return __awaiter(this, void 0, void 0, function () {
                                         var result;
@@ -120,13 +132,13 @@ function validator(schema, value) {
                                 }, function () {
                                     resolve({ error: 'not-matched-with-any-type', reason: schema, status: false, value: value });
                                 });
-                                return [3 /*break*/, 4];
-                            case 2: return [4 /*yield*/, validate_with_schema(schema, value)];
-                            case 3:
+                                return [3 /*break*/, 6];
+                            case 4: return [4 /*yield*/, validate_with_schema(schema, value)];
+                            case 5:
                                 result = _a.sent();
                                 resolve(result);
-                                _a.label = 4;
-                            case 4: return [2 /*return*/];
+                                _a.label = 6;
+                            case 6: return [2 /*return*/];
                         }
                     });
                 }); })];

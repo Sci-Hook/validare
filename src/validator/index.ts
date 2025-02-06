@@ -7,7 +7,6 @@ export async function validate_with_schema(schema,value) {
     return new Promise<Status>(async (resolve, reject) => {
         var functions:Function[] = await validators[schema.type];
         functions.syncForEach(async function (validator:Function,next) {
-    
             var status = await validator(schema,value);
             if (status == 'no_error') {
                 next();                
@@ -21,12 +20,23 @@ export async function validate_with_schema(schema,value) {
     });
 }
 
-export async function validator(schema:schema|string,value:any){
+export async function validator(_schema:schema|string,value:any,options?:{dont_validate:string[]}){
     return new Promise<Status>(async (resolve, reject) => {
         
-        schema = await get_requiments(schema);
+        _schema = await get_requiments(_schema);
+        let schema = JSON.parse(JSON.stringify(_schema))
 
+        if (options) {
+            if (options.dont_validate) {
+                await options?.dont_validate.syncForEach(function (key,next) {
+                    delete schema[key];
+                    next();
+                }) 
+            }
+        }
 
+        console.log(schema);
+        
         if ((<any>schema).dont_validate_empty && value == '') return resolve(new Status('no_error',null,value));
 
         // Required validation
@@ -34,7 +44,7 @@ export async function validator(schema:schema|string,value:any){
             if (value === undefined) return resolve(new Status('undefined',(<any>schema).required,value));
             if (value === null) return resolve(new Status('null',(<any>schema).required,value));
         }
-        // Required validation
+        // Required validation 
 
         if (schema.type == 'multi-type') {
             schema.types.syncForEach(async function (type_options:schema,next_type) {
