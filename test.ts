@@ -1,10 +1,14 @@
-import {Schema, validator,loadSchemas} from './index';
+import {validator,loadSchemas, Schema} from './index';
 
 loadSchemas(['requiments.json'])
 
+let schema = new Schema({
+    type:'string'
+})
+
 async function main() {    
-    console.log(await validator('username','a',{dont_validate:['min_length']}));
-    console.log(await validator('username','a'));
+    let test ;
+    console.log(await schema.validate(test));
 }
 
 main();

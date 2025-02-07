@@ -36,6 +36,8 @@ export async function validator(_schema:schema|string,value:any,options?:{dont_v
         }
         
         if ((<any>schema).dont_validate_empty && value == '') return resolve(new Status('no_error',null,value));
+        if ((<any>schema).allow_undefined && value === undefined) return resolve(new Status('no_error',null,value));
+        if ((<any>schema).allow_null && value === null) return resolve(new Status('no_error',null,value));
 
         // Required validation
         if ((<any>schema).required) {

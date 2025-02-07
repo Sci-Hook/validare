@@ -104,6 +104,10 @@ function validator(_schema, value, options) {
                             case 3:
                                 if (schema.dont_validate_empty && value == '')
                                     return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                if (schema.allow_undefined && value === undefined)
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                if (schema.allow_null && value === null)
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
                                 // Required validation
                                 if (schema.required) {
                                     if (value === undefined)
