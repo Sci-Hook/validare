@@ -1,14 +1,17 @@
-import {validator,loadSchemas, Schema} from './index';
+import {loadSchemas, Schema} from './index';
 
 loadSchemas(['requiments.json'])
 
 let schema = new Schema({
-    type:'string'
+    type:'url',
+    origins:[
+        "http://127.0.0.1:8080"
+    ]
 })
 
 async function main() {    
-    let test ;
-    console.log(await schema.validate(test));
+
+    // console.log(await schema.validate('http://127.0.0.1:8080/a'));
 }
 
 main();

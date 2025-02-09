@@ -77,6 +77,7 @@ export type url_schemas = {
     ignored_hostnames?:string[],
     protocols?:string[],
     ports?:number[],
+    origins?:string[],
     min_length?:number,
     max_length?:number,
     ignore_empty?:boolean

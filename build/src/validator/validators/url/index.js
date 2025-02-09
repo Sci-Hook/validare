@@ -23,6 +23,13 @@ function validate_url(schema, value) {
                     return;
                 }
             }
+            if (schema.origins) {
+                var origin = parsed_url.origin;
+                if (!schema.origins.includes(origin)) {
+                    resolve('origins');
+                    return;
+                }
+            }
             if (schema.hostnames) {
                 var hostname = parsed_url.hostname;
                 if (schema.hostnames.indexOf(hostname) == -1) {

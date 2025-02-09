@@ -39,20 +39,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
 (0, index_1.loadSchemas)(['requiments.json']);
 var schema = new index_1.Schema({
-    type: 'string'
+    type: 'url',
+    origins: [
+        "http://127.0.0.1:8080"
+    ]
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var test, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, schema.validate(test)];
-                case 1:
-                    _b.apply(_a, [_c.sent()]);
-                    return [2 /*return*/];
-            }
+        return __generator(this, function (_a) {
+            return [2 /*return*/];
         });
     });
 }
