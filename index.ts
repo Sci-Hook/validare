@@ -7,7 +7,8 @@ import {
     validateFields, 
     validateSwitch,
     validateFile,
-    validate_element
+    validate_element,
+    validate_inner_keys
 } from './src';
 
 export{
@@ -19,5 +20,6 @@ export{
     validateFields,
     validateSwitch,
     validateFile,
-    validate_element
+    validate_element,
+    validate_inner_keys
 }
