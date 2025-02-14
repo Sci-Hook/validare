@@ -36,34 +36,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-var src_1 = require("./src");
-(0, index_1.loadSchemas)(['requiments.json']);
-var schema = new index_1.Schema({
-    type: 'url',
-    origins: [
-        "http://127.0.0.1:8080"
-    ]
-});
-var test = {
-    "test": {
-        mest: {
-            least: 'hello'
-        }
-    }
-};
-function main() {
-    return __awaiter(this, void 0, void 0, function () {
-        var result;
+exports.validate_inner_keys = validate_inner_keys;
+require("syncforeachloop");
+function validate_inner_keys(value, object) {
+    var _this = this;
+    var keys = value.split('.');
+    var new_object = object;
+    return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, src_1.validate_inner_keys)('test.mest.least', test)];
+                case 0: return [4 /*yield*/, keys.syncForEach(function (key, next) {
+                        if (new_object[key] === undefined || new_object[key] === null) {
+                            return resolve(false);
+                        }
+                        new_object = new_object[key];
+                        next();
+                    })];
                 case 1:
-                    result = _a.sent();
-                    console.log(result);
+                    _a.sent();
+                    resolve(true);
                     return [2 /*return*/];
             }
         });
-    });
+    }); });
 }
-main();

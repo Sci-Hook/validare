@@ -16,6 +16,7 @@ import {validateFields} from './express-middlewares/validate-fields'
 import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
 import {validate_element} from './functions/validator-inputs'
+import { validate_inner_keys } from './functions/validate-inner-keys';
 import './functions/validator-inputs';
 
 export{
@@ -27,5 +28,6 @@ export{
     validateFields,
     validateSwitch,
     validateFile,
-    validate_element
+    validate_element,
+    validate_inner_keys
 }

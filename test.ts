@@ -1,4 +1,5 @@
 import {loadSchemas, Schema} from './index';
+import { validate_inner_keys } from './src';
 
 loadSchemas(['requiments.json'])
 
@@ -9,9 +10,17 @@ let schema = new Schema({
     ]
 })
 
-async function main() {    
+let test = {
+    "test":{
+        mest:{
+            least:'hello'
+        }
+    }
+}
 
-    // console.log(await schema.validate('http://127.0.0.1:8080/a'));
+async function main() {    
+    let result = await validate_inner_keys('test.mest.least',test)
+    console.log(result);
 }
 
 main();
