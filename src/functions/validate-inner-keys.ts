@@ -13,6 +13,4 @@ export function validate_inner_keys(value:string,object:any) {
         })    
         resolve(true);
     })
-    
-    
 }
