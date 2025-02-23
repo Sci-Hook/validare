@@ -37,11 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
+var src_1 = require("./src");
 (0, index_1.loadSchemas)(['requiments.json']);
-var schema = new index_1.Schema({
-    type: 'unicode-name',
-    max_length: 20
-});
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b;
@@ -49,7 +46,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, schema.validate(undefined)];
+                    return [4 /*yield*/, (0, src_1.validator)('test', 'a')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
