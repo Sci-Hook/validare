@@ -37,30 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = require("./index");
-var src_1 = require("./src");
 (0, index_1.loadSchemas)(['requiments.json']);
 var schema = new index_1.Schema({
-    type: 'url',
-    origins: [
-        "http://127.0.0.1:8080"
-    ]
+    type: 'unicode-name',
+    max_length: 20
 });
-var test = {
-    "test": {
-        mest: {
-            least: 'hello'
-        }
-    }
-};
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, src_1.validate_inner_keys)('test.mest.least', test)];
+        var _a, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    _b = (_a = console).log;
+                    return [4 /*yield*/, schema.validate(undefined)];
                 case 1:
-                    result = _a.sent();
-                    console.log(result);
+                    _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
             }
         });

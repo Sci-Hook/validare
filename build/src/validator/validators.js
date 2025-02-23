@@ -36,6 +36,6 @@ exports.validators = {
     'array': [array_1.validate_array],
     'base64': [base64_1.validate_base64],
     'doi': [doi_1.validate_doi, ignore_empty_1.ignore_empty],
-    "unicode-name": [length_1.validate_length, ignore_empty_1.ignore_empty, check_case_1.validate_case, unicode_name_1.validate_unicode_name],
+    "unicode-name": [unicode_name_1.validate_unicode_name, length_1.validate_length, ignore_empty_1.ignore_empty, check_case_1.validate_case],
     "latex": [length_1.validate_length, validate_latex_1.validate_latex]
 };

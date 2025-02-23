@@ -34,6 +34,6 @@ export const validators = {
     'array':[validate_array],
     'base64':[validate_base64],
     'doi':[validate_doi,ignore_empty],
-    "unicode-name":[validate_length,ignore_empty,validate_case,validate_unicode_name],
+    "unicode-name":[validate_unicode_name,validate_length,ignore_empty,validate_case],
     "latex":[validate_length,validate_latex]
 }
