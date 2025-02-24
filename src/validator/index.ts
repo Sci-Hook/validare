@@ -29,7 +29,7 @@ export async function validator(_schema:schema|string,value:any,options?:{dont_v
             name = _schema;
         }else{
             // @ts-ignore
-            if (schema.name) name = _schema.name
+            if (_schema.name) name = _schema.name
         }
         
         _schema = await get_requiments(_schema);

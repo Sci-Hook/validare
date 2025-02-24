@@ -4,7 +4,7 @@
     },
     "username":{
         "$default":"Bu bilgi hatalı",
-        "min_length":"",
+        "min_length":" dsfds gdfsg ",
         "max_length":""
     }
 }

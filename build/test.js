@@ -41,6 +41,11 @@ var src_1 = require("./src");
 var validare_messages_1 = require("./src/functions/validare-messages");
 (0, index_1.loadSchemas)(['requiments.json']);
 (0, validare_messages_1.load_validare_messages)('messages');
+var username = new src_1.Schema({
+    type: 'string',
+    min_length: 20,
+    name: 'username'
+});
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b;
@@ -48,7 +53,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, (0, src_1.validator)('username', 'a')];
+                    return [4 /*yield*/, username.validate('a')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

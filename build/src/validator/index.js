@@ -95,7 +95,7 @@ function validator(_schema, value, options) {
                                 }
                                 else {
                                     // @ts-ignore
-                                    if (schema.name)
+                                    if (_schema.name)
                                         name = _schema.name;
                                 }
                                 return [4 /*yield*/, (0, get_requiments_1.get_requiments)(_schema)];
