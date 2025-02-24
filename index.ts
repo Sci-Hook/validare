@@ -8,7 +8,8 @@ import {
     validateSwitch,
     validateFile,
     validate_element,
-    validate_inner_keys
+    validate_inner_keys,
+    loadValidareMessages
 } from './src';
 
 export{
@@ -21,5 +22,6 @@ export{
     validateSwitch,
     validateFile,
     validate_element,
-    validate_inner_keys
+    validate_inner_keys,
+    loadValidareMessages
 }

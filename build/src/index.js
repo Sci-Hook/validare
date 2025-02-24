@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
+exports.loadValidareMessages = exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
 exports.loadSchemas = loadSchemas;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 require("syncforeachloop");
@@ -65,4 +65,6 @@ var validator_inputs_1 = require("./functions/validator-inputs");
 Object.defineProperty(exports, "validate_element", { enumerable: true, get: function () { return validator_inputs_1.validate_element; } });
 var validate_inner_keys_1 = require("./functions/validate-inner-keys");
 Object.defineProperty(exports, "validate_inner_keys", { enumerable: true, get: function () { return validate_inner_keys_1.validate_inner_keys; } });
+var validare_messages_1 = require("./functions/validare-messages");
+Object.defineProperty(exports, "loadValidareMessages", { enumerable: true, get: function () { return validare_messages_1.load_validare_messages; } });
 require("./functions/validator-inputs");

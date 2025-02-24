@@ -17,6 +17,7 @@ import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
 import {validate_element} from './functions/validator-inputs'
 import { validate_inner_keys } from './functions/validate-inner-keys';
+import { load_validare_messages as loadValidareMessages } from './functions/validare-messages';
 import './functions/validator-inputs';
 
 export{
@@ -29,5 +30,6 @@ export{
     validateSwitch,
     validateFile,
     validate_element,
-    validate_inner_keys
+    validate_inner_keys,
+    loadValidareMessages
 }
