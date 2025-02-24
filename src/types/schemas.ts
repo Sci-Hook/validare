@@ -8,7 +8,7 @@ export type global = {
     dont_validate_empty?:boolean,
     allow_undefined?:boolean,
     allow_null?:boolean,
-    name:string
+    name?:string
 }
 
 export type check_length = {min_length?:number|string,max_length?:number|string,length?:number|string}
