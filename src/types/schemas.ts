@@ -3,7 +3,13 @@ import { schema } from './schema';
 
 type size_types = 'bit'|'kib'|'mib'|'gib'|'tib'|'byte'|'kb'|'mb'|'gb'|'tb';
 
-export type global = {required?:boolean,dont_validate_empty?:boolean,allow_undefined?:boolean,allow_null?:boolean}
+export type global = {
+    required?:boolean,
+    dont_validate_empty?:boolean,
+    allow_undefined?:boolean,
+    allow_null?:boolean,
+    name:string
+}
 
 export type check_length = {min_length?:number|string,max_length?:number|string,length?:number|string}
 

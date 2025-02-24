@@ -1,6 +1,9 @@
 {
+    "$default":{
+        "length":"Bu bilgi #{value} uzunluğunda olmalı"
+    },
     "username":{
-        "$default":"",
+        "$default":"Bu bilgi hatalı",
         "min_length":"",
         "max_length":""
     }

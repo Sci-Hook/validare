@@ -41,7 +41,7 @@ exports.validator = validator;
 var error_1 = require("../class/error");
 var get_requiments_1 = require("../functions/get-requiments");
 var validators_1 = require("./validators");
-function validate_with_schema(schema, value) {
+function validate_with_schema(schema, value, name) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
@@ -64,14 +64,14 @@ function validate_with_schema(schema, value) {
                                                         next();
                                                     }
                                                     else {
-                                                        resolve(new error_1.Status(status, schema[status], value));
+                                                        resolve(new error_1.Status(status, name, schema[status], value));
                                                     }
                                                     return [2 /*return*/];
                                             }
                                         });
                                     });
                                 }, function () {
-                                    resolve(new error_1.Status('no_error', null, value));
+                                    resolve(new error_1.Status('no_error', name, null, value));
                                 });
                                 return [2 /*return*/];
                         }
@@ -85,10 +85,20 @@ function validator(_schema, value, options) {
         var _this = this;
         return __generator(this, function (_a) {
             return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                    var schema, result;
+                    var name, schema, result;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(_schema)];
+                            case 0:
+                                name = '$default';
+                                if (typeof _schema == 'string') {
+                                    name = _schema;
+                                }
+                                else {
+                                    // @ts-ignore
+                                    if (schema.name)
+                                        name = _schema.name;
+                                }
+                                return [4 /*yield*/, (0, get_requiments_1.get_requiments)(_schema)];
                             case 1:
                                 _schema = _a.sent();
                                 schema = JSON.parse(JSON.stringify(_schema));
@@ -103,17 +113,17 @@ function validator(_schema, value, options) {
                                 _a.label = 3;
                             case 3:
                                 if (schema.dont_validate_empty && value == '')
-                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', name, null, value))];
                                 if (schema.allow_undefined && value === undefined)
-                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', name, null, value))];
                                 if (schema.allow_null && value === null)
-                                    return [2 /*return*/, resolve(new error_1.Status('no_error', null, value))];
+                                    return [2 /*return*/, resolve(new error_1.Status('no_error', name, null, value))];
                                 // Required validation
                                 if (schema.required) {
                                     if (value === undefined)
-                                        return [2 /*return*/, resolve(new error_1.Status('undefined', schema.required, value))];
+                                        return [2 /*return*/, resolve(new error_1.Status('undefined', name, schema.required, value))];
                                     if (value === null)
-                                        return [2 /*return*/, resolve(new error_1.Status('null', schema.required, value))];
+                                        return [2 /*return*/, resolve(new error_1.Status('null', name, schema.required, value))];
                                 }
                                 if (!(schema.type == 'multi-type')) return [3 /*break*/, 4];
                                 schema.types.syncForEach(function (type_options, next_type) {
@@ -121,7 +131,7 @@ function validator(_schema, value, options) {
                                         var result;
                                         return __generator(this, function (_a) {
                                             switch (_a.label) {
-                                                case 0: return [4 /*yield*/, validate_with_schema(type_options, value)];
+                                                case 0: return [4 /*yield*/, validate_with_schema(type_options, value, name)];
                                                 case 1:
                                                     result = _a.sent();
                                                     if (result.status == true) {
@@ -136,7 +146,7 @@ function validator(_schema, value, options) {
                                     resolve({ error: 'not-matched-with-any-type', reason: schema, status: false, value: value });
                                 });
                                 return [3 /*break*/, 6];
-                            case 4: return [4 /*yield*/, validate_with_schema(schema, value)];
+                            case 4: return [4 /*yield*/, validate_with_schema(schema, value, name)];
                             case 5:
                                 result = _a.sent();
                                 resolve(result);

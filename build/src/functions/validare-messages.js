@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,24 +47,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("./index");
-var src_1 = require("./src");
-var validare_messages_1 = require("./src/functions/validare-messages");
-(0, index_1.loadSchemas)(['requiments.json']);
-(0, validare_messages_1.load_validare_messages)('messages');
-function main() {
+exports.load_validare_messages = load_validare_messages;
+var fs_1 = require("fs");
+function load_validare_messages(folder) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, (0, src_1.validator)('username', 'a')];
+        var files;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, fs_1.readdirSync)(folder)];
                 case 1:
-                    _b.apply(_a, [_c.sent()]);
+                    files = _a.sent();
+                    return [4 /*yield*/, files.syncForEach(function (file, next) {
+                            var data = (0, fs_1.readFileSync)("".concat(folder, "/").concat(file));
+                            var messages = JSON.parse("".concat(data));
+                            global.validare.messages = __assign(__assign({}, global.validare.messages), messages);
+                            next();
+                        })];
+                case 2:
+                    _a.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
-main();

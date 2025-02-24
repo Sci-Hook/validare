@@ -1,3 +1,5 @@
+import { validate_inner_keys } from "../functions/validate-inner-keys";
+
 type errors = 
     'undefined'|
     'null'|
@@ -31,8 +33,32 @@ export class Status {
     error:errors;
     reason:any;
     value:any;
+    message:string;
 
-    constructor(error:errors,reason?,value?:any){
+    constructor(error:errors,name:string,reason?,value?:any){
+
+        let messages = global.validare.messages
+        
+        if (messages) {
+            if (messages[name]) {
+                if (messages[name][error]) {
+                    this.message = messages[name][error].replaceAll('#{value}',reason)
+                }else{
+                    if (messages[name]['$default']) {
+                        this.message = messages[name]['$default'].replaceAll('#{value}',reason)
+                    }
+                }
+            }
+        }
+
+        if (!this.message) {
+            if (messages['$default']) {
+                if (messages['$default'][error]) {
+                    this.message = messages['$default'][error].replaceAll('#{value}',reason);
+                }
+            }
+        }
+
         this.value = value;
         this.error = error;
         if (error == 'no_error') {

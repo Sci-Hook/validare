@@ -25,11 +25,9 @@ export async function create_id(schema?:schema|string) {
     var loaded_validation_schemas;
 
     if (typeof window != 'undefined') {
-        
         loaded_validation_schemas = await get_remote_laded_schemas();
     }else{
         loaded_validation_schemas = global.validare;
-
     }
     
     if (typeof schema == 'string') {

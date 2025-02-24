@@ -4,6 +4,7 @@
         "type":"string"
     },
     "id_type":{
+        "type":"string",
         "length":40
     },
     "test":{
