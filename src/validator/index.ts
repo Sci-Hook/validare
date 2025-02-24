@@ -63,7 +63,7 @@ export async function validator(_schema:schema|string,value:any,options?:{dont_v
                 }
                 next_type();
             },() => {
-                resolve({error:'not-matched-with-any-type',reason:schema,status:false,value});
+                resolve(new Status('not-matched-with-any-type',name,(<any>schema).required,value));
             });
         }else{
             var result = await validate_with_schema(schema,value,name)

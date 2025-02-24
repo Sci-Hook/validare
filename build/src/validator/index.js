@@ -143,7 +143,7 @@ function validator(_schema, value, options) {
                                         });
                                     });
                                 }, function () {
-                                    resolve({ error: 'not-matched-with-any-type', reason: schema, status: false, value: value });
+                                    resolve(new error_1.Status('not-matched-with-any-type', name, schema.required, value));
                                 });
                                 return [3 /*break*/, 6];
                             case 4: return [4 /*yield*/, validate_with_schema(schema, value, name)];
