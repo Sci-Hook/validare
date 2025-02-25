@@ -1,8 +1,16 @@
 import {loadFiles} from 'scihook-schema-loader';
 import 'syncforeachloop';
 
-async function loadSchemas(files:string|string[]) {
-    loadFiles('validare',files);
+async function validationConfig(options:{
+        files?:string|string[],
+        messages:string
+    }) {
+
+    global.validare = {}
+
+    if (options.files) loadFiles('validare',options.files);    
+    if (options.messages) load_validare_messages(options.messages);
+
 }
 
 //tpyes
@@ -17,13 +25,13 @@ import {validateSwitch} from './express-middlewares/validate-switch'
 import {validateFile} from './express-middlewares/validate-file'
 import {validate_element} from './functions/validator-inputs'
 import { validate_inner_keys } from './functions/validate-inner-keys';
-import { load_validare_messages as loadValidareMessages } from './functions/validare-messages';
+import { load_validare_messages, load_validare_messages as loadValidareMessages } from './functions/validare-messages';
 import './functions/validator-inputs';
 
 export{
     schema,
     Schema,
-    loadSchemas,
+    validationConfig,
     validator,
     ID,
     validateFields,

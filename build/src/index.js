@@ -37,13 +37,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadValidareMessages = exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
-exports.loadSchemas = loadSchemas;
+exports.validationConfig = validationConfig;
 var scihook_schema_loader_1 = require("scihook-schema-loader");
 require("syncforeachloop");
-function loadSchemas(files) {
+function validationConfig(options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            (0, scihook_schema_loader_1.loadFiles)('validare', files);
+            global.validare = {};
+            if (options.files)
+                (0, scihook_schema_loader_1.loadFiles)('validare', options.files);
+            if (options.messages)
+                (0, validare_messages_1.load_validare_messages)(options.messages);
             return [2 /*return*/];
         });
     });

@@ -1,9 +1,9 @@
-import {loadSchemas} from './index';
-import { Schema, validator } from './src';
-import { load_validare_messages } from './src/functions/validare-messages';
+import { Schema, validationConfig, validator } from './src';
 
-loadSchemas(['requiments.json'])
-load_validare_messages('messages')
+validationConfig({
+    files:['requiments.json'],
+    messages:'messages'
+})
 
 let username = new Schema({
     type:'string',
@@ -12,7 +12,7 @@ let username = new Schema({
 })
 
 async function main() {    
-    console.log(await username.validate('a'));
+    console.log(await validator('username','a'));
 }
 
 main();
