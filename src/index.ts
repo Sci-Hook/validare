@@ -3,7 +3,7 @@ import 'syncforeachloop';
 
 async function validationConfig(options:{
         files?:string|string[],
-        messages:string
+        messages?:string
     }) {
 
     global.validare = {}
