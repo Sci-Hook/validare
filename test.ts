@@ -1,4 +1,4 @@
-import { Schema, validationConfig, validator } from './src';
+import { Schema, validationConfig, validator } from './';
 
 validationConfig({
     files:['requiments.json'],

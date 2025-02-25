@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var src_1 = require("./src");
-(0, src_1.validationConfig)({
+var _1 = require("./");
+(0, _1.validationConfig)({
     files: ['requiments.json'],
     messages: 'messages'
 });
-var username = new src_1.Schema({
+var username = new _1.Schema({
     type: 'string',
     min_length: 20,
     name: 'username'
@@ -53,7 +53,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, (0, src_1.validator)('username', 'a')];
+                    return [4 /*yield*/, (0, _1.validator)('username', 'a')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];
