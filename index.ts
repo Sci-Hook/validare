@@ -1,7 +1,7 @@
 import {
     schema,
     Schema, 
-    loadSchemas,
+    validationConfig,
     validator,
     ID,
     validateFields, 
@@ -14,7 +14,7 @@ import {
 
 export{
     Schema,
-    loadSchemas,
+    validationConfig,
     validator,
     ID,
     schema,
