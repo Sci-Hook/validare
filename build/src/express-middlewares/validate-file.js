@@ -38,38 +38,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateFile = validateFile;
 require("syncforeachloop");
-var validator_1 = require("../validator");
 function validateFile(field, callback) {
     var _this = this;
     return function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
-        var name, schema, result;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (typeof field == 'string') {
-                        name = field;
-                        schema = field;
-                    }
-                    else {
-                        name = field.dataname;
-                        schema = field.schema;
-                    }
-                    if (!req.file)
-                        return [2 /*return*/, callback({ dataname: name, error: 'undefined', reason: 'type' }, req, res)];
-                    return [4 /*yield*/, (0, validator_1.validator)(schema, req.file.buffer)];
-                case 1:
-                    result = _a.sent();
-                    if (!result.status) {
-                        return [2 /*return*/, callback({
-                                dataname: req.file.fieldname,
-                                error: result.error,
-                                reason: result.reason,
-                                message: result.message
-                            }, req, res)];
-                    }
-                    next();
-                    return [2 /*return*/];
-            }
+            // var name;
+            // var schema;
+            // if (typeof field == 'string') {
+            //     name = field;schema = field;
+            // }else{
+            //     name = field.dataname;
+            //     schema = field.schema;
+            // }
+            // // if (!req.file) return callback({dataname:name,error:'undefined',reason:'type'},req,res); //need-to-fix
+            // var result = await validator(schema,req.file.buffer);
+            // if (!result.status) {
+            //     return callback({
+            //         dataname:req.file.fieldname,
+            //         error:result.error,
+            //         reason:result.reason,
+            //         message:result.message
+            //     },req,res);
+            // }
+            next();
+            return [2 /*return*/];
         });
     }); };
 }

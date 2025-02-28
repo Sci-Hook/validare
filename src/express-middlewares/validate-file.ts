@@ -10,28 +10,28 @@ export function validateFile(field:field|string,callback:invalid_file_response){
 
     return async (req:Request,res:Response,next:NextFunction) => {
 
-        var name;
-        var schema;
+        // var name;
+        // var schema;
 
-        if (typeof field == 'string') {
-            name = field;schema = field;
-        }else{
-            name = field.dataname;
-            schema = field.schema;
-        }
+        // if (typeof field == 'string') {
+        //     name = field;schema = field;
+        // }else{
+        //     name = field.dataname;
+        //     schema = field.schema;
+        // }
 
-        if (!req.file) return callback({dataname:name,error:'undefined',reason:'type'},req,res);
+        // // if (!req.file) return callback({dataname:name,error:'undefined',reason:'type'},req,res); //need-to-fix
 
-        var result = await validator(schema,req.file.buffer);
+        // var result = await validator(schema,req.file.buffer);
 
-        if (!result.status) {
-            return callback({
-                dataname:req.file.fieldname,
-                error:result.error,
-                reason:result.reason,
-                message:result.message
-            },req,res);
-        }
+        // if (!result.status) {
+        //     return callback({
+        //         dataname:req.file.fieldname,
+        //         error:result.error,
+        //         reason:result.reason,
+        //         message:result.message
+        //     },req,res);
+        // }
 
         next();
         
