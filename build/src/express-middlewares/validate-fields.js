@@ -79,7 +79,8 @@ function validateFields(fields, callback) {
                                 data: value,
                                 dataname: dataname,
                                 error: result.error,
-                                reason: result.reason
+                                reason: result.reason,
+                                message: result.message
                             });
                         }
                         next();

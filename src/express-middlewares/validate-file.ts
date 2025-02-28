@@ -28,7 +28,8 @@ export function validateFile(field:field|string,callback:invalid_file_response){
             return callback({
                 dataname:req.file.fieldname,
                 error:result.error,
-                reason:result.reason
+                reason:result.reason,
+                message:result.message
             },req,res);
         }
 

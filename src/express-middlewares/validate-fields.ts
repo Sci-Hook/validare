@@ -49,7 +49,8 @@ export function validateFields(fields:(field|string)[],callback:invalid_values_r
                     data:value,
                     dataname,
                     error:result.error,
-                    reason:result.reason
+                    reason:result.reason,
+                    message:result.message
                 });
                 
             }

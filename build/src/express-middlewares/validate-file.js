@@ -63,7 +63,8 @@ function validateFile(field, callback) {
                         return [2 /*return*/, callback({
                                 dataname: req.file.fieldname,
                                 error: result.error,
-                                reason: result.reason
+                                reason: result.reason,
+                                message: result.message
                             }, req, res)];
                     }
                     next();

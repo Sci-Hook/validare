@@ -52,7 +52,8 @@ export function validateSwitch(dataname:string, switches:{[switch_value:string]:
                     data:value,
                     dataname,
                     error:result.error,
-                    reason:result.reason
+                    reason:result.reason,
+                    message:result.message
                 });
                 
             }
