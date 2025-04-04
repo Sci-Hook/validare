@@ -40,7 +40,7 @@ exports.validate_string = validate_string;
 function validate_string(schema, value) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-        var splitted, flag, pattern, regex;
+        var pattern, flag, regex;
         return __generator(this, function (_a) {
             // Empty string validation
             if (schema.ignore_empty) {
@@ -50,11 +50,9 @@ function validate_string(schema, value) {
             // Empty string validation
             if (schema.regex) {
                 if (typeof value == 'string') {
-                    if (typeof schema.regex == 'string') {
-                        splitted = schema.regex.split('/');
-                        flag = schema.regex.split('/')[splitted.length - 1];
-                        pattern = schema.regex.replace(flag, '');
-                        pattern = pattern.slice(1, -1);
+                    if (schema.regex) {
+                        pattern = schema.regex.pattern;
+                        flag = schema.regex.flag;
                         try {
                             regex = new RegExp(pattern, flag);
                             if (!regex.test(value)) {
@@ -65,10 +63,6 @@ function validate_string(schema, value) {
                             console.log("Invalid regex", schema);
                             console.log(error);
                         }
-                    }
-                    else {
-                        if (!schema.regex.test(value))
-                            return [2 /*return*/, resolve('regex')];
                     }
                 }
                 else {

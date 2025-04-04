@@ -1,7 +1,10 @@
 {
     "username":{
-        "min_length":10,
-        "type":"string"
+        "type":"string",
+        "regex":{
+            "pattern":"^[a-zA-Z0-9]+$",
+            "flag":"g"
+        }
     },
     "id_type":{
         "type":"string",

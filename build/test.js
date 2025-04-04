@@ -43,8 +43,6 @@ var _1 = require("./");
 });
 var username = new _1.Schema({
     type: 'string',
-    min_length: 20,
-    name: 'username'
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
@@ -53,7 +51,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, (0, _1.validator)('username', 'a')];
+                    return [4 /*yield*/, (0, _1.validator)('username', 'yusufyıgıtarslan')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

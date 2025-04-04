@@ -7,12 +7,10 @@ validationConfig({
 
 let username = new Schema({
     type:'string',
-    min_length:20,
-    name:'username'
 })
 
 async function main() {    
-    console.log(await validator('username','a'));
+    console.log(await validator('username','yusufyıgıtarslan'));
 }
 
 main();

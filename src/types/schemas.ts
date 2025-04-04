@@ -23,7 +23,7 @@ export type file_schemas = {
 
 export type string_schemas = {
     type:'string',
-    regex?:RegExp|string,
+    regex?:{pattern:string,flag:string},
     ignore_empty?:boolean,
     chars?:string,
     casetype?:'uppercase'|'lowercase'|'unset'|'combined',

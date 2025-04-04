@@ -12,12 +12,10 @@ export function validate_string(schema:string_schemas,value) {
 
         if (schema.regex) {
             if (typeof value == 'string') {
-                if (typeof schema.regex == 'string') {
+                if (schema.regex) {
                     
-                    var splitted = schema.regex.split('/');
-                    var flag = schema.regex.split('/')[splitted.length -1];
-                    var pattern = schema.regex.replace(flag,'');
-                    pattern = pattern.slice(1,-1);
+                    let pattern = schema.regex.pattern;
+                    let flag = schema.regex.flag;
 
                     try {
                         var regex = new RegExp(pattern,flag);
@@ -29,8 +27,6 @@ export function validate_string(schema:string_schemas,value) {
                         console.log(error);
                     }
                     
-                }else{
-                    if (!schema.regex.test(value)) return resolve('regex');
                 }
             }else{
                 return resolve('regex');
