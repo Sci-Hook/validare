@@ -10,10 +10,12 @@
         "c.json"
     '
     >
+    <meta name="messages" dist="/messages" schemas='"messages.json"'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <input data-validate name="doi" type="text">
+    <input data-message-box="message" data-validate name="username" type="text">
+    <p id="message"></p>
     <script src="/dist/validare-web.js"></script>
 </body>
 </html>

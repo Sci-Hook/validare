@@ -38,10 +38,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate_element = validate_element;
 var validator_1 = require("../validator");
-function validate_element(selector_or_element) {
+function validate_element(selector_or_element, set_message) {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-        var target, value, schema, result;
+        var target, value, schema, result, message_box;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -67,6 +67,17 @@ function validate_element(selector_or_element) {
                     result = _a.sent();
                     target.setAttribute('data-validation-status', result.status ? 'true' : 'false');
                     target.setAttribute('data-validation-full-result', JSON.stringify(result));
+                    message_box = target.getAttribute('data-message-box');
+                    if (set_message) {
+                        if (!result.status) {
+                            // @ts-ignore
+                            document.getElementById(message_box).innerText = result.message;
+                        }
+                        else {
+                            // @ts-ignore
+                            document.getElementById(message_box).innerText = '';
+                        }
+                    }
                     resolve();
                     return [2 /*return*/];
             }
@@ -75,14 +86,15 @@ function validate_element(selector_or_element) {
 }
 function validate_element_event_function(event) {
     var target = event.target;
-    validate_element(target);
+    validate_element(target, event.type == 'change');
 }
 if (typeof document != 'undefined') {
     document.addEventListener("DOMContentLoaded", function () {
         var validate_inputs = document.querySelectorAll('[data-validate]');
         validate_inputs.forEach(function (validate_input) {
-            validate_element(validate_input);
+            validate_element(validate_input, false);
             validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('change', validate_element_event_function);
+            validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('focusout', validate_element_event_function);
             validate_input === null || validate_input === void 0 ? void 0 : validate_input.addEventListener('keyup', validate_element_event_function);
         });
     });

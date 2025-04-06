@@ -36,21 +36,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validare_messages = void 0;
 exports.remoteLoadFiles = remoteLoadFiles;
 exports.get_remote_laded_schemas = get_remote_laded_schemas;
 require("syncforeachloop");
 var validare_schemas = {};
+exports.validare_messages = {};
 var load_finished = false;
 function remoteLoadFiles() {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-        var map_meta, dist, schemas;
+        var map_meta, messages_meta, dist_schemas, dist_mesasges, schemas, messages;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     map_meta = document.querySelector('[name="validare-schemas"]');
-                    dist = map_meta === null || map_meta === void 0 ? void 0 : map_meta.getAttribute('dist');
+                    messages_meta = document.querySelector('[name="messages"]');
+                    dist_schemas = map_meta === null || map_meta === void 0 ? void 0 : map_meta.getAttribute('dist');
+                    dist_mesasges = messages_meta === null || messages_meta === void 0 ? void 0 : messages_meta.getAttribute('dist');
                     schemas = JSON.parse("[".concat(map_meta === null || map_meta === void 0 ? void 0 : map_meta.getAttribute('schemas'), "]"));
+                    messages = JSON.parse("[".concat(messages_meta === null || messages_meta === void 0 ? void 0 : messages_meta.getAttribute('schemas'), "]"));
                     if (!schemas) {
                         return [2 /*return*/, console.error('No any schema attached')];
                     }
@@ -59,7 +64,7 @@ function remoteLoadFiles() {
                                 var response, schemas;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
-                                        case 0: return [4 /*yield*/, fetch("".concat(dist, "/").concat(file))];
+                                        case 0: return [4 /*yield*/, fetch("".concat(dist_schemas, "/").concat(file))];
                                         case 1:
                                             response = _a.sent();
                                             if (response.status != 200) {
@@ -77,6 +82,30 @@ function remoteLoadFiles() {
                             });
                         })];
                 case 1:
+                    _a.sent();
+                    return [4 /*yield*/, messages.syncForEach(function (message, next) {
+                            return __awaiter(this, void 0, void 0, function () {
+                                var response, schemas;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, fetch("".concat(dist_mesasges, "/").concat(message))];
+                                        case 1:
+                                            response = _a.sent();
+                                            if (response.status != 200) {
+                                                console.error("".concat(message, " is not accessable"));
+                                                return [2 /*return*/, next()];
+                                            }
+                                            return [4 /*yield*/, response.json()];
+                                        case 2:
+                                            schemas = _a.sent();
+                                            exports.validare_messages = Object.assign(exports.validare_messages, schemas);
+                                            next();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            });
+                        })];
+                case 2:
                     _a.sent();
                     resolve();
                     return [2 /*return*/];

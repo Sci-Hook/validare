@@ -4,7 +4,9 @@
     },
     "username":{
         "$default":"Bu bilgi hatalı",
-        "min_length":" dsfds gdfsg ",
-        "max_length":""
+        "min_length":"Kullanıcı adı en az #{value} karakter olmalı"
+    },
+    "doi":{
+        "invalid":"Lütfen geçerli bir katex girin"
     }
 }
