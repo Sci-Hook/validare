@@ -41,9 +41,6 @@ var _1 = require("./");
     files: ['requiments.json'],
     messages: 'messages'
 });
-var username = new _1.Schema({
-    type: 'string',
-});
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, _b;
@@ -51,7 +48,7 @@ function main() {
             switch (_c.label) {
                 case 0:
                     _b = (_a = console).log;
-                    return [4 /*yield*/, (0, _1.validator)('username', 'yusufyıgıtarslan')];
+                    return [4 /*yield*/, (0, _1.validator)('special', '')];
                 case 1:
                     _b.apply(_a, [_c.sent()]);
                     return [2 /*return*/];

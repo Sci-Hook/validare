@@ -14,11 +14,8 @@
         "type":"file",
         "extension":["png","jpg"]
     },
-    "mest":{
-        "type":"file",
-        "max_size":{
-            "size":20,
-            "size_type":"mb"
-        }
+    "special":{
+        "type":"email",
+        "ignore_empty":true
     }
 }

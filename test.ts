@@ -5,12 +5,8 @@ validationConfig({
     messages:'messages'
 })
 
-let username = new Schema({
-    type:'string',
-})
-
 async function main() {    
-    console.log(await validator('username','yusufyıgıtarslan'));
+    console.log(await validator('special',''));
 }
 
 main();
