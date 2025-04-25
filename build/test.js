@@ -43,14 +43,13 @@ var _1 = require("./");
 });
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _b = (_a = console).log;
-                    return [4 /*yield*/, (0, _1.validator)('special', '')];
+        var schema;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, _1.get_schema)('special')];
                 case 1:
-                    _b.apply(_a, [_c.sent()]);
+                    schema = _a.sent();
+                    console.log(schema);
                     return [2 /*return*/];
             }
         });

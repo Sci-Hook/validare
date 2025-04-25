@@ -36,41 +36,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.get_schema = exports.loadValidareMessages = exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.Schema = void 0;
-exports.validationConfig = validationConfig;
-var scihook_schema_loader_1 = require("scihook-schema-loader");
-require("syncforeachloop");
-function validationConfig(options) {
+exports.get_schema = get_schema;
+var get_requiments_1 = require("./get-requiments");
+function get_schema(name) {
     return __awaiter(this, void 0, void 0, function () {
+        var _this = this;
         return __generator(this, function (_a) {
-            global.validare = {};
-            if (options.files)
-                (0, scihook_schema_loader_1.loadFiles)('validare', options.files);
-            if (options.messages)
-                (0, validare_messages_1.load_validare_messages)(options.messages);
-            return [2 /*return*/];
+            return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                    var _schema;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, (0, get_requiments_1.get_requiments)(name)];
+                            case 1:
+                                _schema = _a.sent();
+                                resolve(_schema);
+                                return [2 /*return*/];
+                        }
+                    });
+                }); })];
         });
     });
 }
-//types
-var schema_1 = require("./class/schema");
-Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return schema_1.Schema; } });
-var create_id_1 = require("./create-id");
-Object.defineProperty(exports, "ID", { enumerable: true, get: function () { return create_id_1.create_id; } });
-var validator_1 = require("./validator");
-Object.defineProperty(exports, "validator", { enumerable: true, get: function () { return validator_1.validator; } });
-var validate_fields_1 = require("./express-middlewares/validate-fields");
-Object.defineProperty(exports, "validateFields", { enumerable: true, get: function () { return validate_fields_1.validateFields; } });
-var validate_switch_1 = require("./express-middlewares/validate-switch");
-Object.defineProperty(exports, "validateSwitch", { enumerable: true, get: function () { return validate_switch_1.validateSwitch; } });
-var validate_file_1 = require("./express-middlewares/validate-file");
-Object.defineProperty(exports, "validateFile", { enumerable: true, get: function () { return validate_file_1.validateFile; } });
-var validator_inputs_1 = require("./functions/validator-inputs");
-Object.defineProperty(exports, "validate_element", { enumerable: true, get: function () { return validator_inputs_1.validate_element; } });
-var validate_inner_keys_1 = require("./functions/validate-inner-keys");
-Object.defineProperty(exports, "validate_inner_keys", { enumerable: true, get: function () { return validate_inner_keys_1.validate_inner_keys; } });
-var get_schema_1 = require("./functions/get-schema");
-Object.defineProperty(exports, "get_schema", { enumerable: true, get: function () { return get_schema_1.get_schema; } });
-var validare_messages_1 = require("./functions/validare-messages");
-Object.defineProperty(exports, "loadValidareMessages", { enumerable: true, get: function () { return validare_messages_1.load_validare_messages; } });
-require("./functions/validator-inputs");

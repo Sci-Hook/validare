@@ -9,7 +9,8 @@ import {
     validateFile,
     validate_element,
     validate_inner_keys,
-    loadValidareMessages
+    loadValidareMessages,
+    get_schema
 } from './src';
 
 export{
@@ -23,5 +24,6 @@ export{
     validateFile,
     validate_element,
     validate_inner_keys,
-    loadValidareMessages
+    loadValidareMessages,
+    get_schema
 }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadValidareMessages = exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.validationConfig = exports.Schema = void 0;
+exports.get_schema = exports.loadValidareMessages = exports.validate_inner_keys = exports.validate_element = exports.validateFile = exports.validateSwitch = exports.validateFields = exports.ID = exports.validator = exports.validationConfig = exports.Schema = void 0;
 var src_1 = require("./src");
 Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return src_1.Schema; } });
 Object.defineProperty(exports, "validationConfig", { enumerable: true, get: function () { return src_1.validationConfig; } });
@@ -12,3 +12,4 @@ Object.defineProperty(exports, "validateFile", { enumerable: true, get: function
 Object.defineProperty(exports, "validate_element", { enumerable: true, get: function () { return src_1.validate_element; } });
 Object.defineProperty(exports, "validate_inner_keys", { enumerable: true, get: function () { return src_1.validate_inner_keys; } });
 Object.defineProperty(exports, "loadValidareMessages", { enumerable: true, get: function () { return src_1.loadValidareMessages; } });
+Object.defineProperty(exports, "get_schema", { enumerable: true, get: function () { return src_1.get_schema; } });
