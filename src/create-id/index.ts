@@ -1,4 +1,4 @@
-import { get_remote_laded_schemas } from '../functions/remote-load';
+import { get_remote_loaded_schemas } from '../functions/remote-load';
 import {schema} from '../types/schema';
 import {presets_characters} from './presets';
 
@@ -25,7 +25,7 @@ export async function create_id(schema?:schema|string) {
     var loaded_validation_schemas;
 
     if (typeof window != 'undefined') {
-        loaded_validation_schemas = await get_remote_laded_schemas();
+        loaded_validation_schemas = await get_remote_loaded_schemas();
     }else{
         loaded_validation_schemas = global.validare;
     }

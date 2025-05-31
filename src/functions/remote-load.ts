@@ -17,7 +17,7 @@ export function remoteLoadFiles() {
 
         var schemas = JSON.parse(`[${map_meta?.getAttribute('schemas')}]`);
         var messages = JSON.parse(`[${messages_meta?.getAttribute('schemas')}]`);
-
+        
         if (!schemas) {
             return console.error('No any schema attached')
         }
@@ -44,17 +44,18 @@ export function remoteLoadFiles() {
             next();
         });
 
+        load_finished = true;
+
         resolve();    
     
     });
 
 }
 
-export function get_remote_laded_schemas() {
+export function get_remote_loaded_schemas() {
     return new Promise<object>(async (resolve, reject) => {
         if (load_finished) {return resolve(validare_schemas);}
         await remoteLoadFiles();
         return resolve(validare_schemas);
     })
-
 }

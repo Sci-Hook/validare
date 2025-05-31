@@ -1,5 +1,5 @@
 import { schema } from "../types/schema";
-import { get_remote_laded_schemas } from "./remote-load";
+import { get_remote_loaded_schemas } from "./remote-load";
 
 export function get_requiments(schema) {
     return new Promise<schema>(async (resolve, reject) => {
@@ -8,7 +8,7 @@ export function get_requiments(schema) {
             var loaded_validation_schemas;
 
             if (typeof window != 'undefined') {
-                loaded_validation_schemas = await get_remote_laded_schemas();
+                loaded_validation_schemas = await get_remote_loaded_schemas();
             }else {
                 loaded_validation_schemas = global.validare;
             }

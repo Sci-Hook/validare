@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validare_messages = void 0;
 exports.remoteLoadFiles = remoteLoadFiles;
-exports.get_remote_laded_schemas = get_remote_laded_schemas;
+exports.get_remote_loaded_schemas = get_remote_loaded_schemas;
 require("syncforeachloop");
 var validare_schemas = {};
 exports.validare_messages = {};
@@ -107,13 +107,14 @@ function remoteLoadFiles() {
                         })];
                 case 2:
                     _a.sent();
+                    load_finished = true;
                     resolve();
                     return [2 /*return*/];
             }
         });
     }); });
 }
-function get_remote_laded_schemas() {
+function get_remote_loaded_schemas() {
     var _this = this;
     return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {

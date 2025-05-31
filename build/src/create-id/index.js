@@ -61,7 +61,7 @@ function create_id(schema) {
                 case 0:
                     id_schema = { chars: 'standart', length: 8 };
                     if (!(typeof window != 'undefined')) return [3 /*break*/, 2];
-                    return [4 /*yield*/, (0, remote_load_1.get_remote_laded_schemas)()];
+                    return [4 /*yield*/, (0, remote_load_1.get_remote_loaded_schemas)()];
                 case 1:
                     loaded_validation_schemas = _a.sent();
                     return [3 /*break*/, 3];
