@@ -6,7 +6,7 @@ validationConfig({
 })
 
 async function main() {
-    let schema =  await get_schema('special')
+    let schema =  await validator('special',Date.now()+(1000*60)+5);
     console.log(schema);
 }
 

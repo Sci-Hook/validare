@@ -46,7 +46,7 @@ function main() {
         var schema;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, _1.get_schema)('special')];
+                case 0: return [4 /*yield*/, (0, _1.validator)('special', Date.now() + (1000 * 60) + 5)];
                 case 1:
                     schema = _a.sent();
                     console.log(schema);

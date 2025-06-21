@@ -41,16 +41,21 @@ var get_time_1 = require("../../../functions/get-time");
 function get_date(data) {
     return new Promise(function (resolve, reject) {
         var date_data = data.split(' ')[1];
-        var splitted = date_data.split(':');
-        var time = Number(splitted[0]);
-        var unit = splitted[1];
-        var type = splitted[2];
-        var date = (0, get_time_1.get_time)(time, unit);
-        if (type == 'add') {
-            resolve(Date.now() + date);
+        if (date_data) {
+            var splitted = date_data.split(':');
+            var time = Number(splitted[0]);
+            var unit = splitted[1];
+            var type = splitted[2];
+            var date = (0, get_time_1.get_time)(time, unit);
+            if (type == 'add') {
+                resolve(Date.now() + date);
+            }
+            else if (type == 'minus') {
+                resolve(Date.now() - date);
+            }
         }
-        else if (type == 'minus') {
-            resolve(Date.now() - date);
+        else {
+            resolve(Date.now());
         }
     });
 }

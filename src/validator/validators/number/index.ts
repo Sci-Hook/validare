@@ -4,19 +4,20 @@ import { number_schemas } from "../../../types/schemas";
 function get_date(data:string) {
     return new Promise<number>((resolve, reject) => {
         var date_data = data.split(' ')[1];
-        var splitted =  date_data.split(':');
-    
-        var time:any = Number(splitted[0]);
-        var unit:any = splitted[1];
-        var type = splitted[2];
-    
-        var date = get_time(time,unit);
-        
-        if (type == 'add') {
-            resolve(Date.now() + date);
-        }else if(type == 'minus'){
-            resolve(Date.now() - date);
-        } 
+        if (date_data) {
+            var splitted =  date_data.split(':');
+            var time:any = Number(splitted[0]);
+            var unit:any = splitted[1];
+            var type = splitted[2];
+            var date = get_time(time,unit);
+            if (type == 'add') {
+                resolve(Date.now() + date);
+            }else if(type == 'minus'){
+                resolve(Date.now() - date);
+            }
+        }else{
+            resolve(Date.now());
+        }
     });
 }
 
@@ -31,7 +32,7 @@ export function validate_numbers(schema:number_schemas,value) {
             if (typeof schema.max_length == 'string') {
                 if (schema.max_length.startsWith('date')) {
                     max_length = await get_date(schema.max_length);
-                }   
+                }
             }
         }
 

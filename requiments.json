@@ -15,7 +15,7 @@
         "extension":["png","jpg"]
     },
     "special":{
-        "type":"email",
-        "ignore_empty":true
+        "type":"number",
+        "max_length":"date 1:minute:add"
     }
 }
